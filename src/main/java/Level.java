@@ -17,26 +17,25 @@ public class Level {
         this.height = height;
         this.width = width;
         int[][] sprite = new int[][]{{0,0,1,0}, {1,0,1,1}, {1,1,0,1}, {0,1,0,0}};
-        this.player = new Player("Gabriel Coelho", 0, 0,
+        this.player = new Player("Gabriel Coelho", width/2-2, height-2,
                 2, 2, true, 1, 1, sprite, 5);
     }
 
     public void draw(TextGraphics screen) {
-        screen.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+        screen.setBackgroundColor(new TextColor.RGB(0,51,102));
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
 
         player.draw(screen);
     }
 
 
-    public void moveHero(boolean isToRight){
-        if(isToRight){
+    public void movePlayer(boolean moveToRight){
+        if(moveToRight){
             player.moveRight(width);
         }
         else{
             player.moveLeft(width);
         }
-
     }
 
 
