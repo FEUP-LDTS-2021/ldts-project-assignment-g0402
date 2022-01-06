@@ -1,3 +1,4 @@
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.gui2.Window;
@@ -10,6 +11,8 @@ import com.googlecode.lanterna.terminal.Terminal;
 import javax.swing.*;
 import java.io.IOException;
 
+import static com.googlecode.lanterna.TerminalPosition.OFFSET_1x1;
+
 public class Console {
 
     private Screen screen;
@@ -19,6 +22,8 @@ public class Console {
         try {
             TerminalSize terminalSize = new TerminalSize(60, 30);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+            terminalFactory.setTerminalEmulatorTitle("Space Invaders");
+
             Terminal terminal = terminalFactory.createTerminal();
 
             screen = new TerminalScreen(terminal);
