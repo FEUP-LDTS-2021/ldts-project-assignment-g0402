@@ -1,5 +1,6 @@
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.gui2.Window;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -16,11 +17,11 @@ public class Console {
 
     public Console(){
         try {
-            TerminalSize terminalSize = new TerminalSize(50, 70);
+            TerminalSize terminalSize = new TerminalSize(60, 30);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             Terminal terminal = terminalFactory.createTerminal();
-            screen = new TerminalScreen(terminal);
 
+            screen = new TerminalScreen(terminal);
             screen.setCursorPosition(null);
             screen.startScreen();
             screen.doResizeIfNecessary();
@@ -28,7 +29,7 @@ public class Console {
             e.printStackTrace();
         }
 
-        level = new Level(50, 70);
+        level = new Level(60, 30);
     }
 
     private void draw() throws IOException{
