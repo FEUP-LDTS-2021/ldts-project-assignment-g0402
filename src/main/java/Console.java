@@ -1,20 +1,17 @@
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextCharacter;
-import com.googlecode.lanterna.gui2.BasicWindow;
-import com.googlecode.lanterna.gui2.Window;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.TerminalEmulatorAutoCloseTrigger;
 
-import javax.swing.*;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-
-import static com.googlecode.lanterna.TerminalPosition.OFFSET_1x1;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class Console {
 
@@ -23,11 +20,22 @@ public class Console {
     private int width = 60;
     private int height = 30;
 
-    public Console(){
+    public Console() throws FontFormatException, URISyntaxException {
         try {
+            /*Import font for the game*/
+            URL resource = getClass().getClassLoader().getResource("pixel8bit.ttf");
+            File fontFile = new File(resource.toURI());
+            Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
             TerminalSize terminalSize = new TerminalSize(width, height);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+
             terminalFactory.setTerminalEmulatorTitle("Space Invaders");
+
+            Font loadedFont = font.deriveFont(Font.PLAIN, 15);
+            AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
+            terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
+            terminalFactory.setForceAWTOverSwing(true);
 
             Terminal terminal = terminalFactory.createTerminal();
 
