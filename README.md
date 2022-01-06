@@ -1,5 +1,13 @@
-## LPOO_G0402 - <PROJECT NAME>
+## LDTS_T04_G02 - <PROJECT NAME>
+  
+## Game Description
 
+The [we_don't_have_a_name_yet] is a shooting text based game inspired by the game Space Invaders where you have to kill different waves of enemies to pass to the next level.
+As you pass to the next levels, you will encounter a different range of enemies with increased difficulty.
+
+This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coelho (up201902223@edu.fc.up.pt) and Matias Vaz (up201900194@edu.fc.up.pt) for LDTS 2021-22.
+
+<!---
 > Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are.
 
 **Example**:
@@ -7,6 +15,7 @@
 In this exciting platform game you can help KangarooBoy save the world, by collecting all the coins throughout ten different levels in which you will […].
 
 This project was developed by *John Doe* (*john.doe*@fe.up.pt) and *Jane Doe* (*jane.doe*@fe.up.pt) for LPOO 2018⁄19.
+
 
 ### IMPLEMENTED FEATURES
 
@@ -93,3 +102,4 @@ A way to improve the code would be to move the `isPlatformSegmentSolid()` method
 
 - John Doe: 40%
 - Jane Doe: 60%
+--->
