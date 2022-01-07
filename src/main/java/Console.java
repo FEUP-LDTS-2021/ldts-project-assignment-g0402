@@ -54,12 +54,16 @@ public class Console {
         level = new Level( width, height);
     }
 
+    /**This method clears and refresh the screen, and commands
+     * Level to draw the game.*/
     private void draw() throws IOException{
         screen.clear();
         level.draw(screen.newTextGraphics());
         screen.refresh();
     }
 
+    /**This method processes if the key pressed by the user is ArrowLeft or Arrow Right.
+     * If so, proceeds to move the Player accordingly.*/
     private void processKey(com.googlecode.lanterna.input.KeyStroke key){
         System.out.println(key);
         switch (key.getKeyType()) {
