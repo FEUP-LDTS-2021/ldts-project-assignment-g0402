@@ -94,7 +94,29 @@ public class Level {
             return false;
         }
         else{
+<<<<<<< HEAD
             return true;
+=======
+            endMoveReached = true;
+            if(ytop > 3)
+                isMovingToRight = false;
+            else{
+                isMovingToRight = true;
+                endMoveReached = false;
+
+                if(maxDownMovements > 0) {
+                    this.wave.setPosDown(offset);
+                    --maxDownMovements;
+                }
+
+                try {
+                    //after going down->just wait a few ms before move backwards
+                    TimeUnit.MILLISECONDS.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+>>>>>>> d7b452d (Created Test Class for Player AND Created Class Position)
         }
     }
 
