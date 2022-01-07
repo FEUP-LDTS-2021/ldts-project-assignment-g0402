@@ -74,7 +74,7 @@ public class Level {
 
                 try {
                     //after going down->just wait a few ms before move backwards
-                    TimeUnit.MILLISECONDS.sleep(300);
+                    TimeUnit.MILLISECONDS.sleep(200);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
