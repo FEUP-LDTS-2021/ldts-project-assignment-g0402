@@ -17,8 +17,12 @@ public class Level {
         this.height = height;
         this.width = width;
         int[][] sprite = new int[][]{{0,0,1,0}, {1,0,1,1}, {1,1,0,1}, {0,1,0,0}};
-        this.player = new Player("Gabriel Coelho", width/2-2, height-2,
-                2, 2, true, 1, 1, sprite, 5);
+        int heightPlayer = 2;
+        int widthPlayer = 2;
+        int distanceFromConsoleFloor = 4;
+        this.player = new Player("Gabriel Coelho", width/2-widthPlayer,
+                height-widthPlayer-distanceFromConsoleFloor, heightPlayer,
+                widthPlayer, true, 1, 1, sprite, 5);
     }
 
     public void draw(TextGraphics screen) {

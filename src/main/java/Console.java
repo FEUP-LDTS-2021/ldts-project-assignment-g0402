@@ -17,8 +17,8 @@ public class Console {
 
     private Screen screen;
     private Level level;
-    private int width = 60;
-    private int height = 30;
+    private int width = 77;
+    private int height = 55;
 
     public Console() throws FontFormatException, URISyntaxException {
         try {
