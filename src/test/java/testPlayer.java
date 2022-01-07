@@ -1,9 +1,8 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.net.URISyntaxException;
-
-import static org.testng.AssertJUnit.assertEquals;
 
 
 public class testPlayer {
@@ -27,8 +26,8 @@ public class testPlayer {
             p1.moveRight(game.screen.getTerminalSize().getRows());
         }
 
-        assertEquals(expectedPos.getxPos(), p1.getX());
-        assertEquals(expectedPos.getyPos(), p1.getY());
+        Assertions.assertEquals(expectedPos.getxPos(), p1.getX());
+        Assertions.assertEquals(expectedPos.getyPos(), p1.getY());
     }
 
     @Test
@@ -50,7 +49,7 @@ public class testPlayer {
             p1.moveLeft(game.screen.getTerminalSize().getRows());
         }
 
-        assertEquals(expectedPos.getxPos(), p1.getX());
-        assertEquals(expectedPos.getyPos(), p1.getY());
+        Assertions.assertEquals(expectedPos.getxPos(), p1.getX());
+        Assertions.assertEquals(expectedPos.getyPos(), p1.getY());
     }
 }
