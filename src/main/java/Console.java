@@ -35,7 +35,7 @@ public class Console {
 
             terminalFactory.setTerminalEmulatorTitle("Space Invaders");
 
-            Font loadedFont = font.deriveFont(Font.PLAIN, 15);
+            Font loadedFont = font.deriveFont(Font.PLAIN, 11);
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
             terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
             terminalFactory.setForceAWTOverSwing(true);
