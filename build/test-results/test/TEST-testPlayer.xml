@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="testPlayer" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-01-07T19:09:29" hostname="LAPTOP-MPQ5C1J0" time="0.387">
+<testsuite name="testPlayer" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-01-07T22:27:05" hostname="LAPTOP-MPQ5C1J0" time="0.49">
   <properties/>
-  <testcase name="testPlayerMovementLeft()" classname="testPlayer" time="0.281"/>
-  <testcase name="testPlayerMovementRight()" classname="testPlayer" time="0.105"/>
+  <testcase name="testPlayerMovementLeft()" classname="testPlayer" time="0.388"/>
+  <testcase name="testPlayerMovementRight()" classname="testPlayer" time="0.1"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
