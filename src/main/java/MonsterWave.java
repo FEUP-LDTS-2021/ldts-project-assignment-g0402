@@ -93,11 +93,9 @@ public class MonsterWave{
         }
     }
 
-    public void setPosDown(int newPos){
+    public void setPosDown(int offset){
         for(int i = 0; i < waveLength; ++i){
-            for(Monster monster:wave[i].waveLine){
-                monster.setX(newPos);
-            }
+            wave[i].moveDown(offset);
         }
     }
 
@@ -118,7 +116,7 @@ public class MonsterWave{
         private void populateWaveLine(int xPos, int yPos){
             for (int i = 0; i < lineSize; ++i) {
                 waveLine.add(new Monster("teste", xPos, yPos, 1,
-                        1, true, 1, 1, sprite, waveSpeed));
+                        2, true, 1, 1, sprite, waveSpeed));
                 //System.out.println("xPos " + xPos + " yPos " + yPos);
                 yPos += 3;
             }
@@ -133,8 +131,8 @@ public class MonsterWave{
         private void drawLine(TextGraphics screen, List<Monster> list){
             for(Monster monster:list){
                 screen.drawLine(new TerminalPosition(monster.getY(), monster.getX()),
-                        new TerminalPosition(monster.getY(), monster.getX()),
-                        'U');
+                        new TerminalPosition(monster.getY()+1, monster.getX()),
+                        'T');
             }
         }
 
@@ -146,6 +144,12 @@ public class MonsterWave{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }*/
+            }
+        }
+
+        private void moveDown(int offset){
+            for(int i = waveLine.size()-1; i >= 0; --i){
+                waveLine.get(i).setX(offset);
             }
         }
 

@@ -96,11 +96,11 @@ public class Console {
                 while(!exitThread) {
                     draw();
                     update();
-                    /*try {
+                    try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    }*/
+                    }
 
                     PlayerThread thread2 = new PlayerThread();
                     thread2.start();

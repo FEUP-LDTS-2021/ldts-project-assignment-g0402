@@ -36,7 +36,7 @@ public class GameObject {
                     yPosic + dot[1],
                     xPosic + dot[2],
                     yPosic + dot[3],
-                    'c');
+                    'u');
         }
     }
 

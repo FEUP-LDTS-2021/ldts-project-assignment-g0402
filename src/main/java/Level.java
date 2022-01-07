@@ -7,6 +7,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Level {
 
@@ -15,6 +16,8 @@ public class Level {
     private Player player;
 
     protected MonsterWave wave;
+    protected boolean endMoveReached = false;
+    protected int maxDownMovements = 6;
 
     public Level(int width, int height){
         this.height = height;
@@ -51,15 +54,31 @@ public class Level {
     public void moveWave(int offset){
         boolean isMovingToRight;
         int ytop = this.wave.getPosLeft();
-        /*int xtop = this.wave.getPosUp();
         int ydown = this.wave.getPosRight();
-        int xdown = this.wave.getPosDown();*/
 
-        if(ytop < width-3) {
+        if(ydown < width-3 && !endMoveReached) {
             isMovingToRight = true;
         }
         else{
-            isMovingToRight = false;
+            endMoveReached = true;
+            if(ytop > 3)
+                isMovingToRight = false;
+            else{
+                isMovingToRight = true;
+                endMoveReached = false;
+
+                if(maxDownMovements > 0) {
+                    this.wave.setPosDown(offset);
+                    --maxDownMovements;
+                }
+
+                try {
+                    //after going down->just wait a few ms before move backwards
+                    TimeUnit.MILLISECONDS.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         this.wave.setPosY(offset, isMovingToRight);
     }
