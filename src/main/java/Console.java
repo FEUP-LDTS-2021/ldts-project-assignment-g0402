@@ -16,8 +16,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Console {
 
-    private Screen screen;
-    private Level level;
+    public Screen screen;
+    public Level level;
     private int width = 77;
     private int height = 55;
 
