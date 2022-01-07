@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="testPlayer" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-01-07T19:09:29" hostname="LAPTOP-MPQ5C1J0" time="0.387">
+  <properties/>
+  <testcase name="testPlayerMovementLeft()" classname="testPlayer" time="0.281"/>
+  <testcase name="testPlayerMovementRight()" classname="testPlayer" time="0.105"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
