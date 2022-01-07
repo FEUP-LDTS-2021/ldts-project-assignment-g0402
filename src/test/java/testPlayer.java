@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 <<<<<<< HEAD
 import java.awt.*;
@@ -9,9 +10,12 @@ import static org.junit.Assert.assertEquals;
 import java.awt.*;
 import java.net.URISyntaxException;
 
+<<<<<<< HEAD
 import static org.testng.AssertJUnit.assertEquals;
 >>>>>>> c0ac190 (Created Test Class for Player AND Created Class Position)
 
+=======
+>>>>>>> 6bdab29 (Added Documentation to Position)
 
 public class testPlayer {
 
@@ -34,8 +38,8 @@ public class testPlayer {
             p1.moveRight(game.screen.getTerminalSize().getRows());
         }
 
-        assertEquals(expectedPos.getxPos(), p1.getX());
-        assertEquals(expectedPos.getyPos(), p1.getY());
+        Assertions.assertEquals(expectedPos.getxPos(), p1.getX());
+        Assertions.assertEquals(expectedPos.getyPos(), p1.getY());
     }
 
     @Test
@@ -61,7 +65,7 @@ public class testPlayer {
 >>>>>>> c0ac190 (Created Test Class for Player AND Created Class Position)
         }
 
-        assertEquals(expectedPos.getxPos(), p1.getX());
-        assertEquals(expectedPos.getyPos(), p1.getY());
+        Assertions.assertEquals(expectedPos.getxPos(), p1.getX());
+        Assertions.assertEquals(expectedPos.getyPos(), p1.getY());
     }
 }
