@@ -13,6 +13,9 @@ public class Level {
     private int height;
     private int width;
     private Player player;
+
+    protected MonsterWave wave;
+
     public Level(int width, int height){
         this.height = height;
         this.width = width;
@@ -23,6 +26,9 @@ public class Level {
         this.player = new Player("Gabriel Coelho", width/2-widthPlayer,
                 height-widthPlayer-distanceFromConsoleFloor, heightPlayer,
                 widthPlayer, true, 1, 1, sprite, 5);
+
+        this.wave = new MonsterWave(3,3 ,12, 8);
+        this.wave.populateWave();
     }
 
     public void draw(TextGraphics screen) {
@@ -30,8 +36,8 @@ public class Level {
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
 
         player.draw(screen);
+        wave.drawWave(screen);
     }
-
 
     public void movePlayer(boolean moveToRight){
         if(moveToRight){
@@ -42,6 +48,21 @@ public class Level {
         }
     }
 
+    public void moveWave(int offset){
+        boolean isMovingToRight;
+        int ytop = this.wave.getPosLeft();
+        /*int xtop = this.wave.getPosUp();
+        int ydown = this.wave.getPosRight();
+        int xdown = this.wave.getPosDown();*/
+
+        if(ytop < width-3) {
+            isMovingToRight = true;
+        }
+        else{
+            isMovingToRight = false;
+        }
+        this.wave.setPosY(offset, isMovingToRight);
+    }
 
     public int getHeight() {
         return height;

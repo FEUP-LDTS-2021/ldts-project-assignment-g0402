@@ -53,6 +53,14 @@ public class GameObject {
         return this.yPosic;
     }
 
+    public void setX(int newPos) {
+        this.xPosic += newPos;
+    }
+
+    public void setY(int newPos) {
+        this.yPosic += newPos;
+    }
+
     public int getHeight() {
         return height;
     }

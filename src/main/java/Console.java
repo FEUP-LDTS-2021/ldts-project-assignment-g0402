@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class Console {
 
@@ -19,6 +20,8 @@ public class Console {
     private Level level;
     private int width = 77;
     private int height = 55;
+
+    private boolean exitThread = false;
 
     public Console() throws FontFormatException, URISyntaxException {
         try {
@@ -60,13 +63,13 @@ public class Console {
     private void processKey(com.googlecode.lanterna.input.KeyStroke key){
         System.out.println(key);
         switch (key.getKeyType()) {
-            case ArrowLeft  -> level.movePlayer(false);
-            case ArrowRight -> level.movePlayer(true);
+            case ArrowLeft: level.movePlayer(false);
+            case ArrowRight: level.movePlayer(true);
         }
     }
 
     public void run() {
-        try {
+        /*try {
             while(true) {
                 draw();
                 com.googlecode.lanterna.input.KeyStroke key = screen.readInput();
@@ -79,8 +82,65 @@ public class Console {
             }
         } catch (IOException e){
             e.printStackTrace();
+        }*/
+
+        GameThread thread1 = new GameThread();
+
+        thread1.start();
+    }
+
+    class GameThread extends Thread{
+        @Override
+        public void run(){
+            try {
+                while(!exitThread) {
+                    draw();
+                    update();
+                    /*try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }*/
+
+                    PlayerThread thread2 = new PlayerThread();
+                    thread2.start();
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+            }
         }
 
+        protected void update() {
+            level.moveWave( 2);
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class PlayerThread extends Thread{
+        @Override
+        public void run(){
+            try {
+                while(!exitThread) {
+                    com.googlecode.lanterna.input.KeyStroke key = screen.readInput();
+                    processKey(key);
+
+                    if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
+                        exitThread = true;
+                        screen.close();
+                    }
+                    if (key.getKeyType() == KeyType.EOF) {
+                        exitThread = true;
+                        break;
+                    }
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
     }
 
 }
