@@ -3,11 +3,13 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 /**Class Position deals with the x coordinates and y coordinates
  * of any object. It can also set an Object Player to its
  * default position. */
+
 public class Position {
     private int xPos = 0;
     private int yPos = 0;
     private int xPlayerDefault;
     private int yPlayerDefault;
+
 
     /**This constructor defines the Default Coordinates for an
      * Object Player based on the TerminalSize of the game.*/
