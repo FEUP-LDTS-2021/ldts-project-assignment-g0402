@@ -1,12 +1,8 @@
-import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Level {
@@ -47,7 +43,7 @@ public class Level {
             this.player.moveRight(this.width);
         }
         else{
-            this.player.moveLeft(this.width);
+            this.player.moveLeft();
         }
     }
 
