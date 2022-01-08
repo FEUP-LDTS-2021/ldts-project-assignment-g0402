@@ -1,4 +1,4 @@
-## LDTS_T04_G02 - <PROJECT NAME>
+## LDTS_T04_G02 - Lonely Earth Invader
   
 ## Game Description
 
