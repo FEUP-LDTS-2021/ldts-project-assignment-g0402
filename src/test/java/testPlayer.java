@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,13 +17,19 @@ public class testPlayer {
         player.moveLeft(100);
         assertEquals(9, player.getX());
 =======
+=======
+import org.junit.jupiter.api.Assertions;
+>>>>>>> 6bdab29527b3b281aa721c34bba3a576f362b307
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.net.URISyntaxException;
 
+<<<<<<< HEAD
 import static org.testng.AssertJUnit.assertEquals;
 
+=======
+>>>>>>> 6bdab29527b3b281aa721c34bba3a576f362b307
 
 public class testPlayer {
 
@@ -45,8 +52,13 @@ public class testPlayer {
             p1.moveRight(game.screen.getTerminalSize().getRows());
         }
 
+<<<<<<< HEAD
         assertEquals(expectedPos.getxPos(), p1.getX());
         assertEquals(expectedPos.getyPos(), p1.getY());
+=======
+        Assertions.assertEquals(expectedPos.getxPos(), p1.getX());
+        Assertions.assertEquals(expectedPos.getyPos(), p1.getY());
+>>>>>>> 6bdab29527b3b281aa721c34bba3a576f362b307
     }
 
     @Test
@@ -68,8 +80,13 @@ public class testPlayer {
             p1.moveLeft(game.screen.getTerminalSize().getRows());
         }
 
+<<<<<<< HEAD
         assertEquals(expectedPos.getxPos(), p1.getX());
         assertEquals(expectedPos.getyPos(), p1.getY());
 >>>>>>> c0ac190 (Created Test Class for Player AND Created Class Position)
+=======
+        Assertions.assertEquals(expectedPos.getxPos(), p1.getX());
+        Assertions.assertEquals(expectedPos.getyPos(), p1.getY());
+>>>>>>> 6bdab29527b3b281aa721c34bba3a576f362b307
     }
 }
