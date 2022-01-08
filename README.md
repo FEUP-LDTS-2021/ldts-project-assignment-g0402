@@ -2,8 +2,8 @@
   
 ## Game Description
 
-The [we_don't_have_a_name_yet] is a shooting text based game inspired by the game Space Invaders where you have to kill different waves of enemies to pass to the next level.
-As you pass to the next levels, you will encounter a different range of enemies with increased difficulty.
+The Lonely Earth Invader is a shooting text based game inspired by the game Space Invaders where you have to kill different waves of residents from that planet to pass to the next level.
+As you pass to the next levels, you will encounter a different range of locals with increased difficulty.
 
 This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coelho (up201902223@edu.fc.up.pt) and Matias Vaz (up201900194@edu.fc.up.pt) for LDTS 2021-22.
 

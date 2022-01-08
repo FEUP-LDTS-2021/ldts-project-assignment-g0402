@@ -1,7 +1,7 @@
 package com.googlecode.lanterna.tutorial;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class GameObject {
+public class GameObject extends Thread {
     protected int xPosic;
     protected int yPosic;
     protected int height;
@@ -59,6 +59,10 @@ public class GameObject {
 
     public void setY(int newPos) {
         this.yPosic += newPos;
+    }
+
+    public void run(TextGraphics myGuy) {
+        this.draw(myGuy);
     }
 
     public int getHeight() {

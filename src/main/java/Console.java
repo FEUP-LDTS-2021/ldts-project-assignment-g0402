@@ -73,27 +73,15 @@ public class Console {
     }
 
     public void run() {
-        /*try {
-            while(true) {
-                draw();
-                com.googlecode.lanterna.input.KeyStroke key = screen.readInput();
-                processKey(key);
-
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q'))
-                    screen.close();
-                if (key.getKeyType() == KeyType.EOF)
-                    break;
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-        }*/
-
-        GameThread thread1 = new GameThread();
-
-        thread1.start();
+        PlayerThread playerThread = new PlayerThread();
+        WaveThread waveThread = new WaveThread();
+        while(true){
+            playerThread.start();
+            waveThread.start();
+        }
     }
 
-    class GameThread extends Thread{
+    class WaveThread extends Thread{
         @Override
         public void run(){
             try {
@@ -105,9 +93,6 @@ public class Console {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
-                    PlayerThread thread2 = new PlayerThread();
-                    thread2.start();
                 }
             } catch (IOException e){
                 e.printStackTrace();
@@ -129,6 +114,7 @@ public class Console {
         public void run(){
             try {
                 while(!exitThread) {
+                    draw();
                     com.googlecode.lanterna.input.KeyStroke key = screen.readInput();
                     processKey(key);
 

@@ -19,8 +19,7 @@ public class MonsterWave{
     public MonsterWave(int xPos, int yPos, int lineSize, int waveLength){
         this.lineSize = lineSize;
         this.waveLength = waveLength;
-        wave = new WaveLine[waveLength];
-
+        this.wave = new WaveLine[waveLength];
         this.xPos = xPos;
         this.yPos = yPos;
     }
