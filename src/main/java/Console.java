@@ -22,10 +22,11 @@ public class Console {
     private int height = 55;
 
     private boolean exitThread = false;
-    /**This method is the constructor for that class.
-     * They change the font for that game, and assign and change the size of terminal for the game.
-     * Also, set the map for the game, in the class called level.
-    * we pretend in the future has more than one level, setting a array the levels */
+    /**This method is the constructor for the class Console.
+     * It changes the font of the game, and assign a size to the terminal of the game.
+     * It calls the class Level to create the map for the game.
+     * In the future, we intend to be able to have more than one level, using an
+     * array with the different levels (and their characteristics)*/
     public Console() throws FontFormatException, URISyntaxException {
         try {
             /*Import font for the game*/
@@ -36,7 +37,7 @@ public class Console {
             TerminalSize terminalSize = new TerminalSize(width, height);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
 
-            terminalFactory.setTerminalEmulatorTitle("Space Invaders");
+            terminalFactory.setTerminalEmulatorTitle("Lonely Earth Invader");
 
             Font loadedFont = font.deriveFont(Font.PLAIN, 11);
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);

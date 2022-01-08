@@ -31,7 +31,7 @@ public class Level {
     }
 
     public void draw(TextGraphics screen) {
-        screen.setBackgroundColor(new TextColor.RGB(0,0,0));
+        screen.setBackgroundColor(new TextColor.RGB(15,15,50));
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
 
         player.draw(screen);
