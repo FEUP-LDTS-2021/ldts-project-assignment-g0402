@@ -8,13 +8,13 @@ public class Player extends com.googlecode.lanterna.tutorial.GameObject {
     }
 
     public void moveLeft(int width){
-        if(this.xPosic >= 1){
-            this.xPosic = this.xPosic -1;
+        if(this.xPosic > 1){
+            this.xPosic = this.xPosic - 1;
         }
     }
 
     public void moveRight(int width){
-        if(this.xPosic < width-super.width){
+        if(this.xPosic < width-this.width){
             this.xPosic = this.xPosic +1;
         }
     }

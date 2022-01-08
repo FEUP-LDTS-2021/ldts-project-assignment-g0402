@@ -19,9 +19,6 @@ import java.util.List;
 
 public class testMonster {
 
-    @Test
-    public void testMonsterMovement(){
 
-    }
 }
 

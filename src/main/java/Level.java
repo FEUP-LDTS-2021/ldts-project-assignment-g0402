@@ -35,19 +35,19 @@ public class Level {
     }
 
     public void draw(TextGraphics screen) {
-        screen.setBackgroundColor(new TextColor.RGB(0,51,102));
+        screen.setBackgroundColor(new TextColor.RGB(0,0,0));
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
 
         player.draw(screen);
-        wave.drawWave(screen);
+        wave.draw(screen);
     }
 
     public void movePlayer(boolean moveToRight){
         if(moveToRight){
-            player.moveRight(width);
+            this.player.moveRight(this.width);
         }
         else{
-            player.moveLeft(width);
+            this.player.moveLeft(this.width);
         }
     }
 

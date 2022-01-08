@@ -22,7 +22,10 @@ public class Console {
     private int height = 55;
 
     private boolean exitThread = false;
-
+    /**This method is the constructor for that class.
+     * They change the font for that game, and assign and change the size of terminal for the game.
+     * Also, set the map for the game, in the class called level.
+    * we pretend in the future has more than one level, setting a array the levels */
     public Console() throws FontFormatException, URISyntaxException {
         try {
             /*Import font for the game*/
@@ -65,13 +68,14 @@ public class Console {
     /**This method processes if the key pressed by the user is ArrowLeft or Arrow Right.
      * If so, proceeds to move the Player accordingly.*/
     private void processKey(com.googlecode.lanterna.input.KeyStroke key){
-        System.out.println(key);
+        System.out.println(key.getKeyType());
         switch (key.getKeyType()) {
-            case ArrowLeft: level.movePlayer(false);
-            case ArrowRight: level.movePlayer(true);
+            case ArrowLeft -> level.movePlayer(false);
+            case ArrowRight -> level.movePlayer(true);
         }
     }
-
+    /**This method assign each object in the game to move by his own speed.
+     * Also, when any object moves, they refresh the console always.*/
     public void run() {
         PlayerThread playerThread = new PlayerThread();
         WaveThread waveThread = new WaveThread();
@@ -88,11 +92,6 @@ public class Console {
                 while(!exitThread) {
                     draw();
                     update();
-                    try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                 }
             } catch (IOException e){
                 e.printStackTrace();
@@ -110,14 +109,14 @@ public class Console {
     }
 
     class PlayerThread extends Thread{
+        com.googlecode.lanterna.input.KeyStroke key;
         @Override
         public void run(){
             try {
                 while(!exitThread) {
                     draw();
-                    com.googlecode.lanterna.input.KeyStroke key = screen.readInput();
+                    key = screen.readInput();
                     processKey(key);
-
                     if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
                         exitThread = true;
                         screen.close();

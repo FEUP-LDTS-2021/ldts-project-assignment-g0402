@@ -39,7 +39,7 @@ public class MonsterWave{
         wave[7].destroyMonster(7);*/
     }
 
-    public void drawWave(TextGraphics screen){
+    public void draw(TextGraphics screen){
         for(int i = 0; i < waveLength; ++i){
             wave[i].drawLine(screen, wave[i].waveLine);
         }
