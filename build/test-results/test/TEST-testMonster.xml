@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="testMonster" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-01-04T15:24:31" hostname="Matiass-MacBook-Air.local" time="0.013">
-  <properties/>
-  <testcase name="MonsterTest1()" classname="testMonster" time="0.011"/>
-  <testcase name="MonsterTest2()" classname="testMonster" time="0.001"/>
-  <testcase name="MonsterTest3()" classname="testMonster" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
