@@ -7,15 +7,15 @@ public class Player extends com.googlecode.lanterna.tutorial.GameObject {
         super(myName, xPosic, yPosic, height, width, destructible, life, level, sprite, speed);
     }
 
-    public void moveLeft(int width){
+    public void moveLeft(){
         if(this.xPosic > 1){
             this.xPosic = this.xPosic - 1;
         }
     }
 
     public void moveRight(int width){
-        if(this.xPosic < width-this.width){
-            this.xPosic = this.xPosic +1;
+        if(this.xPosic < (width - this.width - 1)){
+            this.xPosic = this.xPosic + 1;
         }
     }
 
