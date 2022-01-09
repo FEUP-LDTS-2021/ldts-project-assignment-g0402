@@ -12,7 +12,7 @@ public class testPlayer {
         Player player = new Player("Gabriel Coelho", 10,
                 10, heightPlayer,
                 widthPlayer, true, 1, 1, sprite, 5);
-        player.moveLeft(100);
+        player.moveLeft();
         assertEquals(9, player.getX());
     }
 }
