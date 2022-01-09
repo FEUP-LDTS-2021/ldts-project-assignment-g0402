@@ -99,7 +99,7 @@ public class Console {
         }
 
         protected void update() {
-            level.moveWave( 2);
+            level.moveWave();
             try {
                 TimeUnit.MILLISECONDS.sleep(500);
             } catch (InterruptedException e) {

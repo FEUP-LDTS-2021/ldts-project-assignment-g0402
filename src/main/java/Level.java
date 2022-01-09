@@ -1,23 +1,17 @@
-import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class Level {
 
     private int height;
     private int width;
     private Player player;
-
     protected MonsterWave wave;
-    protected boolean endMoveReached = false;
     protected int maxDownMovements = 6;
+    private boolean isMovingToRight = true;
 
     public Level(int width, int height){
         this.height = height;
@@ -51,36 +45,37 @@ public class Level {
         }
     }
 
-    public void moveWave(int offset){
-        boolean isMovingToRight;
-        int ytop = this.wave.getPosLeft();
-        int ydown = this.wave.getPosRight();
+    public boolean moveWave(){
+        int yMin = this.wave.getPosLeft();
+        int yMax = this.wave.getPosRight();
+        System.out.println(yMax);
+        System.out.println(yMin);
+        System.out.println(this.isMovingToRight);
+        if(yMin < 2 && !this.isMovingToRight){
+            this.isMovingToRight = true;
+            wave.moveDown();
+            --maxDownMovements;
+            System.out.println("oi");
 
-        if(ydown < width-3 && !endMoveReached) {
-            isMovingToRight = true;
+        }
+        else if(yMax > this.width-4 && this.isMovingToRight) {
+            this.isMovingToRight = false;
+            this.wave.moveDown();
+            --maxDownMovements;
+            System.out.println("oi");
+        }
+        else if(isMovingToRight){
+            wave.moveRight();
         }
         else{
-            endMoveReached = true;
-            if(ytop > 3)
-                isMovingToRight = false;
-            else{
-                isMovingToRight = true;
-                endMoveReached = false;
-
-                if(maxDownMovements > 0) {
-                    this.wave.setPosDown(offset);
-                    --maxDownMovements;
-                }
-
-                try {
-                    //after going down->just wait a few ms before move backwards
-                    TimeUnit.MILLISECONDS.sleep(300);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            wave.moveLeft();
         }
-        this.wave.setPosY(offset, isMovingToRight);
+        if(maxDownMovements<0){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     public int getHeight() {

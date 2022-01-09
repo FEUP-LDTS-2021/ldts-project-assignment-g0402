@@ -12,7 +12,7 @@ public class GameObject extends Thread {
     protected int level;
     protected int[][] sprite;
     protected int speed;
-
+    private boolean isAlive;
     public GameObject(String myName, int xPosic, int yPosic,
                       int height, int width, boolean destructible,
                       int life, int level, int[][] sprite, int speed) {
@@ -26,9 +26,15 @@ public class GameObject extends Thread {
         this.level = level;
         this.sprite = sprite;
         this.speed = speed;
+        this.isAlive = true;
     }
 
-
+    public void dies(){
+        this.isAlive = false;
+    }
+    public boolean isLive(){
+        return this.isAlive;
+    }
 
     public void draw(TextGraphics myGuy){
         for (int[] dot: sprite) {

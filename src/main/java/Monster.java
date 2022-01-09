@@ -7,6 +7,16 @@ public class Monster extends com.googlecode.lanterna.tutorial.GameObject {
         super(myName, xPosic, yPosic, height, width, destructible, life, level, sprite, speed);
     }
 
+    public void moveLeft(){
+        this.xPosic = this.xPosic - 1;
+    }
 
+    public void moveDown(){
+        this.yPosic = this.yPosic +1;
+    }
+
+    public void moveRight(){
+        this.xPosic = this.xPosic + 1;
+    }
 
 }
