@@ -69,10 +69,11 @@ public class Console {
     /**This method processes if the key pressed by the user is ArrowLeft or Arrow Right.
      * If so, proceeds to move the Player accordingly.*/
     private void processKey(com.googlecode.lanterna.input.KeyStroke key){
-        System.out.println(key.getKeyType());
-        switch (key.getKeyType()) {
-            case ArrowLeft -> level.movePlayer(false);
-            case ArrowRight -> level.movePlayer(true);
+        if(key.getKeyType() != KeyType.Character){
+            switch (key.getKeyType()) {
+                case ArrowLeft -> level.movePlayer(false);
+                case ArrowRight -> level.movePlayer(true);
+            }
         }
     }
     /**This method commands each Object in the Game to move by its own speed.
@@ -80,12 +81,42 @@ public class Console {
     public void run() {
         PlayerThread playerThread = new PlayerThread();
         WaveThread waveThread = new WaveThread();
+        AttackThread attackThread = new AttackThread();
         while(true){
             playerThread.start();
-            waveThread.start();
+            waveThread.start()
+            attackThread.start();
         }
     }
 
+    /**This class creates a independent thread to move the player*/
+    class PlayerThread extends Thread{
+        com.googlecode.lanterna.input.KeyStroke key;
+        @Override
+        public void run(){
+            try {
+                while(!exitThread) {
+                    draw();
+                    key = screen.readInput();
+                    processKey(key);
+                    System.out.println(key.getCharacter());
+                    if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
+                        exitThread = true;
+                        screen.close();
+                    }
+                    if (key.getKeyType() == KeyType.EOF) {
+                        exitThread = true;
+                        break;
+                    }
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    /**This class creates a independent thread from player to move the local*/
     class WaveThread extends Thread{
         @Override
         public void run(){
@@ -109,25 +140,24 @@ public class Console {
         }
     }
 
-    class PlayerThread extends Thread{
-        com.googlecode.lanterna.input.KeyStroke key;
+    class AttackThread extends Thread{
         @Override
         public void run(){
             try {
                 while(!exitThread) {
                     draw();
-                    key = screen.readInput();
-                    processKey(key);
-                    if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
-                        exitThread = true;
-                        screen.close();
-                    }
-                    if (key.getKeyType() == KeyType.EOF) {
-                        exitThread = true;
-                        break;
-                    }
+                    update();
                 }
             } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
+        protected void update() {
+            level.moveAttack();
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }

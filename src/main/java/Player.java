@@ -18,5 +18,4 @@ public class Player extends com.googlecode.lanterna.tutorial.GameObject {
             this.xPosic = this.xPosic + 1;
         }
     }
-
 }
