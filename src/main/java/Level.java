@@ -3,6 +3,9 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Level {
 
@@ -12,7 +15,7 @@ public class Level {
     protected MonsterWave wave;
     protected int maxDownMovements = 6;
     private boolean isMovingToRight = true;
-
+    private List<Bullet> bullets;
     public Level(int width, int height){
         this.height = height;
         this.width = width;
@@ -26,6 +29,7 @@ public class Level {
 
         this.wave = new MonsterWave(3,3 ,12, 8);
         this.wave.populateWave();
+        this.bullets = new ArrayList<Bullet>();
     }
 
     public void draw(TextGraphics screen) {
@@ -34,6 +38,9 @@ public class Level {
 
         player.draw(screen);
         wave.draw(screen);
+        for (Bullet bull: bullets) {
+            bull.draw(screen);
+        }
     }
 
     public void movePlayer(boolean moveToRight){
@@ -43,6 +50,14 @@ public class Level {
         else{
             this.player.moveLeft(this.width);
         }
+    }
+    public void moveBullets(){
+        for (Bullet bull: this.bullets) {
+            bull.move();
+        }
+    }
+    public void doAttackPlayer(){
+        this.bullets.add(this.player.doAttack());
     }
 
     public boolean moveWave(){

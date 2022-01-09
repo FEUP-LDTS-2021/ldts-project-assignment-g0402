@@ -1,7 +1,7 @@
 package com.googlecode.lanterna.tutorial;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class GameObject extends Thread {
+public class GameObject{
     protected int xPosic;
     protected int yPosic;
     protected int height;
@@ -46,7 +46,9 @@ public class GameObject extends Thread {
         }
     }
 
-
+    public void moveAttack(){
+        return;
+    }
     public String getMyName() {
         return myName;
     }

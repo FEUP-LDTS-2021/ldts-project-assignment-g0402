@@ -18,4 +18,7 @@ public class Player extends com.googlecode.lanterna.tutorial.GameObject {
             this.xPosic = this.xPosic + 1;
         }
     }
+    public Bullet doAttack(){
+        return Attack.doAttack(this.xPosic, this.yPosic, false);
+    }
 }

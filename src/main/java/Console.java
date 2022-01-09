@@ -73,6 +73,7 @@ public class Console {
             switch (key.getKeyType()) {
                 case ArrowLeft -> level.movePlayer(false);
                 case ArrowRight -> level.movePlayer(true);
+                case ArrowUp -> level.doAttackPlayer();
             }
         }
     }
@@ -81,11 +82,11 @@ public class Console {
     public void run() {
         PlayerThread playerThread = new PlayerThread();
         WaveThread waveThread = new WaveThread();
-        AttackThread attackThread = new AttackThread();
+        BulletsThread bulletsThread = new BulletsThread();
         while(true){
             playerThread.start();
-            waveThread.start()
-            attackThread.start();
+            waveThread.start();
+            bulletsThread.start();
         }
     }
 
@@ -140,7 +141,7 @@ public class Console {
         }
     }
 
-    class AttackThread extends Thread{
+    class BulletsThread extends Thread{
         @Override
         public void run(){
             try {
@@ -154,9 +155,9 @@ public class Console {
         }
 
         protected void update() {
-            level.moveAttack();
+            level.moveBullets();
             try {
-                TimeUnit.MILLISECONDS.sleep(500);
+                TimeUnit.MILLISECONDS.sleep(250);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
