@@ -7,7 +7,7 @@ public class Player extends com.googlecode.lanterna.tutorial.GameObject {
         super(myName, xPosic, yPosic, height, width, destructible, life, level, sprite, speed);
     }
 
-    public void moveLeft(){
+    public void moveLeft(int width){
         if(this.xPosic > 1){
             this.xPosic = this.xPosic - 1;
         }
