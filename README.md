@@ -16,20 +16,22 @@ In this exciting platform game you can help KangarooBoy save the world, by colle
 
 This project was developed by *John Doe* (*john.doe*@fe.up.pt) and *Jane Doe* (*jane.doe*@fe.up.pt) for LPOO 2018⁄19.
 
-
+--->
 ### IMPLEMENTED FEATURES
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
-
-**Examples**:
-
-- **Jumping** - The game character will jump when the space bar key is pressed.
-- **Getting hidden coins** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
+- **Player Moving** - The game character will move to the left when the Arrow Left key is pressed and to the right when the Arrow Right key is pressed.
+- **Player Shooting** - The game character will shoot a bullet when the Arrow Up key is pressed.
+- **Monsters Moving** - The enemies of the game move on its own with a defined pattern.
 
 ### PLANNED FEATURES
 
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
+- **Monsters Attacks** - The enemies will atack on its own, doing damage on the Player.
+- **Player Attacks** - The previous feature "Player Shooting" should be improved to make damage.
+- **Different Levels** - For now, the game only has one level. In the future, we plan to introduce more.
+- **Different Monsters** - For now, the game only has one type of enemy. In the future, we plan to introduce more.
+- **Menu** - A menu iniciates the app, to be able to choose to play from there. 
 
+<!---
 ### DESIGN
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
