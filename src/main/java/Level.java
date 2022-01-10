@@ -33,7 +33,7 @@ public class Level {
     }
 
     public void draw(TextGraphics screen) {
-        screen.setBackgroundColor(new TextColor.RGB(0,0,0));
+        screen.setBackgroundColor(new TextColor.RGB(15,20,45));
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
 
         player.draw(screen);
@@ -48,7 +48,7 @@ public class Level {
             this.player.moveRight(this.width);
         }
         else{
-            this.player.moveLeft(this.width);
+            this.player.moveLeft();
         }
     }
     public void moveBullets(){
@@ -66,6 +66,7 @@ public class Level {
         System.out.println(yMax);
         System.out.println(yMin);
         System.out.println(this.isMovingToRight);
+
         if(yMin < 2 && !this.isMovingToRight){
             this.isMovingToRight = true;
             wave.moveDown();
@@ -79,12 +80,16 @@ public class Level {
             --maxDownMovements;
             System.out.println("oi");
         }
+
         else if(isMovingToRight){
             wave.moveRight();
         }
+
         else{
             wave.moveLeft();
         }
+
+
         if(maxDownMovements<0){
             return false;
         }
