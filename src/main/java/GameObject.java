@@ -1,4 +1,3 @@
-package com.googlecode.lanterna.tutorial;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class GameObject{

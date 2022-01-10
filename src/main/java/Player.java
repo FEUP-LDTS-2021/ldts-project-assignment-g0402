@@ -1,4 +1,4 @@
-public class Player extends com.googlecode.lanterna.tutorial.GameObject {
+public class Player extends GameObject {
 
     public Player(String myName, int xPosic, int yPosic,
                   int height, int width, boolean destructible,
