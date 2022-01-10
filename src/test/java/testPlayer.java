@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.awt.*;
 import java.net.URISyntaxException;
 
@@ -16,6 +17,10 @@ import static org.testng.AssertJUnit.assertEquals;
 
 =======
 >>>>>>> 6bdab29 (Added Documentation to Position)
+=======
+import java.awt.*;
+import java.net.URISyntaxException;
+>>>>>>> d2139a700b0dd6a9b33d7154a4d32a8cba16cbaf
 
 public class testPlayer {
 
@@ -59,10 +64,14 @@ public class testPlayer {
         //Moving the player 3 units to the left
         for(int i=0; i<3; i++){
 <<<<<<< HEAD
+<<<<<<< HEAD
             p1.moveLeft();
 =======
             p1.moveLeft(game.screen.getTerminalSize().getRows());
 >>>>>>> c0ac190 (Created Test Class for Player AND Created Class Position)
+=======
+            p1.moveLeft(game.screen.getTerminalSize().getRows());
+>>>>>>> d2139a700b0dd6a9b33d7154a4d32a8cba16cbaf
         }
 
         Assertions.assertEquals(expectedPos.getxPos(), p1.getX());
