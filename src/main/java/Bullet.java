@@ -1,4 +1,4 @@
-public class Bullet extends com.googlecode.lanterna.tutorial.GameObject {
+public class Bullet extends GameObject {
     private boolean isMonsterBullet;
     public Bullet(String myName, int xPosic, int yPosic,
                    int height, int width, boolean destructible,
