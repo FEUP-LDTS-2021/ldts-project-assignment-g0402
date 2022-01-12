@@ -12,7 +12,7 @@ public class testPlayer {
 
         game.run();
 
-        Player p1 = new Player("Player 1", new Position(game.screen.newTextGraphics()), 2, 2, true, 1, 1, sprite, 5);
+        Player p1 = new Player("Player 1", new Position(game.screen.newTextGraphics()), 2, 2, true, 1, 1, "aaaa", 5);
 
         //Excepted result
         Position expectedPos = new Position(p1.position.getxPos() + 3, p1.position.getyPos());
@@ -33,7 +33,7 @@ public class testPlayer {
 
         game.run();
 
-        Player p1 = new Player("Player 1", new Position(game.screen.newTextGraphics()), 2, 2, true, 1, 1, sprite, 5);
+        Player p1 = new Player("Player 1", new Position(game.screen.newTextGraphics()), 2, 2, true, 1, 1, "aaaa", 5);
 
         //Excepted result
         Position expectedPos = new Position(p1.position.getxPos() - 3, p1.position.getyPos());

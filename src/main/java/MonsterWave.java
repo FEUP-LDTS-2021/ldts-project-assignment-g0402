@@ -14,32 +14,31 @@ public class MonsterWave{
     protected int xPos;           //initial x position
     protected int yPos;           //initial y position
     protected int waveSpeed = 1;
-
-    public MonsterWave(int xPos, int yPos, int lineSize, int waveLength){
+    protected int yOffset = 1;
+    protected int xOffset = 1;
+    public MonsterWave(int xPos, int yPos, int lineSize, int waveLength, int xOffset, int yOffset, Monster monster){
         this.lineSize = lineSize;
         this.waveLength = waveLength;
         this.wave = new Monster[waveLength][lineSize];
         this.xPos = xPos;
         this.yPos = yPos;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
+        populateWave(monster);
     }
-
-
-
-    public void populateWave() {
-        int originalXPos = xPos;
-        for(int i = 0; i < waveLength; ++i){
-            xPos = originalXPos;
-            for (int j = 0; j < lineSize; ++j) {
-                wave[i][j] = new Monster("teste", new Position(xPos, yPos), 2,
-                        2, true, 1, 1, sprite, waveSpeed);
-                //System.out.println("xPos " + xPos + " yPos " + yPos);
-                xPos += 4;
+    public void populateWave(Monster monster) {
+        int xPosTmp;
+        int yPosTmp = this.yPos;
+        for(int i = 0; i < this.waveLength; ++i) {
+            xPosTmp = this.xPos;
+            for (int j = 0; j < this.lineSize; ++j) {
+                this.wave[i][j] = new Monster(monster, xPosTmp, yPosTmp);
+                System.out.println("xPos " + xPosTmp + " yPos " + yPosTmp);
+                xPosTmp += this.xOffset;
             }
-
-            yPos += 4;
+            yPosTmp += this.yOffset;
         }
     }
-
     public void moveAttack(){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {

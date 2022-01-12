@@ -4,7 +4,7 @@ public class Player extends GameObject {
 
     public Player(String myName, Position position,
                   int height, int width, boolean destructible,
-                  int life, int level, int[][] sprite, int speed) {
+                  int life, int level, String sprite, int speed) {
 
         super(myName, position, height, width, destructible, life, level, sprite, speed);
     }
@@ -21,15 +21,6 @@ public class Player extends GameObject {
         }
     }
 
-    public void draw(TextGraphics game){
-        for (int[] dot: sprite) {
-            game.drawLine(position.getxPos() + dot[0],
-                    position.getyPos() + dot[1],
-                    position.getxPos() + dot[2],
-                    position.getyPos() + dot[3],
-                    'a');
-        }
-    }
 
     public Bullet doAttack(){
         return Attack.doAttack(this.position.getxPos(), this.position.getyPos(), false);

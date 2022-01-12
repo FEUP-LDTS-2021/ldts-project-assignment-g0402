@@ -17,21 +17,20 @@ public class Level {
     protected int maxDownMovements = 6;
     private boolean isMovingToRight = true;
     private List<Bullet> bullets;
-    TextGraphics screen;
-
+    private TextGraphics screen;
     public Level(TextGraphics screen){
         this.screen = screen;
         this.height = screen.getSize().getRows();
         this.width = screen.getSize().getColumns();
-        int[][] sprite = new int[][]{{0,0,1,0}, {1,0,1,1}, {1,1,0,1}, {0,1,0,0}};
-        int heightPlayer = 1;
-        int widthPlayer = 3;
+        int heightPlayer = 3;
+        int widthPlayer = 1;
+        int distanceFromConsoleFloor = 4;
+        this.player = new Player("Player1", new Position(screen), heightPlayer,
+                widthPlayer, true, 1, 1, "abc", 5);
 
-        this.player = new Player("Player 1", new Position(screen), heightPlayer,
-                widthPlayer, true, 1, 1, sprite, 5);
-
-        this.wave = new MonsterWave(3,3 ,12, 8);
-        this.wave.populateWave();
+        Monster monster = new Monster("Gabriel Coelho", true, 1, "pq", 5);
+        this.wave = new MonsterWave(3,3 ,12, 8,
+                3, 4, monster);
         this.bullets = new ArrayList<Bullet>();
     }
 
