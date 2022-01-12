@@ -12,6 +12,8 @@ public class GameObject{
     String sprite;
     protected int speed;
     private boolean isAlive;
+
+    /**This method is the constructor for the class Console.*/
     public GameObject(String myName, Position position,
                       int height, int width, boolean destructible,
                       int life, int level, String sprite, int speed) {
@@ -24,30 +26,33 @@ public class GameObject{
         this.level = level;
         this.sprite = sprite;
         this.speed = speed;
-        this.isAlive = true;
+        this.isAlive = true; //When a new object is created, is always alive.
     }
-
+    /**This method checks if object is still alive.*/
     public void dies(){
         this.isAlive = false;
     }
+    /**This method return live state*/
     public boolean isLive(){
         return this.isAlive;
     }
 
+    /**This method draw object only if they are alive*/
     public void draw(TextGraphics myGuy) {
-        int offset;
-        for (int i = 0; i < this.height; i++) {
-            offset = i * this.width;
-            for (int j = 0; j < this.width; j++) {
-                myGuy.putString(position.getxPos() + i, position.getyPos() + j,
-                                Character.toString(this.sprite.charAt(offset+j)));
+        if (this.isAlive){
+            int offset;
+            for (int i = 0; i < this.height; i++) { /**That for loop is used for create,*/
+                offset = i * this.width;      /**using a plane string, objects with more than one line*/
+                for (int j = 0; j < this.width; j++) {
+                    myGuy.putString(position.getxPos() + i, position.getyPos() + j,
+                                    Character.toString(this.sprite.charAt(offset+j)));
+                }
             }
         }
     }
 
-    public void moveAttack(){
-        return;
-    }
+    //Below we have gets. Is auto explained by the code and name.
+    //I refuse to a specific documentation for each getter. It gets stuff.
 
     public String getMyName() {
         return myName;
@@ -59,10 +64,6 @@ public class GameObject{
 
     public void setPos(Position newPos) {
         this.position = newPos;
-    }
-
-    public void run(TextGraphics myGuy) {
-        this.draw(myGuy);
     }
 
     public int getHeight() {
