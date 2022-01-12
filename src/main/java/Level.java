@@ -26,11 +26,11 @@ public class Level {
         int widthPlayer = 1;
         int distanceFromConsoleFloor = 4;
         this.player = new Player("Player1", new Position(screen), heightPlayer,
-                widthPlayer, true, 1, 1, "abc", 5);
+                widthPlayer, true, 1, 1, "def", 5);
 
         Monster monster = new Monster("Gabriel Coelho", true, 1, "pq", 5);
         this.wave = new MonsterWave(3,3 ,12, 8,
-                3, 4, monster);
+                5, 3, monster);
         this.bullets = new ArrayList<Bullet>();
     }
 
@@ -68,9 +68,8 @@ public class Level {
 
         if(yMin < 2 && !this.isMovingToRight){
             this.isMovingToRight = true;
-            wave.moveDown();
-            --maxDownMovements;
-
+            this.wave.moveDown();
+            --this.maxDownMovements;
         }
         else if(yMax > this.width-4 && this.isMovingToRight) {
             this.isMovingToRight = false;
@@ -85,7 +84,6 @@ public class Level {
         else{
             wave.moveLeft();
         }
-
 
         if(maxDownMovements<0){
             return false;

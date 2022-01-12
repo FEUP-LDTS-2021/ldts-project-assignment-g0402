@@ -86,11 +86,9 @@ public class Console {
         PlayerThread playerThread = new PlayerThread();
         WaveThread waveThread = new WaveThread();
         BulletsThread bulletsThread = new BulletsThread();
-        while(true){
-            playerThread.start();
-            waveThread.start();
-            bulletsThread.start();
-        }
+        playerThread.start();
+        waveThread.start();
+        bulletsThread.start();
     }
 
     /**This class creates a independent thread to move the player*/
@@ -159,7 +157,7 @@ public class Console {
         protected void update() {
             level.moveBullets();
             try {
-                TimeUnit.MILLISECONDS.sleep(250);
+                TimeUnit.MILLISECONDS.sleep(150);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

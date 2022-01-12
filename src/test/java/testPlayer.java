@@ -8,7 +8,6 @@ public class testPlayer {
     @Test
     public void testPlayerMovementRight() throws URISyntaxException, FontFormatException {
         Console game = new Console();
-        int[][] sprite = new int[][]{{0,0,1,0}, {1,0,1,1}, {1,1,0,1}, {0,1,0,0}};
 
         game.run();
 
@@ -29,7 +28,6 @@ public class testPlayer {
     @Test
     public void testPlayerMovementLeft() throws URISyntaxException, FontFormatException {
         Console game = new Console();
-        int[][] sprite = new int[][]{{0,0,1,0}, {1,0,1,1}, {1,1,0,1}, {0,1,0,0}};
 
         game.run();
 

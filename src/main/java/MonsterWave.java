@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MonsterWave{
-
     protected Monster[][] wave;
     protected int lineSize;       //number of aliens per line
     protected int waveLength;     //number of lines per wave
-    protected int[][] sprite = new int[][]{{0,0,1,0}, {1,0,1,1}, {1,1,0,1}, {0,1,0,0}};
     protected int xPos;           //initial x position
     protected int yPos;           //initial y position
     protected int waveSpeed = 1;
     protected int yOffset = 1;
     protected int xOffset = 1;
+
+
     public MonsterWave(int xPos, int yPos, int lineSize, int waveLength, int xOffset, int yOffset, Monster monster){
         this.lineSize = lineSize;
         this.waveLength = waveLength;
@@ -26,6 +26,7 @@ public class MonsterWave{
         this.yOffset = yOffset;
         populateWave(monster);
     }
+
     public void populateWave(Monster monster) {
         int xPosTmp;
         int yPosTmp = this.yPos;
@@ -33,12 +34,12 @@ public class MonsterWave{
             xPosTmp = this.xPos;
             for (int j = 0; j < this.lineSize; ++j) {
                 this.wave[i][j] = new Monster(monster, xPosTmp, yPosTmp);
-                System.out.println("xPos " + xPosTmp + " yPos " + yPosTmp);
                 xPosTmp += this.xOffset;
             }
             yPosTmp += this.yOffset;
         }
     }
+
     public void moveAttack(){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {
