@@ -40,13 +40,6 @@ public class MonsterWave{
         }
     }
 
-    public void moveAttack(){
-        for(int i = 0; i < waveLength; ++i){
-            for (int j = 0; j < lineSize; ++j) {
-                wave[i][j].moveAttack();
-            }
-        }
-    }
 
     public void draw(TextGraphics screen){
         for(int i = 0; i < waveLength; ++i){
