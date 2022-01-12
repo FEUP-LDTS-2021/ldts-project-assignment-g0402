@@ -24,8 +24,8 @@ public class Level {
         this.height = screen.getSize().getRows();
         this.width = screen.getSize().getColumns();
         int[][] sprite = new int[][]{{0,0,1,0}, {1,0,1,1}, {1,1,0,1}, {0,1,0,0}};
-        int heightPlayer = 2;
-        int widthPlayer = 2;
+        int heightPlayer = 1;
+        int widthPlayer = 3;
 
         this.player = new Player("Player 1", new Position(screen), heightPlayer,
                 widthPlayer, true, 1, 1, sprite, 5);

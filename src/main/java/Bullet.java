@@ -24,7 +24,7 @@ public class Bullet extends GameObject {
                     position.getyPos() + dot[1],
                     position.getxPos() + dot[2],
                     position.getyPos() + dot[3],
-                    'u');
+                    'z');
         }
     }
 }

@@ -1,4 +1,3 @@
-import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class GameObject{
     protected Position position;
