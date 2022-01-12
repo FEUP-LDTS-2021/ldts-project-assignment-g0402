@@ -24,7 +24,7 @@ public class MonsterWave{
         this.yPos = yPos;
         this.xOffset = xOffset;
         this.yOffset = yOffset;
-        this.wave = populateWave(monster);
+        populateWave(monster);
     }
     public void populateWave(Monster monster) {
         int xPosTmp;
@@ -33,11 +33,10 @@ public class MonsterWave{
             xPosTmp = this.xPos;
             for (int j = 0; j < this.lineSize; ++j) {
                 this.wave[i][j] = new Monster(monster, xPosTmp, yPosTmp);
-                System.out.println("xPos " + xPos + " yPos " + yPos);
+                ///System.out.println("xPos " + xPos + " yPos " + yPos);
                 xPosTmp += this.xOffset;
             }
-
-            yPos += this.yOffset;
+            yPosTmp += this.yOffset;
         }
     }
 

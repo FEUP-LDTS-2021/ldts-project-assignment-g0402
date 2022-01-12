@@ -100,7 +100,6 @@ public class Console {
                     draw();
                     key = screen.readInput();
                     processKey(key);
-                    System.out.println(key.getCharacter());
                     if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
                         exitThread = true;
                         screen.close();

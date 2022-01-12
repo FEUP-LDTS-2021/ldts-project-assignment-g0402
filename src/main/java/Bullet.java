@@ -2,7 +2,7 @@ public class Bullet extends GameObject {
     private boolean isMonsterBullet;
     public Bullet(String myName, int xPosic, int yPosic,
                    int height, int width, boolean destructible,
-                   int life, int level, int[][] sprite, int speed, boolean isMonsterBullet) {
+                   int life, int level, String sprite, int speed, boolean isMonsterBullet) {
         super(myName, xPosic, yPosic, height, width, destructible, life, level, sprite, speed);
         this.isMonsterBullet = isMonsterBullet;
     }

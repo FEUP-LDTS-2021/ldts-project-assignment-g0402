@@ -10,12 +10,12 @@ public class GameObject{
     protected boolean destructible;
     protected int life;
     protected int level;
-    protected List<List<Integer>> sprite;
+    String sprite;
     protected int speed;
     private boolean isAlive;
     public GameObject(String myName, int xPosic, int yPosic,
                       int height, int width, boolean destructible,
-                      int life, int level, int[][] sprite, int speed) {
+                      int life, int level, String sprite, int speed) {
         this.myName = myName;
         this.xPosic = xPosic;
         this.yPosic = yPosic;
@@ -24,9 +24,7 @@ public class GameObject{
         this.destructible = destructible;
         this.life = life;
         this.level = level;
-        for (int[] line: sprite) {
-            this.sprite.add(Arrays.asList(line));
-        }
+        this.sprite = sprite;
         this.speed = speed;
         this.isAlive = true;
     }
@@ -39,18 +37,19 @@ public class GameObject{
     }
 
     public void draw(TextGraphics myGuy){
-        for (List<int> dot: sprite) {
-            myGuy.drawLine(xPosic+ dot.get(0),
-                    yPosic + dot.get(1),
-                    xPosic + dot.get(2),
-                    yPosic + dot.get(3),
-                    'u');
+        int offset;
+        for (int i = 0; i < this.height; i++) {
+            offset = i*this.width;
+            for (int j = 0; j < this.width; j++) {
+                myGuy.putString(xPosic+i, yPosic+j, Character.toString(this.sprite.charAt(offset+j)));
+            }
         }
     }
 
     public void moveAttack(){
         return;
     }
+
     public String getMyName() {
         return myName;
     }
@@ -90,22 +89,6 @@ public class GameObject{
     public int getLife() {
         return life;
     }
-    public List<List<Integer>> setSprite(String myStringSprite){
-        List<String> listOfStringLines = Arrays.asList(myStringSprite.split(" .. "));
-        List<String> toBeConvertToInt;
-        List<int> ConvertToInt = new ArrayList<int>();
-        List<List<Integer>> sprite = new ArrayList<ArrayList<int>>();
-        for (String StringLine: listOfStringLines) {
-            toBeConvertToInt = Arrays.asList(myStringSprite.split(","));
-            for (String s: toBeConvertToInt) {
-                ConvertToInt.add(Integer.valueOf(s));
-            }
-            sprite.add(ConvertToInt);
-
-        }
-        return sprite;
-    }
-
 
     public int getLevel() {
         return level;

@@ -19,16 +19,17 @@ public class Level {
     public Level(int width, int height){
         this.height = height;
         this.width = width;
-        int[][] sprite = new int[][]{{0,0,1,0}, {1,0,1,1}, {1,1,0,1}, {0,1,0,0}};
         int heightPlayer = 2;
         int widthPlayer = 2;
         int distanceFromConsoleFloor = 4;
         this.player = new Player("Gabriel Coelho", width/2-widthPlayer,
                 height-widthPlayer-distanceFromConsoleFloor, heightPlayer,
-                widthPlayer, true, 1, 1, sprite, 5);
-
-        this.wave = new MonsterWave(3,3 ,12, 8);
-        this.wave.populateWave();
+                widthPlayer, true, 1, 1, "abcd", 5);
+        Monster monster = new Monster("Gabriel Coelho", width/2-widthPlayer,
+                height-widthPlayer-distanceFromConsoleFloor, heightPlayer,
+                widthPlayer, true, 1, 1, "abcd", 5);
+        this.wave = new MonsterWave(3,3 ,12, 8,
+                3, 4, monster);
         this.bullets = new ArrayList<Bullet>();
     }
 
@@ -63,22 +64,17 @@ public class Level {
     public boolean moveWave(){
         int yMin = this.wave.getPosLeft();
         int yMax = this.wave.getPosRight();
-        System.out.println(yMax);
-        System.out.println(yMin);
-        System.out.println(this.isMovingToRight);
 
         if(yMin < 2 && !this.isMovingToRight){
             this.isMovingToRight = true;
             wave.moveDown();
             --maxDownMovements;
-            System.out.println("oi");
 
         }
         else if(yMax > this.width-4 && this.isMovingToRight) {
             this.isMovingToRight = false;
             this.wave.moveDown();
             --maxDownMovements;
-            System.out.println("oi");
         }
 
         else if(isMovingToRight){

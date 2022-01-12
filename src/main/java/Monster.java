@@ -3,13 +3,13 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public class Monster extends GameObject {
     public Monster(String myName, int xPosic, int yPosic,
                   int height, int width, boolean destructible,
-                  int life, int level, int[][] sprite, int speed) {
+                  int life, int level, String sprite, int speed) {
         super(myName, xPosic, yPosic, height, width, destructible, life, level, sprite, speed);
     }
 
     public Monster(String myName, boolean destructible,
                    int life, String sprite, int speed) {
-        super(myName, null, null, null, null, destructible, life, null, this.setSprite(sprite), speed);
+        super(myName, 0, 0, 0, 0, destructible, life, 0, sprite, speed);
     }
     public Monster(Monster other, int xPosic, int yPosic) {
         super(other.myName, xPosic, yPosic, other.height,
