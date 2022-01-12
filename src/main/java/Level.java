@@ -22,13 +22,13 @@ public class Level {
         this.screen = screen;
         this.height = screen.getSize().getRows();
         this.width = screen.getSize().getColumns();
-        int heightPlayer = 2;
-        int widthPlayer = 2;
+        int heightPlayer = 3;
+        int widthPlayer = 1;
         int distanceFromConsoleFloor = 4;
         this.player = new Player("Player1", new Position(screen), heightPlayer,
-                widthPlayer, true, 1, 1, "abcd", 5);
+                widthPlayer, true, 1, 1, "abc", 5);
 
-        Monster monster = new Monster("Gabriel Coelho", true, 1, "abcd", 5);
+        Monster monster = new Monster("Gabriel Coelho", true, 1, "pq", 5);
         this.wave = new MonsterWave(3,3 ,12, 8,
                 3, 4, monster);
         this.bullets = new ArrayList<Bullet>();
