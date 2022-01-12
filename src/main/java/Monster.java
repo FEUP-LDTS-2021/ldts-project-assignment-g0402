@@ -9,10 +9,10 @@ public class Monster extends GameObject {
 
     public Monster(String myName, boolean destructible,
                    int life, String sprite, int speed) {
-        super(myName, 0, 0, 0, 0, destructible, life, 0, sprite, speed);
+        super(myName, new Position(0,0), 2, 2,  destructible, life, 0, sprite, speed);
     }
     public Monster(Monster other, int xPosic, int yPosic) {
-        super(other.myName, xPosic, yPosic, other.height,
+        super(other.myName, new Position(xPosic, yPosic), other.height,
                 other.width, other.destructible, other.life, other.level,
                 other.sprite, other.speed);
     }

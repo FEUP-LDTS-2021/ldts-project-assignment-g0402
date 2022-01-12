@@ -28,9 +28,7 @@ public class Level {
         this.player = new Player("Player1", new Position(screen), heightPlayer,
                 widthPlayer, true, 1, 1, "abcd", 5);
 
-        Monster monster = new Monster("Gabriel Coelho", width/2-widthPlayer,
-                height-widthPlayer-distanceFromConsoleFloor, heightPlayer,
-                widthPlayer, true, 1, 1, "abcd", 5);
+        Monster monster = new Monster("Gabriel Coelho", true, 1, "abcd", 5);
         this.wave = new MonsterWave(3,3 ,12, 8,
                 3, 4, monster);
         this.bullets = new ArrayList<Bullet>();

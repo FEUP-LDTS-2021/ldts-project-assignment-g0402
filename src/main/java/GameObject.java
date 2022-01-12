@@ -39,7 +39,7 @@ public class GameObject{
         for (int i = 0; i < this.height; i++) {
             offset = i * this.width;
             for (int j = 0; j < this.width; j++) {
-                myGuy.putString(position.getxPos() + i, position.getyPos() + j, Character.toString(this.sprite.charAt(offset + j)));
+                myGuy.putString(position.getxPos() + i, position.getyPos() + j, "a");
             }
         }
     }

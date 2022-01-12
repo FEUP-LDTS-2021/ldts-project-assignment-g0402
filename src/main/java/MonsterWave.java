@@ -33,9 +33,10 @@ public class MonsterWave{
             xPosTmp = this.xPos;
             for (int j = 0; j < this.lineSize; ++j) {
                 this.wave[i][j] = new Monster(monster, xPosTmp, yPosTmp);
-                ///System.out.println("xPos " + xPos + " yPos " + yPos);
+                System.out.println("xPos " + xPosTmp + " yPos " + yPosTmp);
                 xPosTmp += this.xOffset;
             }
+            yPosTmp += this.yOffset;
         }
     }
     public void moveAttack(){
