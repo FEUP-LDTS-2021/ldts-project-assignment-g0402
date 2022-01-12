@@ -79,6 +79,11 @@ public class Console {
                 case ArrowUp -> level.doAttackPlayer();
             }
         }
+        else{
+            if(key.getCharacter() == (' ')){
+                level.doAttackPlayer();
+            }
+        }
     }
     /**This method commands each Object in the Game to move by its own speed.
      * When an Object moves, it refreshes the console.*/
