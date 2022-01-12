@@ -7,6 +7,17 @@ public class Monster extends GameObject {
         super(myName, xPosic, yPosic, height, width, destructible, life, level, sprite, speed);
     }
 
+    public Monster(String myName, boolean destructible,
+                   int life, String sprite, int speed) {
+        super(myName, null, null, null, null, destructible, life, null, this.setSprite(sprite), speed);
+    }
+    public Monster(Monster other, int xPosic, int yPosic) {
+        super(other.myName, xPosic, yPosic, other.height,
+                other.width, other.destructible, other.life, other.level,
+                other.sprite, other.speed);
+    }
+
+
     public void moveLeft(){
         this.xPosic = this.xPosic - 1;
     }

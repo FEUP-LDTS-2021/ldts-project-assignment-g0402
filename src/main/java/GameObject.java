@@ -1,4 +1,5 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
+import java.util.*;
 
 public class GameObject{
     protected int xPosic;
@@ -9,7 +10,7 @@ public class GameObject{
     protected boolean destructible;
     protected int life;
     protected int level;
-    protected int[][] sprite;
+    protected List<List<Integer>> sprite;
     protected int speed;
     private boolean isAlive;
     public GameObject(String myName, int xPosic, int yPosic,
@@ -23,7 +24,9 @@ public class GameObject{
         this.destructible = destructible;
         this.life = life;
         this.level = level;
-        this.sprite = sprite;
+        for (int[] line: sprite) {
+            this.sprite.add(Arrays.asList(line));
+        }
         this.speed = speed;
         this.isAlive = true;
     }
@@ -36,11 +39,11 @@ public class GameObject{
     }
 
     public void draw(TextGraphics myGuy){
-        for (int[] dot: sprite) {
-            myGuy.drawLine(xPosic+ dot[0],
-                    yPosic + dot[1],
-                    xPosic + dot[2],
-                    yPosic + dot[3],
+        for (List<int> dot: sprite) {
+            myGuy.drawLine(xPosic+ dot.get(0),
+                    yPosic + dot.get(1),
+                    xPosic + dot.get(2),
+                    yPosic + dot.get(3),
                     'u');
         }
     }
@@ -87,6 +90,22 @@ public class GameObject{
     public int getLife() {
         return life;
     }
+    public List<List<Integer>> setSprite(String myStringSprite){
+        List<String> listOfStringLines = Arrays.asList(myStringSprite.split(" .. "));
+        List<String> toBeConvertToInt;
+        List<int> ConvertToInt = new ArrayList<int>();
+        List<List<Integer>> sprite = new ArrayList<ArrayList<int>>();
+        for (String StringLine: listOfStringLines) {
+            toBeConvertToInt = Arrays.asList(myStringSprite.split(","));
+            for (String s: toBeConvertToInt) {
+                ConvertToInt.add(Integer.valueOf(s));
+            }
+            sprite.add(ConvertToInt);
+
+        }
+        return sprite;
+    }
+
 
     public int getLevel() {
         return level;
