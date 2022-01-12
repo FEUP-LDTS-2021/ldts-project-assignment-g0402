@@ -1,3 +1,5 @@
+import com.googlecode.lanterna.graphics.TextGraphics;
+import java.util.*;
 
 public class GameObject{
     protected Position position;
@@ -7,12 +9,12 @@ public class GameObject{
     protected boolean destructible;
     protected int life;
     protected int level;
-    protected int[][] sprite;
+    String sprite;
     protected int speed;
     private boolean isAlive;
     public GameObject(String myName, Position position,
                       int height, int width, boolean destructible,
-                      int life, int level, int[][] sprite, int speed) {
+                      int life, int level, String sprite, int speed) {
         this.myName = myName;
         this.position = position;
         this.height = height;
@@ -32,10 +34,20 @@ public class GameObject{
         return this.isAlive;
     }
 
+    public void draw(TextGraphics myGuy) {
+        int offset;
+        for (int i = 0; i < this.height; i++) {
+            offset = i * this.width;
+            for (int j = 0; j < this.width; j++) {
+                myGuy.putString(position.getxPos() + i, position.getyPos() + j, "a");
+            }
+        }
+    }
 
     public void moveAttack(){
         return;
     }
+
     public String getMyName() {
         return myName;
     }
@@ -46,6 +58,10 @@ public class GameObject{
 
     public void setPos(Position newPos) {
         this.position = newPos;
+    }
+
+    public void run(TextGraphics myGuy) {
+        this.draw(myGuy);
     }
 
     public int getHeight() {

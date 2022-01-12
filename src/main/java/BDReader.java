@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.*;
 
 public class BDReader{
     public static void main(String[] args)
@@ -11,16 +12,40 @@ public class BDReader{
         try
         {
             // create a database connection
-            connection = DriverManager.getConnection("jdbc:sqlite:./assets/");
+            connection = DriverManager.getConnection("jdbc:sqlite:assets/InvaderDatabase.sqlite");
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            ResultSet rs = statement.executeQuery("select * from person");
-            while(rs.next())
+            ResultSet monsterReader = statement.executeQuery("select * from Monster");
+            List<Monster> monsters = new ArrayList<>();
+            ResultSet waveReader = statement.executeQuery("select * from Wave");
+            Monster monster;
+            while(waveReader.next())
             {
                 // read the result set
-                System.out.println("name = " + rs.getString("name"));
-                System.out.println("id = " + rs.getInt("id"));
+                monsterReader = statement.executeQuery("SELECT * FROM Monster WHERE rowid = "
+                                                        + waveReader.getInt("MNTID") + ";");
+
+                monster = new Monster(monsterReader.getString("name"),
+                                    (monsterReader.getInt("destructible")!= 0),
+                                    monsterReader.getInt("life"),
+                                    monsterReader.getString("sprite"),
+                                    monsterReader.getInt("speed"));
+
+                MonsterWave wave = new MonsterWave(waveReader.getInt("Xpos"),
+                                                    waveReader.getInt("ypos"),
+                                                    waveReader.getInt("lineize"),
+                                                    waveReader.getInt("ColumnSize"),
+                                                    waveReader.getInt("xOffset"),
+                                                    waveReader.getInt("yOffset"),
+                                                    monster);
             }
+            while(monsterReader.next())
+            {
+                // read the result set
+                System.out.println("name = " + monsterReader.getString("Name"));
+                System.out.println("OBJID = " + monsterReader.getInt("OBJID"));
+            }
+
         }
         catch(SQLException e)
         {
