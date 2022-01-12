@@ -18,10 +18,9 @@ import java.util.concurrent.TimeUnit;
 public class Console {
 
     public Screen screen;
-    public TextGraphics game;
     public Level level;
-    private int width = 77;
-    private int height = 55;
+    private int width = 64;
+    private int height = 36;
 
     private boolean exitThread = false;
 
@@ -42,7 +41,7 @@ public class Console {
 
             terminalFactory.setTerminalEmulatorTitle("Lonely Earth Invader");
 
-            Font loadedFont = font.deriveFont(Font.PLAIN, 14);
+            Font loadedFont = font.deriveFont(Font.PLAIN, 20);
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
             terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
             terminalFactory.setForceAWTOverSwing(true);

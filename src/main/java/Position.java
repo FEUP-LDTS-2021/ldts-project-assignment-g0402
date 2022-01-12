@@ -5,8 +5,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
  * of any object. It can also set an Object Player to its
  * default position. */
 public class Position {
-    private int xPos = 0;
-    private int yPos = 0;
+    private int xPos;
+    private int yPos;
     private int xPlayerDefault;
     private int yPlayerDefault;
 
@@ -49,8 +49,8 @@ public class Position {
         this.yPos = yPos;
     }
 
-    /**This method sets the coordinates in the Object Player given
-     * to its Default place taking in consideration the Object Player Size.*/
+    /**This method sets the coordinates of the Object Player
+     * to its default coordinates according to the Object Player Size.*/
     public void setPlayerPosDefault(Player player){
         this.xPos = this.xPlayerDefault - player.getWidth();
         this.yPos = this.yPlayerDefault - player.getHeight();

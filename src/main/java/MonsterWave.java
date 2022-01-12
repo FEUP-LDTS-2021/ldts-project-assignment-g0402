@@ -12,8 +12,8 @@ public class MonsterWave{
     protected int xPos;           //initial x position
     protected int yPos;           //initial y position
     protected int waveSpeed = 1;
-    protected int yOffset = 1;
-    protected int xOffset = 1;
+    protected int yOffset;
+    protected int xOffset;
 
 
     public MonsterWave(int xPos, int yPos, int lineSize, int waveLength, int xOffset, int yOffset, Monster monster){

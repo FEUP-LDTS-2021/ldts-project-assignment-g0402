@@ -32,7 +32,7 @@ public class Level {
 
         Monster monster = new Monster("Gabriel Coelho", true, 1, "pq", 5);
 
-        this.wave = new MonsterWave(3,3 ,12, 8,
+        this.wave = new MonsterWave(3,3 ,10, 5,
                 5, 3, monster);
 
         this.bullets = new ArrayList<Bullet>();

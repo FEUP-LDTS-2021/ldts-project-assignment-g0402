@@ -13,7 +13,7 @@ public class GameObject{
     protected int speed;
     private boolean isAlive;
 
-    /**This method is the constructor for the class Console.*/
+    /**This constructor defines a new GameObject*/
     public GameObject(String myName, Position position,
                       int height, int width, boolean destructible,
                       int life, int level, String sprite, int speed) {
@@ -28,21 +28,21 @@ public class GameObject{
         this.speed = speed;
         this.isAlive = true; //When a new object is created, is always alive.
     }
-    /**This method checks if object is still alive.*/
+    /**This method unlives (kills) the object*/
     public void dies(){
         this.isAlive = false;
     }
-    /**This method return live state*/
+    /**This method return the live state*/
     public boolean isLive(){
         return this.isAlive;
     }
 
-    /**This method draw object only if they are alive*/
+    /**This method draws the object only if it's alive*/
     public void draw(TextGraphics myGuy) {
         if (this.isAlive){
             int offset;
-            for (int i = 0; i < this.height; i++) { /**That for loop is used for create,*/
-                offset = i * this.width;      /**using a plane string, objects with more than one line*/
+            for (int i = 0; i < this.height; i++) {
+                offset = i * this.width;
                 for (int j = 0; j < this.width; j++) {
                     myGuy.putString(position.getxPos() + i, position.getyPos() + j,
                                     Character.toString(this.sprite.charAt(offset+j)));
@@ -51,8 +51,6 @@ public class GameObject{
         }
     }
 
-    //Below we have gets. Is auto explained by the code and name.
-    //I refuse to a specific documentation for each getter. It gets stuff.
 
     public String getMyName() {
         return myName;
