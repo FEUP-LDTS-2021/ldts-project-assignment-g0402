@@ -33,7 +33,7 @@ public class Console {
     public Console() throws FontFormatException, URISyntaxException {
         try {
             /*Import font for the game*/
-            URL resource = getClass().getClassLoader().getResource("invader.ttf");
+            URL resource = getClass().getClassLoader().getResource("invaderv2.ttf");
             File fontFile = new File(resource.toURI());
             Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
