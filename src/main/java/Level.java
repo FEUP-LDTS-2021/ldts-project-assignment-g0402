@@ -2,6 +2,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.screen.Screen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,15 +17,17 @@ public class Level {
     protected int maxDownMovements = 6;
     private boolean isMovingToRight = true;
     private List<Bullet> bullets;
-    public Level(int width, int height){
-        this.height = height;
-        this.width = width;
+    private TextGraphics screen;
+    public Level(TextGraphics screen){
+        this.screen = screen;
+        this.height = screen.getSize().getRows();
+        this.width = screen.getSize().getColumns();
         int heightPlayer = 2;
         int widthPlayer = 2;
         int distanceFromConsoleFloor = 4;
-        this.player = new Player("Gabriel Coelho", width/2-widthPlayer,
-                height-widthPlayer-distanceFromConsoleFloor, heightPlayer,
+        this.player = new Player("Player1", new Position(screen), heightPlayer,
                 widthPlayer, true, 1, 1, "abcd", 5);
+
         Monster monster = new Monster("Gabriel Coelho", width/2-widthPlayer,
                 height-widthPlayer-distanceFromConsoleFloor, heightPlayer,
                 widthPlayer, true, 1, 1, "abcd", 5);
@@ -33,9 +36,9 @@ public class Level {
         this.bullets = new ArrayList<Bullet>();
     }
 
-    public void draw(TextGraphics screen) {
-        screen.setBackgroundColor(new TextColor.RGB(15,20,45));
-        screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
+    public void draw() {
+        this.screen.setBackgroundColor(new TextColor.RGB(15,20,45));
+        this.screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
 
         player.draw(screen);
         wave.draw(screen);
@@ -91,6 +94,7 @@ public class Level {
         }
         else{
             return true;
+
         }
     }
 

@@ -29,17 +29,15 @@ public class MonsterWave{
     public void populateWave(Monster monster) {
         int xPosTmp;
         int yPosTmp = this.yPos;
-        for(int i = 0; i < this.waveLength; ++i){
+        for(int i = 0; i < this.waveLength; ++i) {
             xPosTmp = this.xPos;
             for (int j = 0; j < this.lineSize; ++j) {
                 this.wave[i][j] = new Monster(monster, xPosTmp, yPosTmp);
                 ///System.out.println("xPos " + xPos + " yPos " + yPos);
                 xPosTmp += this.xOffset;
             }
-            yPosTmp += this.yOffset;
         }
     }
-
     public void moveAttack(){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {
@@ -57,11 +55,11 @@ public class MonsterWave{
     }
 
     public int getPosLeft(){
-        int x = wave[0][0].getX();
+        int x = wave[0][0].position.getxPos();
         for (int j = 0; j < lineSize; j++) {
             for(int i = 0; i < waveLength; ++i){
-                if(wave[i][j].isLive() && x> wave[i][j].getX()){
-                    x = wave[i][j].getX();
+                if(wave[i][j].isLive() && x> wave[i][j].position.getxPos()){
+                    x = wave[i][j].position.getxPos();
                 };
             }
         }
@@ -69,11 +67,11 @@ public class MonsterWave{
     }
 
     public int getPosRight(){
-        int x = wave[0][0].getX();
+        int x = wave[0][0].position.getxPos();
         for (int j = 0; j < lineSize; j++) {
             for(int i = 0; i < waveLength; ++i){
-                if(wave[i][j].isLive() && x < wave[i][j].getX()){
-                    x = wave[i][j].getX();
+                if(wave[i][j].isLive() && x < wave[i][j].position.getxPos()){
+                    x = wave[i][j].position.getxPos();
                 };
             }
         }

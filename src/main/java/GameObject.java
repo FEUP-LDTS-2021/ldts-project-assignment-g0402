@@ -2,8 +2,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.*;
 
 public class GameObject{
-    protected int xPosic;
-    protected int yPosic;
+    protected Position position;
     protected int height;
     protected int width;
     protected String myName;
@@ -13,12 +12,11 @@ public class GameObject{
     String sprite;
     protected int speed;
     private boolean isAlive;
-    public GameObject(String myName, int xPosic, int yPosic,
+    public GameObject(String myName, Position position,
                       int height, int width, boolean destructible,
                       int life, int level, String sprite, int speed) {
         this.myName = myName;
-        this.xPosic = xPosic;
-        this.yPosic = yPosic;
+        this.position = position;
         this.height = height;
         this.width = width;
         this.destructible = destructible;
@@ -36,12 +34,12 @@ public class GameObject{
         return this.isAlive;
     }
 
-    public void draw(TextGraphics myGuy){
+    public void draw(TextGraphics myGuy) {
         int offset;
         for (int i = 0; i < this.height; i++) {
-            offset = i*this.width;
+            offset = i * this.width;
             for (int j = 0; j < this.width; j++) {
-                myGuy.putString(xPosic+i, yPosic+j, Character.toString(this.sprite.charAt(offset+j)));
+                myGuy.putString(position.getxPos() + i, position.getyPos() + j, Character.toString(this.sprite.charAt(offset + j)));
             }
         }
     }
@@ -54,20 +52,12 @@ public class GameObject{
         return myName;
     }
 
-    public int getX() {
-        return this.xPosic;
+    public Position getPos() {
+        return this.position;
     }
 
-    public int getY() {
-        return this.yPosic;
-    }
-
-    public void setX(int newPos) {
-        this.xPosic += newPos;
-    }
-
-    public void setY(int newPos) {
-        this.yPosic += newPos;
+    public void setPos(Position newPos) {
+        this.position = newPos;
     }
 
     public void run(TextGraphics myGuy) {
