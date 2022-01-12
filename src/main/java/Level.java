@@ -18,19 +18,23 @@ public class Level {
     private boolean isMovingToRight = true;
     private List<Bullet> bullets;
     private TextGraphics screen;
+
+
     public Level(TextGraphics screen){
         this.screen = screen;
         this.height = screen.getSize().getRows();
         this.width = screen.getSize().getColumns();
         int heightPlayer = 3;
         int widthPlayer = 1;
-        int distanceFromConsoleFloor = 4;
+
         this.player = new Player("Player1", new Position(screen), heightPlayer,
                 widthPlayer, true, 1, 1, "def", 5);
 
         Monster monster = new Monster("Gabriel Coelho", true, 1, "pq", 5);
+
         this.wave = new MonsterWave(3,3 ,12, 8,
                 5, 3, monster);
+
         this.bullets = new ArrayList<Bullet>();
     }
 
@@ -38,8 +42,13 @@ public class Level {
         this.screen.setBackgroundColor(new TextColor.RGB(15,20,45));
         this.screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
 
+        this.screen.setForegroundColor(new TextColor.RGB(255,255,255));
         player.draw(screen);
+
+        this.screen.setForegroundColor(new TextColor.RGB(0,200,50));
         wave.draw(screen);
+
+        this.screen.setForegroundColor(new TextColor.RGB(255,255,255));
         for (Bullet bull: bullets) {
             bull.draw(screen);
         }

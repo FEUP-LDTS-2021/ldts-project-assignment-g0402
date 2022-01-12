@@ -42,7 +42,7 @@ public class Console {
 
             terminalFactory.setTerminalEmulatorTitle("Lonely Earth Invader");
 
-            Font loadedFont = font.deriveFont(Font.PLAIN, 11);
+            Font loadedFont = font.deriveFont(Font.PLAIN, 14);
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
             terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
             terminalFactory.setForceAWTOverSwing(true);
