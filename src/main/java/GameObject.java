@@ -33,15 +33,6 @@ public class GameObject{
         return this.isAlive;
     }
 
-    public void draw(TextGraphics myGuy){
-        for (int[] dot: sprite) {
-            myGuy.drawLine(position.getxPos() + dot[0],
-                    position.getyPos() + dot[1],
-                    position.getxPos() + dot[2],
-                    position.getyPos() + dot[3],
-                    'u');
-        }
-    }
 
     public void moveAttack(){
         return;
@@ -56,10 +47,6 @@ public class GameObject{
 
     public void setPos(Position newPos) {
         this.position = newPos;
-    }
-
-    public void run(TextGraphics myGuy) {
-        this.draw(myGuy);
     }
 
     public int getHeight() {
