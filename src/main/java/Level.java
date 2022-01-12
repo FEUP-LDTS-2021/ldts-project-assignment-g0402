@@ -48,8 +48,11 @@ public class Level {
         this.screen.setForegroundColor(new TextColor.RGB(0,200,50));
         wave.draw(screen);
 
-        this.screen.setForegroundColor(new TextColor.RGB(255,255,255));
         for (Bullet bull: bullets) {
+            if(bull.isBulletFromMonster()){
+                this.screen.setForegroundColor(new TextColor.RGB(0,200,50));
+            }else{this.screen.setForegroundColor(new TextColor.RGB(255,255,255));}
+
             bull.draw(screen);
         }
     }
@@ -101,14 +104,6 @@ public class Level {
             return true;
 
         }
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return width;
     }
 
 }
