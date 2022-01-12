@@ -1,8 +1,7 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class GameObject{
-    protected int xPosic;
-    protected int yPosic;
+    protected Position position;
     protected int height;
     protected int width;
     protected String myName;
@@ -12,12 +11,11 @@ public class GameObject{
     protected int[][] sprite;
     protected int speed;
     private boolean isAlive;
-    public GameObject(String myName, int xPosic, int yPosic,
+    public GameObject(String myName, Position position,
                       int height, int width, boolean destructible,
                       int life, int level, int[][] sprite, int speed) {
         this.myName = myName;
-        this.xPosic = xPosic;
-        this.yPosic = yPosic;
+        this.position = position;
         this.height = height;
         this.width = width;
         this.destructible = destructible;
@@ -37,10 +35,10 @@ public class GameObject{
 
     public void draw(TextGraphics myGuy){
         for (int[] dot: sprite) {
-            myGuy.drawLine(xPosic+ dot[0],
-                    yPosic + dot[1],
-                    xPosic + dot[2],
-                    yPosic + dot[3],
+            myGuy.drawLine(position.getxPos() + dot[0],
+                    position.getyPos() + dot[1],
+                    position.getxPos() + dot[2],
+                    position.getyPos() + dot[3],
                     'u');
         }
     }
@@ -52,20 +50,12 @@ public class GameObject{
         return myName;
     }
 
-    public int getX() {
-        return this.xPosic;
+    public Position getPos() {
+        return this.position;
     }
 
-    public int getY() {
-        return this.yPosic;
-    }
-
-    public void setX(int newPos) {
-        this.xPosic += newPos;
-    }
-
-    public void setY(int newPos) {
-        this.yPosic += newPos;
+    public void setPos(Position newPos) {
+        this.position = newPos;
     }
 
     public void run(TextGraphics myGuy) {

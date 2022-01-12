@@ -1,4 +1,5 @@
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -17,11 +18,13 @@ import java.util.concurrent.TimeUnit;
 public class Console {
 
     public Screen screen;
+    public TextGraphics game;
     public Level level;
     private int width = 77;
     private int height = 55;
 
     private boolean exitThread = false;
+
     /**This method is the constructor for the class Console.
      * It changes the font of the game, and assign a size to the terminal of the game.
      * It calls the class Level to create the map for the game.
@@ -55,14 +58,14 @@ public class Console {
             e.printStackTrace();
         }
 
-        level = new Level( width, height);
+        level = new Level(screen.newTextGraphics());
     }
 
     /**This method clears and refresh the screen, and commands
      * Level to draw the game.*/
     private void draw() throws IOException{
         screen.clear();
-        level.draw(screen.newTextGraphics());
+        level.draw();
         screen.refresh();
     }
 
@@ -100,7 +103,7 @@ public class Console {
                     draw();
                     key = screen.readInput();
                     processKey(key);
-                    System.out.println(key.getCharacter());
+                    //System.out.println(key.getCharacter());
                     if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
                         exitThread = true;
                         screen.close();

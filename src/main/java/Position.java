@@ -12,13 +12,16 @@ public class Position {
 
 
     /**This constructor defines the Default Coordinates for an
-     * Object Player based on the TerminalSize of the game.*/
+     * Object Player based on the TerminalSize of the game, and
+     * sets it to its default position*/
     public Position(TextGraphics game){
         int distanceFromConsoleFloor = 4;
 
         this.xPlayerDefault = (game.getSize().getColumns()/2);
-
         this.yPlayerDefault = game.getSize().getRows() - distanceFromConsoleFloor;
+
+        this.xPos = this.xPlayerDefault;
+        this.yPos = this.yPlayerDefault;
     }
 
 
@@ -49,8 +52,8 @@ public class Position {
     /**This method sets the coordinates in the Object Player given
      * to its Default place taking in consideration the Object Player Size.*/
     public void setPlayerPosDefault(Player player){
-        player.setX(this.xPlayerDefault - player.getWidth());
-        player.setY(this.yPlayerDefault - player.getHeight());
+        this.xPos = this.xPlayerDefault - player.getWidth();
+        this.yPos = this.yPlayerDefault - player.getHeight();
     }
 
 }

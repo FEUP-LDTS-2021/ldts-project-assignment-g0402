@@ -30,9 +30,9 @@ public class MonsterWave{
         for(int i = 0; i < waveLength; ++i){
             xPos = originalXPos;
             for (int j = 0; j < lineSize; ++j) {
-                wave[i][j] = new Monster("teste", xPos, yPos, 2,
+                wave[i][j] = new Monster("teste", new Position(xPos, yPos), 2,
                         2, true, 1, 1, sprite, waveSpeed);
-                System.out.println("xPos " + xPos + " yPos " + yPos);
+                //System.out.println("xPos " + xPos + " yPos " + yPos);
                 xPos += 4;
             }
 
@@ -57,11 +57,11 @@ public class MonsterWave{
     }
 
     public int getPosLeft(){
-        int x = wave[0][0].getX();
+        int x = wave[0][0].position.getxPos();
         for (int j = 0; j < lineSize; j++) {
             for(int i = 0; i < waveLength; ++i){
-                if(wave[i][j].isLive() && x> wave[i][j].getX()){
-                    x = wave[i][j].getX();
+                if(wave[i][j].isLive() && x> wave[i][j].position.getxPos()){
+                    x = wave[i][j].position.getxPos();
                 };
             }
         }
@@ -69,11 +69,11 @@ public class MonsterWave{
     }
 
     public int getPosRight(){
-        int x = wave[0][0].getX();
+        int x = wave[0][0].position.getxPos();
         for (int j = 0; j < lineSize; j++) {
             for(int i = 0; i < waveLength; ++i){
-                if(wave[i][j].isLive() && x < wave[i][j].getX()){
-                    x = wave[i][j].getX();
+                if(wave[i][j].isLive() && x < wave[i][j].position.getxPos()){
+                    x = wave[i][j].position.getxPos();
                 };
             }
         }
