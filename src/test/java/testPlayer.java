@@ -14,14 +14,14 @@ public class testPlayer {
 
         game.run();
 
-        Player p1 = new Player("Objects.Player 1", new Position(game.screen.newTextGraphics()), 2, 2, true, 1, 1, "aaaa", 5);
+        Player p1 = new Player("Player 1", new Position(game.screen.newTextGraphics()), 1, 3, true, 1, 1, "abc", 5);
 
         //Excepted result
         Position expectedPos = new Position(p1.position.getxPos() + 3, p1.position.getyPos());
 
         //Moving the player 3 units to the right
         for(int i=0; i<3; i++){
-            p1.moveRight(game.screen.getTerminalSize().getRows());
+            p1.moveRight(game.screen.getTerminalSize().getColumns());
         }
 
         Assertions.assertEquals(expectedPos.getxPos(), p1.position.getxPos());
@@ -34,7 +34,7 @@ public class testPlayer {
 
         game.run();
 
-        Player p1 = new Player("Objects.Player 1", new Position(game.screen.newTextGraphics()), 2, 2, true, 1, 1, "aaaa", 5);
+        Player p1 = new Player("Player 1", new Position(game.screen.newTextGraphics()), 1, 3, true, 1, 1, "abc", 5);
 
         //Excepted result
         Position expectedPos = new Position(p1.position.getxPos() - 3, p1.position.getyPos());
@@ -47,4 +47,5 @@ public class testPlayer {
         Assertions.assertEquals(expectedPos.getxPos(), p1.position.getxPos());
         Assertions.assertEquals(expectedPos.getyPos(), p1.position.getyPos());
     }
+
 }
