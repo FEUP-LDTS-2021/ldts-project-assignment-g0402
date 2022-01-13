@@ -7,9 +7,6 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class Level {
 
