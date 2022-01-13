@@ -13,6 +13,14 @@ This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coel
 - **Player Shooting** - The game character will shoot a bullet when the *Arrow Up* key or the *Space Bar* key is pressed.
 - **Monsters Moving** - The enemies of the game move on its own, with a defined pattern.
 
+
+<p align="center">
+  <img src= "https://user-images.githubusercontent.com/93398637/149397642-7b15a90d-8aac-48a9-8eb0-64ee81e54654.png"
+       width=740
+       height=530
+       />
+</p>
+
 ### PLANNED FEATURES
 
 - **Monsters Attacks** - The enemies will atack on its own, doing damage on the Player.
