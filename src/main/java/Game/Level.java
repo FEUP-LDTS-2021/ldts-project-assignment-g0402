@@ -1,8 +1,10 @@
+package Game;
+
+import Objects.*;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
 
 import java.util.ArrayList;
 import java.util.List;

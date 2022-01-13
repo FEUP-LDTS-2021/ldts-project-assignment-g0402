@@ -1,4 +1,5 @@
-import com.googlecode.lanterna.graphics.TextGraphics;
+package Objects;
+
 
 public class Bullet extends GameObject {
     private boolean isMonsterBullet;

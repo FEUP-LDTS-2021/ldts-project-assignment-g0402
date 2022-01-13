@@ -1,4 +1,4 @@
-import com.googlecode.lanterna.graphics.TextGraphics;
+package Objects;
 
 public class Monster extends GameObject {
     public Monster(String myName, Position position,

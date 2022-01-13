@@ -1,3 +1,6 @@
+package Database;
+
+import Objects.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,14 +18,14 @@ public class BDReader{
             connection = DriverManager.getConnection("jdbc:sqlite:assets/InvaderDatabase.sqlite");
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            ResultSet monsterReader = statement.executeQuery("select * from Monster");
+            ResultSet monsterReader = statement.executeQuery("select * from Objects.Monster");
             List<Monster> monsters = new ArrayList<>();
             ResultSet waveReader = statement.executeQuery("select * from Wave");
             Monster monster;
             while(waveReader.next())
             {
                 // read the result set
-                monsterReader = statement.executeQuery("SELECT * FROM Monster WHERE rowid = "
+                monsterReader = statement.executeQuery("SELECT * FROM Objects.Monster WHERE rowid = "
                                                         + waveReader.getInt("MNTID") + ";");
 
                 monster = new Monster(monsterReader.getString("name"),

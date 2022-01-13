@@ -19,14 +19,14 @@ This project was developed by *John Doe* (*john.doe*@fe.up.pt) and *Jane Doe* (*
 --->
 ### IMPLEMENTED FEATURES
 
-- **Player Moving** - The game character will move to the left when the Arrow Left key is pressed and to the right when the Arrow Right key is pressed.
-- **Player Shooting** - The game character will shoot a bullet when the Arrow Up key is pressed.
+- **Objects.Player Moving** - The game character will move to the left when the Arrow Left key is pressed and to the right when the Arrow Right key is pressed.
+- **Objects.Player Shooting** - The game character will shoot a bullet when the Arrow Up key is pressed.
 - **Monsters Moving** - The enemies of the game move on its own with a defined pattern.
 
 ### PLANNED FEATURES
 
-- **Monsters Attacks** - The enemies will atack on its own, doing damage on the Player.
-- **Player Attacks** - The previous feature "Player Shooting" should be improved to make damage.
+- **Monsters Attacks** - The enemies will atack on its own, doing damage on the Objects.Player.
+- **Objects.Player Attacks** - The previous feature "Objects.Player Shooting" should be improved to make damage.
 - **Different Levels** - For now, the game only has one level. In the future, we plan to introduce more.
 - **Different Monsters** - For now, the game only has one type of enemy. In the future, we plan to introduce more.
 - **Menu** - A menu iniciates the app, to be able to choose to play from there. 

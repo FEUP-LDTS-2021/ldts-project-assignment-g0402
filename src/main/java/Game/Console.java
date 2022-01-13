@@ -1,3 +1,5 @@
+package Game;
+
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyType;
@@ -24,9 +26,9 @@ public class Console {
 
     private boolean exitThread = false;
 
-    /**This method is the constructor for the class Console.
+    /**This method is the constructor for the class Game.Console.
      * It changes the font of the game, and assign a size to the terminal of the game.
-     * It calls the class Level to create the map for the game.
+     * It calls the class Game.Level to create the map for the game.
      * In the future, we intend to be able to have more than one level, using an
      * array with the different levels (and their characteristics)*/
     public Console() throws FontFormatException, URISyntaxException {
@@ -61,7 +63,7 @@ public class Console {
     }
 
     /**This method clears and refresh the screen, and commands
-     * Level to draw the game.*/
+     * Game.Level to draw the game.*/
     private void draw() throws IOException{
         screen.clear();
         level.draw();
@@ -69,7 +71,7 @@ public class Console {
     }
 
     /**This method processes if the key pressed by the user is ArrowLeft or Arrow Right.
-     * If so, proceeds to move the Player accordingly.*/
+     * If so, proceeds to move the Objects.Player accordingly.*/
     private void processKey(com.googlecode.lanterna.input.KeyStroke key){
         if(key.getKeyType() != KeyType.Character){
             switch (key.getKeyType()) {

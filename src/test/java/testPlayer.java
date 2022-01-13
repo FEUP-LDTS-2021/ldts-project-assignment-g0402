@@ -1,3 +1,6 @@
+import Game.Console;
+import Objects.*;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.awt.*;
@@ -11,7 +14,7 @@ public class testPlayer {
 
         game.run();
 
-        Player p1 = new Player("Player 1", new Position(game.screen.newTextGraphics()), 2, 2, true, 1, 1, "aaaa", 5);
+        Player p1 = new Player("Objects.Player 1", new Position(game.screen.newTextGraphics()), 2, 2, true, 1, 1, "aaaa", 5);
 
         //Excepted result
         Position expectedPos = new Position(p1.position.getxPos() + 3, p1.position.getyPos());
@@ -31,7 +34,7 @@ public class testPlayer {
 
         game.run();
 
-        Player p1 = new Player("Player 1", new Position(game.screen.newTextGraphics()), 2, 2, true, 1, 1, "aaaa", 5);
+        Player p1 = new Player("Objects.Player 1", new Position(game.screen.newTextGraphics()), 2, 2, true, 1, 1, "aaaa", 5);
 
         //Excepted result
         Position expectedPos = new Position(p1.position.getxPos() - 3, p1.position.getyPos());

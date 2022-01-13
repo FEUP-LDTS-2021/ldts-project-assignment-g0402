@@ -1,4 +1,6 @@
-import com.googlecode.lanterna.graphics.TextGraphics;
+package Objects;
+
+import Actions.*;
 
 public class Player extends GameObject {
 

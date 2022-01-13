@@ -1,9 +1,6 @@
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.graphics.TextGraphics;
+package Objects;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class MonsterWave{
     protected Monster[][] wave;

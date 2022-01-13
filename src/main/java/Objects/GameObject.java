@@ -1,8 +1,10 @@
+package Objects;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.*;
 
 public class GameObject{
-    protected Position position;
+    public Position position;
     protected int height;
     protected int width;
     protected String myName;
@@ -13,7 +15,7 @@ public class GameObject{
     protected int speed;
     private boolean isAlive;
 
-    /**This constructor defines a new GameObject*/
+    /**This constructor defines a new Objects.GameObject*/
     public GameObject(String myName, Position position,
                       int height, int width, boolean destructible,
                       int life, int level, String sprite, int speed) {
