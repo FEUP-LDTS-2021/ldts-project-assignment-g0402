@@ -16,8 +16,8 @@ This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coel
 
 <p align="center">
   <img src= "https://user-images.githubusercontent.com/93398637/149397642-7b15a90d-8aac-48a9-8eb0-64ee81e54654.png"
-       width=740
-       height=530
+       width=570
+       height=410
        />
 </p>
 
