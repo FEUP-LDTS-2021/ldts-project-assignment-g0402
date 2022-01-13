@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 public class testPBPlayer {
 
     @Property
-    public void testMovementRight(@ForAll @Positive int a) throws URISyntaxException, FontFormatException {
+    public void testMovementRight(@ForAll @Positive @IntRange(max = 20) int a) throws URISyntaxException, FontFormatException {
         Console game = new Console();
 
         game.run();

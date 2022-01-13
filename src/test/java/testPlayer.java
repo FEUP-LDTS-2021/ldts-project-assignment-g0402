@@ -24,8 +24,8 @@ public class testPlayer {
             p1.moveRight(game.screen.getTerminalSize().getColumns());
         }
 
-        Assertions.assertEquals(expectedPos.getxPos(), p1.position.getxPos());
-        Assertions.assertEquals(expectedPos.getyPos(), p1.position.getyPos());
+        assert(expectedPos.getxPos() == p1.position.getxPos());
+        assert(expectedPos.getyPos() == p1.position.getyPos());
     }
 
     @Test
@@ -44,8 +44,8 @@ public class testPlayer {
             p1.moveLeft();
         }
 
-        Assertions.assertEquals(expectedPos.getxPos(), p1.position.getxPos());
-        Assertions.assertEquals(expectedPos.getyPos(), p1.position.getyPos());
+        assert(expectedPos.getxPos() == p1.position.getxPos());
+        assert(expectedPos.getyPos() == p1.position.getyPos());
     }
 
 }
