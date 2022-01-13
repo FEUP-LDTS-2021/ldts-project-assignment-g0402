@@ -1,5 +1,6 @@
 package Game;
 
+import Actions.Attack;
 import Objects.*;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -16,9 +17,9 @@ public class Level {
     private int width;
     private Player player;
     protected MonsterWave wave;
+    private Actions.Attack attack = new Attack();
     protected int maxDownMovements = 6;
     private boolean isMovingToRight = true;
-    private List<Bullet> bullets;
     private TextGraphics screen;
 
 
@@ -37,7 +38,6 @@ public class Level {
         this.wave = new MonsterWave(3,3 ,10, 5,
                 5, 3, monster);
 
-        this.bullets = new ArrayList<Bullet>();
     }
 
     public void draw() {
@@ -50,13 +50,10 @@ public class Level {
         this.screen.setForegroundColor(new TextColor.RGB(0,200,50));
         wave.draw(screen);
 
-        for (Bullet bull: bullets) {
-            if(bull.isBulletFromMonster()){
-                this.screen.setForegroundColor(new TextColor.RGB(0,200,50));
-            }else{this.screen.setForegroundColor(new TextColor.RGB(255,255,255));}
-
-            bull.draw(screen);
+        if(this.attack != null){
+            attack.drawBullets(screen);
         }
+
     }
 
     public void movePlayer(boolean moveToRight){
@@ -67,13 +64,16 @@ public class Level {
             this.player.moveLeft();
         }
     }
-    public void moveBullets(){
-        for (Bullet bull: this.bullets) {
-            bull.move();
-        }
-    }
+
     public void doAttackPlayer(){
-        this.bullets.add(this.player.doAttack());
+        attack.addBullet(player);
+        attack.drawBullets(screen);
+    }
+
+    public void updateBullets(){
+        if(this.attack != null){
+            attack.moveBullets();
+        }
     }
 
     public boolean moveWave(){

@@ -24,7 +24,7 @@ public class Player extends GameObject {
     }
 
 
-    public Bullet doAttack(){
-        return Attack.doAttack(this.position.getxPos(), this.position.getyPos(), false);
+    public Bullet doAttack() {
+        return Attack.doAttack(this.position.getxPos()+1, this.position.getyPos(), false);
     }
 }

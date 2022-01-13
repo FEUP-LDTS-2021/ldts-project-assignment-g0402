@@ -34,6 +34,7 @@ public class GameObject{
     public void dies(){
         this.isAlive = false;
     }
+
     /**This method return the live state*/
     public boolean isLive(){
         return this.isAlive;

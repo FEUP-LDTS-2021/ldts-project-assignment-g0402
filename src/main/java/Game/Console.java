@@ -70,8 +70,8 @@ public class Console {
         screen.refresh();
     }
 
-    /**This method processes if the key pressed by the user is ArrowLeft or Arrow Right.
-     * If so, proceeds to move the Objects.Player accordingly.*/
+    /**This method processes the key pressed by the user.
+     * And proceeds to move the Player accordingly.*/
     private void processKey(com.googlecode.lanterna.input.KeyStroke key){
         if(key.getKeyType() != KeyType.Character){
             switch (key.getKeyType()) {
@@ -86,6 +86,7 @@ public class Console {
             }
         }
     }
+
     /**This method commands each Object in the Game to move by its own speed.
      * When an Object moves, it refreshes the console.*/
     public void run() {
@@ -97,11 +98,11 @@ public class Console {
         bulletsThread.start();
     }
 
-    /**This class creates a independent thread to move the player*/
+    /**This class creates an independent thread to move the player*/
     class PlayerThread extends Thread{
         com.googlecode.lanterna.input.KeyStroke key;
         @Override
-        /**This method is used by super class Thread in a cycle to draw objects and update positions*/
+
         public void run(){
             try {
                 while(!exitThread) {
@@ -113,7 +114,8 @@ public class Console {
             }
         }
 
-        /**This method is used for update location for player after pressed some key*/
+        /**This method is used for updating the location of the player
+         * after the user presses keys on the keyboard*/
         protected void update() {
             try {
                 key = screen.readInput();
@@ -133,9 +135,10 @@ public class Console {
     }
 
 
-    /**This class creates a independent thread to move all the waves*/
+    /**This class creates an independent thread to move all the waves*/
     class WaveThread extends Thread{
-        /**This method is used by super class Thread in a cycle to draw objects and update positions*/
+
+        /**This method is used by the super class Thread in a cycle to draw objects and update positions*/
         @Override
         public void run(){
             try {
@@ -148,7 +151,7 @@ public class Console {
             }
         }
 
-        /**This method is used for update location for wave automatic*/
+        /**This method is used for updating the location of the wave automatically*/
         protected void update() {
             level.moveWave();
             try {
@@ -158,9 +161,11 @@ public class Console {
             }
         }
     }
-    /**This class creates a independent thread to move all the bullets*/
+
+    /**This class creates an independent thread to move all the bullets*/
     class BulletsThread extends Thread{
-        /**This method is used by super class Thread in a cycle to draw objects and update positions*/
+
+        /**This method is used by the super class Thread in a cycle to draw objects and update positions*/
         @Override
         public void run(){
             try {
@@ -172,9 +177,10 @@ public class Console {
                 e.printStackTrace();
             }
         }
-        /**This method is used for update location for bullets automatic*/
+
+        /**This method is used for updating the location of the bullets automatically*/
         protected void update() {
-            level.moveBullets();
+            level.updateBullets();
             try {
                 TimeUnit.MILLISECONDS.sleep(150);
             } catch (InterruptedException e) {
