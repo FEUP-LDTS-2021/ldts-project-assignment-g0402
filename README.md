@@ -44,7 +44,7 @@ This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coel
 ## KNOWN CODE SMELLS AND REFACTORING SUGESTIONS
 
 ### LONG CLASS
-The `Level` Class is a **Long Class*
+The `Level` Class is a **Long Class**
 
 ## TESTING
 > **INSERT** Screenshot of coverage report **AND** Link to mutation testing report.
