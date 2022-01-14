@@ -1,6 +1,6 @@
 # LDTS_T04_G02 - Lonely Earth Invader
   
-## Game Description
+## GAME DESCRIPTION
 
 The **Lonely Earth Invader** is a shooting text based game inspired by the game *Space Invaders* where you have to kill different waves of residents from that planet to pass to the next level.
 As you pass to the next levels, you will encounter a different range of enemies with increased difficulty.
