@@ -43,20 +43,22 @@ public class MonsterWave{
     }
 
 
-    public void moveWave(int width){
+    public boolean moveWave(int width){
         int yMin = getPosLeft();
         int yMax = getPosRight();
         int down = getPosDown();
 
         if(yMin < 2 && !isMovingToRight){
             isMovingToRight = true;
-            if(down < width-30)
-                moveDown();
+            moveDown();
         }
         else if(yMax > width-4 && this.isMovingToRight) {
             this.isMovingToRight = false;
-            if(down < width-30)
+            if(down < width-35)
                 moveDown();
+            else{
+                return true;
+            }
         }
 
         else if(isMovingToRight){
@@ -66,6 +68,7 @@ public class MonsterWave{
         else {
             moveLeft();
         }
+        return false;
     }
 
 
@@ -110,7 +113,6 @@ public class MonsterWave{
                 }
             }
         }
-        //System.out.println("pos down " + y);
         return y;
     }
 

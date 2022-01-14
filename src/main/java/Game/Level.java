@@ -20,26 +20,13 @@ public class Level {
     private Player player;
     protected MonsterWave wave;
     private Actions.Attack attack = new Attack();
-
     private TextGraphics screen;
-
-    protected boolean canAttack = true;
-    protected long lastShot;        //store time of last shot
-    protected int fireDelay = 1000; //in millisec
 
     public Level(TextGraphics screen, Player player, MonsterWave monsterWave){
         this.screen = screen;
         this.height = screen.getSize().getRows();
         this.width = screen.getSize().getColumns();
-        int heightPlayer = 3;
-        int widthPlayer = 1;
-
-        //this.player = new Player("Player1", new Position(screen), heightPlayer, widthPlayer, true, 1, 1, "def", 5);
         this.player = player;
-
-        //Monster monster = new Monster("Gabriel Coelho", true, 1, "pq", 5);
-
-        //this.wave = new MonsterWave(3,3 ,10, 5, 5, 3, monster);
         this.wave = monsterWave;
 
     }
@@ -80,7 +67,4 @@ public class Level {
             attack.move();
         }
     }
-
-
-
 }

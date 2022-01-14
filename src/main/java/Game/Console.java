@@ -28,6 +28,7 @@ public class Console {
     private int width = 64;
     private int height = 36;
     private boolean exitThread = false;
+    private int sizeFont = 20;
 
     /**
      * This method is the constructor for the class Game.Console.
@@ -48,7 +49,7 @@ public class Console {
 
             terminalFactory.setTerminalEmulatorTitle("Lonely Earth Invader");
 
-            Font loadedFont = font.deriveFont(Font.PLAIN, 20);
+            Font loadedFont = font.deriveFont(Font.PLAIN, sizeFont);
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
             terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
             terminalFactory.setForceAWTOverSwing(true);
@@ -142,10 +143,7 @@ public class Console {
          * And proceeds to move the Player accordingly.
          */
         private void processKey(com.googlecode.lanterna.input.KeyStroke key) {
-            switch (key.getKeyType()) {
-                case ArrowLeft -> level.movePlayer(false);
-                case ArrowRight -> level.movePlayer(true);
-            }
+
         }
 
     }
@@ -157,7 +155,6 @@ public class Console {
         com.googlecode.lanterna.input.KeyStroke key;
 
         @Override
-
         public void run() {
             try {
                 while (!exitThread) {
@@ -177,10 +174,7 @@ public class Console {
             try {
                 key = screen.readInput();
                 processKey(key);
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
-                    exitThread = true;
-                    screen.close();
-                }
+
                 if (key.getKeyType() == KeyType.EOF) {
                     exitThread = true;
                 }
@@ -194,11 +188,26 @@ public class Console {
          * And proceeds to move the Player accordingly.
          */
         private void processKey(com.googlecode.lanterna.input.KeyStroke key) {
-            if (key.getKeyType() == KeyType.ArrowUp) {
-                level.doAttackPlayer();
+            try{
+                if (key.getKeyType() == KeyType.ArrowUp) {
+                    level.doAttackPlayer();
+                }
+                else if(key.getKeyType() == KeyType.Character && key.getCharacter() == ' '){
+                    level.doAttackPlayer();
+                }
+                else if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
+                    exitThread = true;
+                    screen.close();
+                }
+                else if(key.getKeyType() == KeyType.ArrowLeft) {
+                    level.movePlayer(false);
+                }
+                else if(key.getKeyType() == KeyType.ArrowRight){
+                    level.movePlayer(true);
+                }
             }
-            else if(key.getKeyType() == KeyType.Character && key.getCharacter() == ' '){
-                level.doAttackPlayer();
+            catch (IOException e){
+                e.printStackTrace();
             }
         }
     }
@@ -214,6 +223,7 @@ public class Console {
                     draw();
                     update();
                 }
+                screen.close();
             } catch (IOException e){
                 e.printStackTrace();
             }
@@ -221,19 +231,26 @@ public class Console {
 
         /**This method is used for updating the location of the wave automatically*/
         protected void update() {
-            level.wave.moveWave(width);
-
+            boolean looseGame = level.wave.moveWave(width);
+            if(looseGame) {
+                exitThread = true;
+            }
         }
     }
 
     /**This class creates an independent thread to move all the bullets*/
     class BulletsThread extends Thread{
-
         /**This method is used by the super class Thread in a cycle to draw objects and update positions*/
         @Override
         public void run(){
+
             try {
                 while(!exitThread) {
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(5);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     draw();
                     update();
                 }
