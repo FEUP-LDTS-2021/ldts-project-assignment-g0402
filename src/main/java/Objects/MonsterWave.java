@@ -64,12 +64,24 @@ public class MonsterWave{
             for(int i = 0; i < waveLength; ++i){
                 if(wave[i][j].isLive() && x < wave[i][j].position.getxPos()){
                     x = wave[i][j].position.getxPos();
-                };
+                }
             }
         }
         return x;
     }
 
+    public int getPosDown(){
+        int y = yPos;
+        for (int j = 0; j < lineSize; j++) {
+            for(int i = 0; i < waveLength; ++i){
+                if(wave[i][j].isLive() && y < wave[i][j].position.getxPos()){
+                    y = wave[i][j].position.getyPos();
+                }
+            }
+        }
+        //System.out.println("pos down " + y);
+        return y;
+    }
 
     public void moveLeft(){
         for(int i = 0; i < waveLength; ++i){

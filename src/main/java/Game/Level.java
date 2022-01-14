@@ -6,6 +6,11 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.screen.Screen;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class Level {
@@ -15,10 +20,12 @@ public class Level {
     private Player player;
     protected MonsterWave wave;
     private Actions.Attack attack = new Attack();
-    protected int maxDownMovements = 6;
     private boolean isMovingToRight = true;
     private TextGraphics screen;
 
+    protected boolean canAttack = true;
+    protected long lastShot;        //store time of last shot
+    protected int fireDelay = 1000; //in millisec
 
     public Level(TextGraphics screen, Player player, MonsterWave monsterWave){
         this.screen = screen;
@@ -63,8 +70,15 @@ public class Level {
     }
 
     public void doAttackPlayer(){
-        attack.addBullet(player);
-        attack.draw(screen);
+        if(canAttack) {
+            attack.addBullet(player);
+            attack.draw(screen);
+            lastShot = System.currentTimeMillis();
+            canAttack = false;
+        }
+        else if(System.currentTimeMillis() > lastShot+fireDelay) {
+            canAttack = true;
+        }
     }
 
     public void updateBullets(){
@@ -73,35 +87,28 @@ public class Level {
         }
     }
 
-    public boolean moveWave(){
+    public void moveWave(){
         int yMin = this.wave.getPosLeft();
         int yMax = this.wave.getPosRight();
+        int down = this.wave.getPosDown();
 
         if(yMin < 2 && !this.isMovingToRight){
             this.isMovingToRight = true;
-            this.wave.moveDown();
-            --this.maxDownMovements;
+            if(down < width-30)
+                this.wave.moveDown();
         }
         else if(yMax > this.width-4 && this.isMovingToRight) {
             this.isMovingToRight = false;
-            this.wave.moveDown();
-            --maxDownMovements;
+            if(down < width-30)
+                this.wave.moveDown();
         }
 
         else if(isMovingToRight){
             wave.moveRight();
         }
 
-        else{
+        else {
             wave.moveLeft();
-        }
-
-        if(maxDownMovements<0){
-            return false;
-        }
-        else{
-            return true;
-
         }
     }
 
