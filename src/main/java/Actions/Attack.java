@@ -30,7 +30,7 @@ public class Attack {
 
     public void move() {
         for (Bullet bull : this.bullets) {
-            bull.move();
+            bull.moveBullet();
         }
     }
 

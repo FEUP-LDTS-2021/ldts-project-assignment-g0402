@@ -20,7 +20,7 @@ public class Level {
     private Player player;
     protected MonsterWave wave;
     private Actions.Attack attack = new Attack();
-    private boolean isMovingToRight = true;
+
     private TextGraphics screen;
 
     protected boolean canAttack = true;
@@ -70,15 +70,9 @@ public class Level {
     }
 
     public void doAttackPlayer(){
-        if(canAttack) {
-            attack.addBullet(player);
-            attack.draw(screen);
-            lastShot = System.currentTimeMillis();
-            canAttack = false;
-        }
-        else if(System.currentTimeMillis() > lastShot+fireDelay) {
-            canAttack = true;
-        }
+
+        attack.addBullet(player);
+        attack.draw(screen);
     }
 
     public void updateBullets(){
@@ -87,29 +81,6 @@ public class Level {
         }
     }
 
-    public void moveWave(){
-        int yMin = this.wave.getPosLeft();
-        int yMax = this.wave.getPosRight();
-        int down = this.wave.getPosDown();
 
-        if(yMin < 2 && !this.isMovingToRight){
-            this.isMovingToRight = true;
-            if(down < width-30)
-                this.wave.moveDown();
-        }
-        else if(yMax > this.width-4 && this.isMovingToRight) {
-            this.isMovingToRight = false;
-            if(down < width-30)
-                this.wave.moveDown();
-        }
-
-        else if(isMovingToRight){
-            wave.moveRight();
-        }
-
-        else {
-            wave.moveLeft();
-        }
-    }
 
 }

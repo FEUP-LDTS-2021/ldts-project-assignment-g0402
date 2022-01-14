@@ -1,10 +1,13 @@
 package Objects;
 
+import java.util.concurrent.TimeUnit;
+
 public class Monster extends GameObject {
     public Monster(String myName, Position position,
                   int height, int width, boolean destructible,
                    int life, int level, String sprite, int speed) {
         super(myName, position, height, width, destructible, life, level, sprite, speed);
+        this.isMonster = true;
     }
 
     public Monster(String myName, boolean destructible,
@@ -18,17 +21,26 @@ public class Monster extends GameObject {
                 other.sprite, other.speed);
     }
 
+    @Override
+    public void moveRight(int width){
+        this.position.setxPos(this.position.getxPos() + 1);
+    }
 
+    @Override
     public void moveLeft(){
         this.position.setxPos(this.position.getxPos() - 1);
     }
 
+    @Override
     public void moveDown(){
         this.position.setyPos(this.position.getyPos() + 1);
     }
 
-    public void moveRight(){
-        this.position.setxPos(this.position.getxPos() + 1);
+    @Override
+    public void moveUp(){
+        this.position.setyPos(this.position.getyPos() - 1);
     }
+
+
 
 }

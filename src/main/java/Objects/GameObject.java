@@ -1,7 +1,9 @@
 package Objects;
 
+import Actions.Attack;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class GameObject{
     public Position position;
@@ -12,13 +14,17 @@ public class GameObject{
     protected int life;
     protected int level;
     String sprite;
-    protected int speed;
+    protected int speed = 8;
+    protected final int refreshTime = 1000;
     private boolean isAlive;
+    private int fireRate = 8;
+    protected boolean isMonster = false;
 
     /**This constructor defines a new Objects.GameObject*/
     public GameObject(String myName, Position position,
                       int height, int width, boolean destructible,
                       int life, int level, String sprite, int speed) {
+
         this.myName = myName;
         this.position = position;
         this.height = height;
@@ -30,6 +36,7 @@ public class GameObject{
         this.speed = speed;
         this.isAlive = true; //When a new object is created, is always alive.
     }
+
     /**This method unlives (kills) the object*/
     public void dies(){
         this.isAlive = false;
@@ -54,18 +61,52 @@ public class GameObject{
         }
     }
 
-
-    public String getMyName() {
-        return myName;
+    public Bullet doAttack() {
+        try {
+            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return Attack.doAttack(this.position.getxPos()+1, this.position.getyPos(), isMonster);
     }
 
-    public Position getPos() {
-        return this.position;
+    public void moveRight(int width){
+        this.position.setxPos(this.position.getxPos() + 1);
+        try {
+            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void setPos(Position newPos) {
-        this.position = newPos;
+    public void moveLeft(){
+        this.position.setxPos(this.position.getxPos() - 1);
+        try {
+            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void moveDown(){
+        this.position.setyPos(this.position.getyPos() + 1);
+        try {
+            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void moveUp(){
+        this.position.setyPos(this.position.getyPos() - 1);
+        try {
+            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public int getHeight() {
         return height;

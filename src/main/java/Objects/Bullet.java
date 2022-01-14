@@ -2,7 +2,6 @@ package Objects;
 
 
 public class Bullet extends GameObject {
-    private boolean isMonsterBullet;
 
     public Bullet(String myName, Position position,
                   int height, int width, boolean destructible, int life,
@@ -10,20 +9,20 @@ public class Bullet extends GameObject {
 
         super(myName, position, height, width, destructible, life, level, sprite, speed);
 
-        this.isMonsterBullet = isMonsterBullet;
+        this.isMonster = isMonsterBullet;
     }
 
-    public void move(){
-        if(isMonsterBullet){
-            this.position.setyPos(this.position.getyPos() + 1);
+    public void moveBullet(){
+        if(isMonster){
+            this.moveDown();
         }
         else {
-            this.position.setyPos(this.position.getyPos() - 1);
+            this.moveUp();
         }
     }
 
 
     public boolean isBulletFromMonster (){
-        return isMonsterBullet;
+        return isMonster;
     }
 }
