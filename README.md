@@ -1,4 +1,4 @@
-## LDTS_T04_G02 - Lonely Earth Invader
+# LDTS_T04_G02 - Lonely Earth Invader
   
 ## Game Description
 
@@ -7,6 +7,7 @@ As you pass to the next levels, you will encounter a different range of enemies 
 
 This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coelho (up201902223@edu.fc.up.pt) and Matias Vaz (up201900194@edu.fc.up.pt) for LDTS 2021-22.
 
+## GAME FEATURES
 ### IMPLEMENTED FEATURES
 
 - **Player Moving** - The game character will move to the left when the *Arrow Left* key is pressed and to the right when the *Arrow Right* key is pressed.
@@ -29,8 +30,15 @@ This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coel
 - **Different Monsters** - For now, the game only has one type of enemy. In the future, we plan to introduce more.
 - **Menu** - A menu iniciates the app, to be able to choose to play from there. 
 
+## DESIGN
+
+### THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A COMMAND TO STOP IS EXECUTED
+- **Motivation:** The game should run in a loop, constantly reading the input provided by the user (using the keyboard or mouse), updating the game to execute the actions pretended and redering it. It also should controll the time passage of each update. 
+- **The Pattern:** The pattern that we decided to apply for this was **Game Loop**, wich mainly describes the problem at hand. **Game Loop** is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it. 
+- **Implementation:** We implemented this pattern using threads. https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/fd9056d67803b4f077768f57fd08a02da12bd43d/src/main/java/Game/Console.java#L102-L115
+- **Consequences:** 
+
 <!---
-### DESIGN
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
 - **Problem in Context.** The description of the design context and the concrete problem that motivated the instantiation of the pattern. Someone else other than the original developer should be able to read and understand all the motivations for the decisions made. When refering to the implementation before the pattern was applied, don’t forget to [link to the relevant lines of code](https://help.github.com/en/articles/creating-a-permanent-link-to-a-code-snippet) in the appropriate version.
 - **The Pattern.** Identify the design pattern to be applied, why it was selected and how it is a good fit considering the existing design context and the problem at hand.
