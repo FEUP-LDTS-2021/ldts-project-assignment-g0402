@@ -12,13 +12,19 @@ import java.util.List;
 
 public class Attack {
     private List<Bullet> bullets = new ArrayList<>();
-    private final TextColor.RGB MonsterColor = new TextColor.RGB(0, 200, 50);
-    private final TextColor.RGB PlayerColor = new TextColor.RGB(255, 255, 255);
+    private TextColor.RGB color;
 
     public static Bullet doAttack(int xPos, int yPos, boolean isFromMonster){
+        Bullet bullet;
+        if (isFromMonster){
+            bullet = new Bullet("bala", new Position(xPos, yPos+1), 1,
+                    1, true, 1, 1, "z", 2, isFromMonster);
+        }
+        else{
+            bullet = new Bullet("bala", new Position(xPos, yPos-1), 1,
+                    1, true, 1, 1, "z", 2, isFromMonster);
 
-        Bullet bullet = new Bullet("bala", new Position(xPos, yPos), 1,
-                1, true, 1, 1, "z", 2, isFromMonster);
+        }
         return bullet;
     }
 
@@ -30,12 +36,7 @@ public class Attack {
 
     public void draw(TextGraphics screen) {
         for (Bullet bull : bullets) {
-            if (bull.isBulletFromMonster()) {
-                screen.setForegroundColor(this.MonsterColor);
-            } else {
-                screen.setForegroundColor(this.PlayerColor);
-            }
-
+            screen.setForegroundColor(this.color);
             bull.draw(screen);
         }
     }

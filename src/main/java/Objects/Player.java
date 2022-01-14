@@ -4,6 +4,8 @@ import Actions.*;
 
 public class Player extends GameObject {
 
+    private int fireRate = 10;
+    private int actualFireRate = 10;
     public Player(String myName, Position position,
                   int height, int width, boolean destructible,
                   int life, int level, String sprite, int speed) {
@@ -25,6 +27,17 @@ public class Player extends GameObject {
 
 
     public Bullet doAttack() {
-        return Attack.doAttack(this.position.getxPos()+1, this.position.getyPos(), false);
+        if (actualFireRate == actualFireRate){
+            return Attack.doAttack(this.position.getxPos()+1, this.position.getyPos(), false);
+        }
+        else if (actualFireRate == 0){
+            actualFireRate = fireRate;
+            return null;
+        }
+        else{
+            actualFireRate--;
+            return null;
+        }
+
     }
 }
