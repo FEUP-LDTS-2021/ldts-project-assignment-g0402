@@ -34,12 +34,15 @@ This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coel
 
 ### THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A COMMAND TO STOP IS EXECUTED
 - **Motivation:** The game should run in a loop, constantly reading the input provided by the user (using the keyboard or mouse), updating the game to execute the actions pretended and redering it. It also should controll the time passage of each update. 
-- **The Pattern:** The pattern that we decided to apply for this was **Game Loop**, wich mainly describes the problem at hand. **Game Loop** is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it. 
+- **The Pattern:** The pattern that we decided to apply for this was **Game Loop**, which mainly describes the problem at hand. **Game Loop** is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it. 
 - **Implementation:** We implemented this pattern using threads. *Link to code snipet with the implementation of this pattern: https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/ee91661b51821bb427a5833946f1612a291ce158/src/main/java/Game/Console.java#L90-L115*
 - **Consequences:** The usage of this patterns has benefits such as:
     - Being able to keep the game running and change as soon as an input is detected.
     - The game refreshes and renders everytime an input is read.
     - The update of the game allows the movement of the objects in the game to continue with a defined velocity (time per frame).
+### VARIOUS OBJECTS WITHIN THE GAME SHARE THE SAME METHODS OR CHARACTERISTICS
+- **Motivation:** The game has a player, monsters and bullets. All of theese have similiar characteristics, for example, they all need an instance of the class `Position`, they all are defined by their `width`, `height`, `life`, etc. So, what we want is to define a super class that defines a generic object with those characterics, so that the classes can extend that super class to specify what makes them different.
+- **The Pattern:** To resolve this, we implemented the **Factory Method** pattern, which 
 
 ## KNOWN CODE SMELLS AND REFACTORING SUGESTIONS
 
