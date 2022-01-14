@@ -20,20 +20,20 @@ public class Level {
     private TextGraphics screen;
 
 
-    public Level(TextGraphics screen){
+    public Level(TextGraphics screen, Player player, MonsterWave monsterWave){
         this.screen = screen;
         this.height = screen.getSize().getRows();
         this.width = screen.getSize().getColumns();
         int heightPlayer = 3;
         int widthPlayer = 1;
 
-        this.player = new Player("Player1", new Position(screen), heightPlayer,
-                widthPlayer, true, 1, 1, "def", 5);
+        //this.player = new Player("Player1", new Position(screen), heightPlayer, widthPlayer, true, 1, 1, "def", 5);
+        this.player = player;
 
-        Monster monster = new Monster("Gabriel Coelho", true, 1, "pq", 5);
+        //Monster monster = new Monster("Gabriel Coelho", true, 1, "pq", 5);
 
-        this.wave = new MonsterWave(3,3 ,10, 5,
-                5, 3, monster);
+        //this.wave = new MonsterWave(3,3 ,10, 5, 5, 3, monster);
+        this.wave = monsterWave;
 
     }
 
@@ -48,7 +48,7 @@ public class Level {
         wave.draw(screen);
 
         if(this.attack != null){
-            attack.drawBullets(screen);
+            attack.draw(screen);
         }
 
     }
@@ -64,12 +64,12 @@ public class Level {
 
     public void doAttackPlayer(){
         attack.addBullet(player);
-        attack.drawBullets(screen);
+        attack.draw(screen);
     }
 
     public void updateBullets(){
         if(this.attack != null){
-            attack.moveBullets();
+            attack.move();
         }
     }
 

@@ -1,5 +1,9 @@
 package Game;
 
+import Objects.MonsterWave;
+import Objects.Monster;
+import Objects.Player;
+import Objects.Position;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyType;
@@ -19,8 +23,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Console {
 
-    public Screen screen;
-    public Level level;
+    protected Screen screen;
+    protected Level level;
     private int width = 64;
     private int height = 36;
 
@@ -50,24 +54,29 @@ public class Console {
 
             Terminal terminal = terminalFactory.createTerminal();
 
-            screen = new TerminalScreen(terminal);
-            screen.setCursorPosition(null);
-            screen.startScreen();
-            screen.doResizeIfNecessary();
+            this.screen = new TerminalScreen(terminal);
+            this.screen.setCursorPosition(null);
+            this.screen.startScreen();
+            this.screen.doResizeIfNecessary();
 
         } catch (IOException e){
             e.printStackTrace();
         }
+        Player player = new Player("Player1", new Position(screen.newTextGraphics()), 3, 1, true, 1, 1, "def", 5);
 
-        level = new Level(screen.newTextGraphics());
+        Monster monster = new Monster("Gabriel Coelho", true, 1, "pq", 5);
+
+        MonsterWave wave = new MonsterWave(3,3 ,10, 5, 5, 3, monster);
+
+        this.level = new Level(screen.newTextGraphics(), player, wave);
     }
 
     /**This method clears and refresh the screen, and commands
      * Game.Level to draw the game.*/
     private void draw() throws IOException{
-        screen.clear();
-        level.draw();
-        screen.refresh();
+        this.screen.clear();
+        this.level.draw();
+        this.screen.refresh();
     }
 
     /**This method processes the key pressed by the user.
@@ -75,14 +84,14 @@ public class Console {
     private void processKey(com.googlecode.lanterna.input.KeyStroke key){
         if(key.getKeyType() != KeyType.Character){
             switch (key.getKeyType()) {
-                case ArrowLeft -> level.movePlayer(false);
-                case ArrowRight -> level.movePlayer(true);
-                case ArrowUp -> level.doAttackPlayer();
+                case ArrowLeft -> this.level.movePlayer(false);
+                case ArrowRight -> this.level.movePlayer(true);
+                case ArrowUp -> this.level.doAttackPlayer();
             }
         }
         else{
             if(key.getCharacter() == (' ')){
-                level.doAttackPlayer();
+                this.level.doAttackPlayer();
             }
         }
     }

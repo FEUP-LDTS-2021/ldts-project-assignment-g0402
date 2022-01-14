@@ -78,6 +78,7 @@ public class MonsterWave{
             }
         }
     }
+
     public void moveRight(){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {
@@ -85,6 +86,7 @@ public class MonsterWave{
             }
         }
     }
+
     public void moveDown(){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {

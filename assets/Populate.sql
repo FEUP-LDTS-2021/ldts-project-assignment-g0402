@@ -4,7 +4,3 @@ VALUES ("Gabriel Coelho", 1, 1, "abc", 1),
 
 INSERT INTO Wave (MNTID, level, xInitial, yInitial, xOffset, yOffset, lineSize, columnSize)
 VALUES (1, 1, 3, 3, 4, 4, 12, 6);
-
-AAA
-A A
-AAA

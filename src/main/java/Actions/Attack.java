@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Attack {
     private List<Bullet> bullets = new ArrayList<>();
+    private final TextColor.RGB MonsterColor = new TextColor.RGB(0, 200, 50);
+    private final TextColor.RGB PlayerColor = new TextColor.RGB(255, 255, 255);
 
     public static Bullet doAttack(int xPos, int yPos, boolean isFromMonster){
 
@@ -20,18 +22,18 @@ public class Attack {
         return bullet;
     }
 
-    public void moveBullets() {
+    public void move() {
         for (Bullet bull : this.bullets) {
             bull.move();
         }
     }
 
-    public void drawBullets(TextGraphics screen) {
+    public void draw(TextGraphics screen) {
         for (Bullet bull : bullets) {
             if (bull.isBulletFromMonster()) {
-                screen.setForegroundColor(new TextColor.RGB(0, 200, 50));
+                screen.setForegroundColor(this.MonsterColor);
             } else {
-                screen.setForegroundColor(new TextColor.RGB(255, 255, 255));
+                screen.setForegroundColor(this.PlayerColor);
             }
 
             bull.draw(screen);
