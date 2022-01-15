@@ -27,7 +27,7 @@ public class testPBPlayer {
     @Property
     public void testMovementRight(@ForAll @Positive @IntRange(max = width/2 - offset) int a) throws URISyntaxException, FontFormatException {
 
-        Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, true, 1, 1, "abc", 5);
+        Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, 1, "abc", 5);
 
         //Excepted result
         Position expectedPos = new Position(p1.position.getxPos() + a, p1.position.getyPos());
@@ -44,7 +44,7 @@ public class testPBPlayer {
     @Property
     public void testMovementLeft(@ForAll @Positive @IntRange(max = width/2 - offset) int a) throws URISyntaxException, FontFormatException {
 
-        Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, true, 1, 1, "abc", 5);
+        Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, 1, "abc", 5);
 
         //Excepted result
         Position expectedPos = new Position(p1.position.getxPos() - a, p1.position.getyPos());

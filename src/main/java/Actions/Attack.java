@@ -38,9 +38,10 @@ public class Attack {
             screen.setForegroundColor(this.color);
             bullet.draw(screen);
 
-            if(bullet.position.getyPos() <= 0){
+            /*
+            if(bullet.position.getyPos() < -1){
                 eliminateBullet();
-            }
+            }*/
 
         }
     }
@@ -49,8 +50,9 @@ public class Attack {
         this.bullets.add(attacker.doAttack());
     }
 
+    /*
     public void eliminateBullet(){
         this.bullets.remove(this.bullets.firstElement());
-    }
+    }*/
 }
 

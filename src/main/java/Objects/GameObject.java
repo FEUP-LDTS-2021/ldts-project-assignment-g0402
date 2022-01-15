@@ -41,6 +41,9 @@ public class GameObject{
     /**This method unlives (kills) the object*/
     public void kill(){
         this.life.kill();
+        if(!this.life.isAlive() && isMonster){
+            this.sprite = "@";
+        }
     }
 
 
@@ -103,8 +106,6 @@ public class GameObject{
             e.printStackTrace();
         }
     }
-
-
 
     public int getHeight() {
         return height;

@@ -25,7 +25,7 @@ public class testPlayer {
     @Test
     public void testPlayerMovementRight() throws URISyntaxException, FontFormatException {
 
-        Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, true, 1, 1, "abc", 5);
+        Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, 1, "abc", 5);
 
         //Excepted result
         Position expectedPos = new Position(p1.position.getxPos() + 3, p1.position.getyPos());
@@ -42,7 +42,7 @@ public class testPlayer {
     @Test
     public void testPlayerMovementLeft() throws URISyntaxException, FontFormatException {
 
-        Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, true, 1, 1, "abc", 5);
+        Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, 1, "abc", 5);
 
         //Excepted result
         Position expectedPos = new Position(p1.position.getxPos() - 3, p1.position.getyPos());
