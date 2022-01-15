@@ -6,6 +6,7 @@ import Objects.Player;
 import Objects.Position;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -88,7 +89,7 @@ public class Console {
      * This method processes the key pressed by the user.
      * And proceeds to move the Player accordingly.
      */
-    private void processKey(com.googlecode.lanterna.input.KeyStroke key) {
+    private void processKey(KeyStroke key) {
         try{
             if (key.getKeyType() == KeyType.ArrowUp || (key.getKeyType() == KeyType.Character && key.getCharacter() == ' ')) {
                 level.doAttackPlayer();
@@ -128,7 +129,7 @@ public class Console {
      * This class creates an independent thread to move the player
      */
     class MovePlayerThread extends Thread {
-        com.googlecode.lanterna.input.KeyStroke key;
+        KeyStroke key;
 
         @Override
 
@@ -168,7 +169,7 @@ public class Console {
      * This class creates an independent thread to move the player
      */
     class AttackPlayerThread extends Thread {
-        com.googlecode.lanterna.input.KeyStroke key;
+        KeyStroke key;
 
         @Override
         public void run() {
@@ -200,7 +201,7 @@ public class Console {
         }
     }
 
-    /**This class creates an independent thread to move all the waves*/
+    /**This class creates an independent thread to move the wave*/
     class WaveThread extends Thread{
 
         /**This method is used by the super class Thread in a cycle to draw objects and update positions*/
