@@ -6,10 +6,10 @@ public class Player extends GameObject {
 
 
     public Player(String myName, Position position,
-                  int height, int width, int life,
+                  int width, int height, int life,
                   String sprite, int speed) {
 
-        super(myName, position, height, width, life, sprite, speed);
+        super(myName, position, width, height, life, sprite, speed);
     }
 
 

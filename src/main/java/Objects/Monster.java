@@ -5,8 +5,8 @@ import com.googlecode.lanterna.TextColor;
 
 public class Monster extends GameObject {
     public Monster(String myName, Position position,
-                  int height, int width, int life, int level, String sprite, int speed) {
-        super(myName, position, height, width, life, sprite, speed);
+                  int width, int height, int life, int level, String sprite, int speed) {
+        super(myName, position, width, height, life, sprite, speed);
         this.color =  new TextColor.RGB(0,200,50);
         this.isMonster = true;
     }
@@ -17,8 +17,8 @@ public class Monster extends GameObject {
     }
     
     public Monster(Monster other, int xPosic, int yPosic) {
-        super(other.myName, new Position(xPosic, yPosic), other.height,
-                other.width, other.life.getLives(),
+        super(other.myName, new Position(xPosic, yPosic), other.width,
+                other.height, other.life.getLives(),
                 other.sprite, other.speed);
         this.color =  new TextColor.RGB(0,200,50);
     }

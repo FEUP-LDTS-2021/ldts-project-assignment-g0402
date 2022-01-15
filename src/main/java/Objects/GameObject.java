@@ -25,7 +25,7 @@ public class GameObject{
 
     /**This constructor defines a new GameObject*/
     public GameObject(String myName, Position position,
-                      int height, int width, int lives,
+                      int width, int height, int lives,
                       String sprite, int speed) {
 
         this.myName = myName;
@@ -52,9 +52,9 @@ public class GameObject{
         if (this.life.isAlive()){
             myGuy.setForegroundColor(this.color);
             int offset;
-            for (int i = 0; i < this.height; i++) {
-                offset = i * this.width;
-                for (int j = 0; j < this.width; j++) {
+            for (int i = 0; i < this.width; i++) {
+                offset = i * this.height;
+                for (int j = 0; j < this.height; j++) {
                     myGuy.putString(position.getxPos() + i, position.getyPos() + j,
                                     Character.toString(this.sprite.charAt(offset+j)));
                 }
@@ -72,21 +72,13 @@ public class GameObject{
     }
 
     public void moveRight(int width){
+        if((this.position.getxPos() + this.width) < width)
         this.position.setxPos(this.position.getxPos() + 1);
-        try {
-            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public void moveLeft(){
+        if(this.position.getxPos() > 0)
         this.position.setxPos(this.position.getxPos() - 1);
-        try {
-            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public void moveDown(){
