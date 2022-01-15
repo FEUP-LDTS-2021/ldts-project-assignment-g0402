@@ -84,6 +84,30 @@ public class Console {
         this.screen.refresh();
     }
 
+    /**
+     * This method processes the key pressed by the user.
+     * And proceeds to move the Player accordingly.
+     */
+    private void processKey(com.googlecode.lanterna.input.KeyStroke key) {
+        try{
+            if (key.getKeyType() == KeyType.ArrowUp || (key.getKeyType() == KeyType.Character && key.getCharacter() == ' ')) {
+                level.doAttackPlayer();
+            }
+            else if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
+                exitThread = true;
+                screen.close();
+            }
+            else if(key.getKeyType() == KeyType.ArrowLeft) {
+                level.movePlayer(false);
+            }
+            else if(key.getKeyType() == KeyType.ArrowRight){
+                level.movePlayer(true);
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     /**
      * This method commands each Object in the Game to move by its own speed.
@@ -95,9 +119,9 @@ public class Console {
         WaveThread waveThread = new WaveThread();
         BulletsThread bulletsThread = new BulletsThread();
         movePlayerThread.start();
+        bulletsThread.start();
         attackPlayerThread.start();
         waveThread.start();
-        bulletsThread.start();
     }
 
     /**
@@ -138,15 +162,6 @@ public class Console {
                 e.printStackTrace();
             }
         }
-
-        /**
-         * This method processes the key pressed by the user.
-         * And proceeds to move the Player accordingly.
-         */
-        private void processKey(com.googlecode.lanterna.input.KeyStroke key) {
-
-        }
-
     }
 
     /**
@@ -180,34 +195,6 @@ public class Console {
                     exitThread = true;
                 }
             } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        /**
-         * This method processes the key pressed by the user.
-         * And proceeds to move the Player accordingly.
-         */
-        private void processKey(com.googlecode.lanterna.input.KeyStroke key) {
-            try{
-                if (key.getKeyType() == KeyType.ArrowUp) {
-                    level.doAttackPlayer();
-                }
-                else if(key.getKeyType() == KeyType.Character && key.getCharacter() == ' '){
-                    level.doAttackPlayer();
-                }
-                else if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
-                    exitThread = true;
-                    screen.close();
-                }
-                else if(key.getKeyType() == KeyType.ArrowLeft) {
-                    level.movePlayer(false);
-                }
-                else if(key.getKeyType() == KeyType.ArrowRight){
-                    level.movePlayer(true);
-                }
-            }
-            catch (IOException e){
                 e.printStackTrace();
             }
         }
