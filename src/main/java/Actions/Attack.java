@@ -2,13 +2,10 @@ package Actions;
 
 import Objects.Bullet;
 import Objects.GameObject;
-import Objects.Player;
-import Objects.Position;
+import Objects.Attributes.Position;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 
@@ -31,20 +28,29 @@ public class Attack {
     }
 
     public void move() {
-        for (Bullet bull : this.bullets) {
-            bull.moveBullet();
+        for (Bullet bullet : this.bullets) {
+            bullet.moveBullet();
         }
     }
 
     public void draw(TextGraphics screen) {
-        for (Bullet bull : bullets) {
+        for (Bullet bullet : bullets) {
             screen.setForegroundColor(this.color);
-            bull.draw(screen);
+            bullet.draw(screen);
+
+            if(bullet.position.getyPos() <= 0){
+                eliminateBullet();
+            }
+
         }
     }
 
     public void addBullet(GameObject attacker){
         this.bullets.add(attacker.doAttack());
+    }
+
+    public void eliminateBullet(){
+        this.bullets.remove(this.bullets.firstElement());
     }
 }
 

@@ -3,9 +3,8 @@ package Game;
 import Objects.MonsterWave;
 import Objects.Monster;
 import Objects.Player;
-import Objects.Position;
+import Objects.Attributes.Position;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -13,7 +12,6 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
-import com.googlecode.lanterna.terminal.swing.TerminalEmulatorAutoCloseTrigger;
 
 import java.awt.*;
 import java.io.File;

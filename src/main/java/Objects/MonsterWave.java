@@ -84,7 +84,7 @@ public class MonsterWave{
         int x = wave[0][0].position.getxPos();
         for (int j = 0; j < lineSize; j++) {
             for(int i = 0; i < waveLength; ++i){
-                if(wave[i][j].isLive() && x> wave[i][j].position.getxPos()){
+                if(wave[i][j].isALive() && x> wave[i][j].position.getxPos()){
                     x = wave[i][j].position.getxPos();
                 };
             }
@@ -96,7 +96,7 @@ public class MonsterWave{
         int x = wave[0][0].position.getxPos();
         for (int j = 0; j < lineSize; j++) {
             for(int i = 0; i < waveLength; ++i){
-                if(wave[i][j].isLive() && x < wave[i][j].position.getxPos()){
+                if(wave[i][j].isALive() && x < wave[i][j].position.getxPos()){
                     x = wave[i][j].position.getxPos();
                 }
             }
@@ -108,7 +108,7 @@ public class MonsterWave{
         int y = yPos;
         for (int j = 0; j < lineSize; j++) {
             for(int i = 0; i < waveLength; ++i){
-                if(wave[i][j].isLive() && y < wave[i][j].position.getxPos()){
+                if(wave[i][j].isALive() && y < wave[i][j].position.getxPos()){
                     y = wave[i][j].position.getyPos();
                 }
             }

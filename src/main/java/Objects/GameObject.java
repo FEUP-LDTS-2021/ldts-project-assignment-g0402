@@ -1,55 +1,52 @@
 package Objects;
 
 import Actions.Attack;
+import Objects.Attributes.Life;
+import Objects.Attributes.Position;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import java.util.*;
+
 import java.util.concurrent.TimeUnit;
 
 public class GameObject{
     public Position position;
+    public Life life;
     protected int height;
     protected int width;
     protected String myName;
     protected boolean destructible  = true;
-    protected int life;
-    protected int level;
     String sprite;
-    protected int speed = 8;
+    protected int speed;
     protected final int refreshTime = 1000;
-    private boolean isAlive;
-    private int fireRate = 8;
+    private final int fireRate = 8;
     protected boolean isMonster;
     protected TextColor.RGB color;
-    /**This constructor defines a new Objects.GameObject*/
+
+
+    /**This constructor defines a new GameObject*/
     public GameObject(String myName, Position position,
-                      int height, int width, int life, int level,
+                      int height, int width, int lives,
                       String sprite, int speed) {
 
         this.myName = myName;
         this.position = position;
         this.height = height;
         this.width = width;
-        this.life = life;
-        this.level = level;
         this.sprite = sprite;
         this.speed = speed;
-        this.isAlive = true; //When a new object is created, is always alive.
+
+        this.life = new Life(lives);
     }
 
     /**This method unlives (kills) the object*/
-    public void dies(){
-        this.isAlive = false;
+    public void kill(){
+        this.life.kill();
     }
 
-    /**This method return the live state*/
-    public boolean isLive(){
-        return this.isAlive;
-    }
 
-    /**This method draws the object only if it's alive*/
+    /**This method draws the object only if its alive*/
     public void draw(TextGraphics myGuy) {
-        if (this.isAlive){
+        if (this.life.isAlive()){
             myGuy.setForegroundColor(this.color);
             int offset;
             for (int i = 0; i < this.height; i++) {
@@ -121,11 +118,4 @@ public class GameObject{
         return destructible;
     }
 
-    public int getLife() {
-        return life;
-    }
-
-    public int getLevel() {
-        return level;
-    }
 }

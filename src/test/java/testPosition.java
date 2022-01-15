@@ -1,13 +1,5 @@
-import Objects.*;
-
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import Objects.Attributes.Position;
 import net.jqwik.api.*;
-import net.jqwik.api.arbitraries.IntegerArbitrary;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class testPosition {
 

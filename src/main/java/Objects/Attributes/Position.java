@@ -1,5 +1,6 @@
-package Objects;
+package Objects.Attributes;
 
+import Objects.Player;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 

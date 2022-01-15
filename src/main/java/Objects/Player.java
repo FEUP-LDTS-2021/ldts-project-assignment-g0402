@@ -1,6 +1,6 @@
 package Objects;
 
-import Actions.*;
+import Objects.Attributes.Position;
 
 public class Player extends GameObject {
 
@@ -9,11 +9,8 @@ public class Player extends GameObject {
                   int height, int width, int life,
                   int level, String sprite, int speed) {
 
-        super(myName, position, height, width, life, level, sprite, speed);
+        super(myName, position, height, width, life, sprite, speed);
     }
-
-
-
 
 
 }
