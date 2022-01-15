@@ -17,7 +17,7 @@ public class Level {
 
     private int height;
     private int width;
-    private Player player;
+    protected Player player;
     protected MonsterWave wave;
     private Actions.Attack attack = new Attack();
     private TextGraphics screen;
@@ -63,5 +63,12 @@ public class Level {
         if(this.attack != null){
             attack.move();
         }
+    }
+
+    public void MonsterAttacks(Player player, MonsterWave monsters) {
+        Monster monster = monsters.getMonsterX(player.position.getxPos());
+
+        if ((monster != null) && (!player.life.isAlive()))
+            monster.doAttack();
     }
 }

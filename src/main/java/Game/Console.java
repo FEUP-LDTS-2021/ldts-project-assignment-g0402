@@ -64,7 +64,7 @@ public class Console {
             e.printStackTrace();
         }
         Player player = new Player("Player1", new Position(screen.newTextGraphics()),
-                            3, 1, 1, 1, "def", 1000);
+                            3, 1, 1, "def", 1000);
 
         Monster monster = new Monster("Gabriel Coelho", 1, "pq", 4);
 
@@ -218,6 +218,7 @@ public class Console {
 
         /**This method is used for updating the location of the wave automatically*/
         protected void update() {
+            //level.MonsterAttacks(level.player, level.wave);
             boolean looseGame = level.wave.moveWave(width);
             if(looseGame) {
                 exitThread = true;

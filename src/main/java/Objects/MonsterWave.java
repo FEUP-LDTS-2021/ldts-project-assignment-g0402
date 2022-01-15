@@ -159,7 +159,7 @@ public class MonsterWave{
     public Monster getMonsterX (int positionX){
         Monster monster = null;
 
-        for(int i=waveLength; i>0; i--){
+        for(int i=waveLength-1; i>0; i--){
             for (int j=0; j<lineSize; j++){
                 if(wave[i][j].position.getxPos() == positionX){
                     monster = wave[i][j];
