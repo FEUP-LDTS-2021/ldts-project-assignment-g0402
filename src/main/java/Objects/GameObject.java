@@ -1,6 +1,7 @@
 package Objects;
 
 import Actions.Attack;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -10,7 +11,7 @@ public class GameObject{
     protected int height;
     protected int width;
     protected String myName;
-    protected boolean destructible;
+    protected boolean destructible  = true;
     protected int life;
     protected int level;
     String sprite;
@@ -18,18 +19,17 @@ public class GameObject{
     protected final int refreshTime = 1000;
     private boolean isAlive;
     private int fireRate = 8;
-    protected boolean isMonster = false;
-
+    protected boolean isMonster;
+    protected TextColor.RGB color;
     /**This constructor defines a new Objects.GameObject*/
     public GameObject(String myName, Position position,
-                      int height, int width, boolean destructible,
-                      int life, int level, String sprite, int speed) {
+                      int height, int width, int life, int level,
+                      String sprite, int speed) {
 
         this.myName = myName;
         this.position = position;
         this.height = height;
         this.width = width;
-        this.destructible = destructible;
         this.life = life;
         this.level = level;
         this.sprite = sprite;
@@ -50,6 +50,7 @@ public class GameObject{
     /**This method draws the object only if it's alive*/
     public void draw(TextGraphics myGuy) {
         if (this.isAlive){
+            myGuy.setForegroundColor(this.color);
             int offset;
             for (int i = 0; i < this.height; i++) {
                 offset = i * this.width;
@@ -67,7 +68,7 @@ public class GameObject{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return Attack.doAttack(this.position.getxPos()+1, this.position.getyPos(), isMonster);
+        return Attack.doAttack(this.position.getxPos(), this.position.getyPos(), isMonster);
     }
 
     public void moveRight(int width){

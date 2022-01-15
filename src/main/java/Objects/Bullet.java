@@ -1,15 +1,22 @@
 package Objects;
 
 
+import com.googlecode.lanterna.TextColor;
+
 public class Bullet extends GameObject {
 
     public Bullet(String myName, Position position,
-                  int height, int width, boolean destructible, int life,
+                  int height, int width, int life,
                   int level, String sprite, int speed, boolean isMonsterBullet) {
 
-        super(myName, position, height, width, destructible, life, level, sprite, speed);
-
+        super(myName, position, height, width, life, level, sprite, speed);
         this.isMonster = isMonsterBullet;
+        if (this.isMonster){
+            this.color =  new TextColor.RGB(0,200,50);
+        }
+        else{
+            this.color = new TextColor.RGB(255,255,255);
+        }
     }
 
     public void moveBullet(){

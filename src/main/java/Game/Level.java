@@ -35,10 +35,7 @@ public class Level {
         this.screen.setBackgroundColor(new TextColor.RGB(15,20,45));
         this.screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
 
-        this.screen.setForegroundColor(new TextColor.RGB(255,255,255));
         player.draw(screen);
-
-        this.screen.setForegroundColor(new TextColor.RGB(0,200,50));
         wave.draw(screen);
 
         if(this.attack != null){

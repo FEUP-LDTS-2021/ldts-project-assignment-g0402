@@ -29,7 +29,6 @@ public class BDReader{
                                                         + waveReader.getInt("MNTID") + ";");
 
                 monster = new Monster(monsterReader.getString("name"),
-                                    (monsterReader.getInt("destructible")!= 0),
                                     monsterReader.getInt("life"),
                                     monsterReader.getString("sprite"),
                                     monsterReader.getInt("speed"));

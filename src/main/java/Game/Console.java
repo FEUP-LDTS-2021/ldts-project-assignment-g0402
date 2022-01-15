@@ -64,9 +64,10 @@ public class Console {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Player player = new Player("Player1", new Position(screen.newTextGraphics()), 3, 1, true, 1, 1, "def", 50);
+        Player player = new Player("Player1", new Position(screen.newTextGraphics()),
+                            3, 1, 1, 1, "def", 1000);
 
-        Monster monster = new Monster("Gabriel Coelho", true, 1, "pq", 4);
+        Monster monster = new Monster("Gabriel Coelho", 1, "pq", 4);
 
         MonsterWave wave = new MonsterWave(3, 3, 10, 5, 5, 3, monster);
 

@@ -19,12 +19,12 @@ public class Attack {
     public static Bullet doAttack(int xPos, int yPos, boolean isFromMonster){
         Bullet bullet;
         if (isFromMonster){
-            bullet = new Bullet("bala", new Position(xPos, yPos+1), 1,
-                    1, true, 1, 1, "z", 30, isFromMonster);
+            bullet = new Bullet("bala", new Position(xPos+1, yPos+1), 1,
+                    1, 1, 1, "z", 30, isFromMonster);
         }
         else{
-            bullet = new Bullet("bala", new Position(xPos, yPos-1), 1,
-                    1, true, 1, 1, "z", 30, isFromMonster);
+            bullet = new Bullet("bala", new Position(xPos+1, yPos-1), 1,
+                    1,  1, 1, "z", 30, isFromMonster);
 
         }
         return bullet;
