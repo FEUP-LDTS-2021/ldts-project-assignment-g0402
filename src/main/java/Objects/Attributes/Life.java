@@ -20,8 +20,10 @@ public class Life {
     /** This method TRIES to kill the GameObject, but it only
      * succeeds if the GameObject select only has 1 life left.*/
     public void kill(){
-        this.lives = this.lives - 1;
-        updateStatus();
+        if(this.lives > 0){
+            this.lives = this.lives - 1;
+            updateStatus();
+        }
     }
 
     /**This method updates the living status of the GameObject
