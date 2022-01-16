@@ -1,6 +1,7 @@
 package Game;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Game {
@@ -8,6 +9,7 @@ public class Game {
     private final Console console;
     private static Game singleton = null;
     private final int fps;
+    protected boolean exit;
 
     private Game(int fps) throws URISyntaxException, FontFormatException {
         this.console = new Console();
@@ -15,14 +17,14 @@ public class Game {
         this.fps = fps;
     }
 
-    public void start(){
+    public void start() throws IOException {
         int frameTime = 1000 / this.fps;
 
         console.addKeyBoardListener(keyBoardObserver);
         keyBoardObserver.setListener(console);
         console.run();
 
-        while (singleton != null && console != null){
+        while (singleton != null && !exit){
             long startTime = System.currentTimeMillis();
 
             //gameState.step(this, startTime);
@@ -36,6 +38,7 @@ public class Game {
 
             }
         }
+        console.close();
     }
 
     public static Game getInstance() throws URISyntaxException, FontFormatException {
@@ -49,7 +52,7 @@ public class Game {
         return keyBoardObserver;
     }
 
-    public static void main(String[] args) throws URISyntaxException, FontFormatException {
+    public static void main(String[] args) throws URISyntaxException, FontFormatException, IOException {
         singleton = getInstance();
         singleton.start();
     }

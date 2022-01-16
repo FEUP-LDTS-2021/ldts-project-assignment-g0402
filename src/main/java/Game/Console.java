@@ -29,6 +29,7 @@ public class Console implements KeyBoardListener{
                 case QUIT:
                     exitThread = true;
                     close();
+                    Game.getInstance().exit=true;
                     break;
                 case LEFT:
                     level.movePlayer(false);
@@ -43,7 +44,7 @@ public class Console implements KeyBoardListener{
                     break;
             }
         }
-        catch (IOException e){
+        catch (IOException | URISyntaxException | FontFormatException e){
             e.printStackTrace();
         }
     }
