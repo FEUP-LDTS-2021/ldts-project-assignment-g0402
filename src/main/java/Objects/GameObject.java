@@ -73,11 +73,21 @@ public class GameObject{
     public void moveRight(int width){
         if((this.position.getxPos() + this.width) < width)
         this.position.setxPos(this.position.getxPos() + 1);
+        try {
+            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void moveLeft(){
         if(this.position.getxPos() > 0)
         this.position.setxPos(this.position.getxPos() - 1);
+        try {
+            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void moveDown(){

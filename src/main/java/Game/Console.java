@@ -111,9 +111,15 @@ public class Console implements KeyBoardListener{
      * Level to draw the game.
      */
     private void draw() throws IOException {
+
         clear();
         this.level.draw();
         refresh();
+        try {
+            TimeUnit.MILLISECONDS.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -183,15 +189,8 @@ public class Console implements KeyBoardListener{
         public void run(){
 
             try {
-                while(!exitThread) {
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(5);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    draw();
-                    update();
-                }
+                draw();
+                update();
             } catch (IOException e){
                 e.printStackTrace();
             }

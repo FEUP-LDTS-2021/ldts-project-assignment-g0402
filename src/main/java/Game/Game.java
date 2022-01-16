@@ -3,8 +3,10 @@ package Game;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.concurrent.TimeUnit;
 
-public class Game {
+
+public class Game{
     private final KeyBoardObserver keyBoardObserver;
     private final Console console;
     private static Game singleton = null;
@@ -32,11 +34,6 @@ public class Game {
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;
 
-            if (sleepTime > 0) try {
-                Thread.sleep(sleepTime);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
         console.screen.close();
         console.close();
