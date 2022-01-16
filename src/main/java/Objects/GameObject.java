@@ -14,7 +14,6 @@ public class GameObject{
     protected int height;
     protected int width;
     protected String myName;
-    protected boolean destructible  = true;
     String sprite;
     protected int speed;
     protected final int refreshTime = 1000;
@@ -48,14 +47,14 @@ public class GameObject{
 
 
     /**This method draws the object only if its alive*/
-    public void draw(TextGraphics myGuy) {
+    public void draw(TextGraphics screen) {
         if (this.life.isAlive()){
-            myGuy.setForegroundColor(this.color);
+            screen.setForegroundColor(this.color);
             int offset;
             for (int i = 0; i < this.width; i++) {
                 offset = i * this.height;
                 for (int j = 0; j < this.height; j++) {
-                    myGuy.putString(position.getxPos() + i, position.getyPos() + j,
+                    screen.putString(position.getxPos() + i, position.getyPos() + j,
                                     Character.toString(this.sprite.charAt(offset+j)));
                 }
             }
@@ -68,7 +67,7 @@ public class GameObject{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return Attack.doAttack(this.position.getxPos(), this.position.getyPos(), isMonster);
+        return Attack.AttackThread.doAttack(this.position.getxPos(), this.position.getyPos(), isMonster);
     }
 
     public void moveRight(int width){
@@ -105,10 +104,6 @@ public class GameObject{
 
     public int getWidth() {
         return width;
-    }
-
-    public boolean isDestructible() {
-        return destructible;
     }
 
 }

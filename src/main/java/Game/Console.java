@@ -1,17 +1,18 @@
 package Game;
 
+import Actions.Attack;
 import Objects.MonsterWave;
 import Objects.Monster;
 import Objects.Player;
 import Objects.Attributes.Position;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+import com.googlecode.lanterna.terminal.swing.TerminalEmulatorAutoCloseTrigger;
 
 import java.awt.*;
 import java.io.File;
@@ -20,9 +21,41 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class Console {
+public class Console implements KeyBoardListener{
+    @Override
+    public void keyPressed(Action action) {
+        try {
+            switch (action) {
+                case QUIT:
+                    exitThread = true;
+                    close();
+                    break;
+                case LEFT:
+                    level.movePlayer(false);
+                    break;
+                case RIGHT:
+                    level.movePlayer(true);
+                    break;
+                case SHOOT:
+                    level.doAttackPlayer();
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
-    protected Screen screen;
+    enum Action{
+        QUIT,
+        LEFT,
+        RIGHT,
+        SHOOT
+    }
+
+    protected TerminalScreen screen;
     protected Level level;
     private int width = 64;
     private int height = 36;
@@ -78,34 +111,9 @@ public class Console {
      * Game.Level to draw the game.
      */
     private void draw() throws IOException {
-        this.screen.clear();
+        clear();
         this.level.draw();
-        this.screen.refresh();
-    }
-
-    /**
-     * This method processes the key pressed by the user.
-     * And proceeds to move the Player accordingly.
-     */
-    private void processKey(KeyStroke key) {
-        try{
-            if (key.getKeyType() == KeyType.ArrowUp || (key.getKeyType() == KeyType.Character && key.getCharacter() == ' ')) {
-                level.doAttackPlayer();
-            }
-            else if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
-                exitThread = true;
-                screen.close();
-            }
-            else if(key.getKeyType() == KeyType.ArrowLeft) {
-                level.movePlayer(false);
-            }
-            else if(key.getKeyType() == KeyType.ArrowRight){
-                level.movePlayer(true);
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+        refresh();
     }
 
     /**
@@ -114,12 +122,10 @@ public class Console {
      */
     public void run() {
         MovePlayerThread movePlayerThread = new MovePlayerThread();
-        AttackPlayerThread attackPlayerThread = new AttackPlayerThread();
         WaveThread waveThread = new WaveThread();
         BulletsThread bulletsThread = new BulletsThread();
         movePlayerThread.start();
         bulletsThread.start();
-        attackPlayerThread.start();
         waveThread.start();
     }
 
@@ -127,7 +133,6 @@ public class Console {
      * This class creates an independent thread to move the player
      */
     class MovePlayerThread extends Thread {
-        KeyStroke key;
 
         @Override
 
@@ -137,7 +142,7 @@ public class Console {
                     draw();
                     update();
                 }
-            } catch (IOException e) {
+            } catch (IOException | URISyntaxException | FontFormatException e) {
                 e.printStackTrace();
             }
         }
@@ -146,56 +151,8 @@ public class Console {
          * This method is used for updating the location of the player
          * after the user presses keys on the keyboard
          */
-        protected void update() {
-            try {
-                key = screen.readInput();
-                processKey(key);
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q')) {
-                    exitThread = true;
-                    screen.close();
-                }
-                if (key.getKeyType() == KeyType.EOF) {
-                    exitThread = true;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * This class creates an independent thread to move the player
-     */
-    class AttackPlayerThread extends Thread {
-        KeyStroke key;
-
-        @Override
-        public void run() {
-            try {
-                while (!exitThread) {
-                    draw();
-                    update();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        /**
-         * This method is used for updating the location of the player
-         * after the user presses keys on the keyboard
-         */
-        protected void update() {
-            try {
-                key = screen.readInput();
-                processKey(key);
-
-                if (key.getKeyType() == KeyType.EOF) {
-                    exitThread = true;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        protected void update() throws URISyntaxException, FontFormatException {
+            addKeyBoardListener(Game.getInstance().getKeyBoardObserver());
         }
     }
 
@@ -218,7 +175,7 @@ public class Console {
 
         /**This method is used for updating the location of the wave automatically*/
         protected void update() {
-            //level.MonsterAttacks(level.player, level.wave);
+            //level.MonsterAttacks(level.player, level.wave);   //this for some reason is not working HELP :(
             boolean looseGame = level.wave.moveWave(width);
             if(looseGame) {
                 exitThread = true;
@@ -251,6 +208,23 @@ public class Console {
         protected void update() {
             level.updateBullets();
         }
+    }
+
+    public void addKeyBoardListener(KeyBoardObserver obs) {
+        ((AWTTerminalFrame) screen.getTerminal()).getComponent(0).addKeyListener(obs);
+    }
+
+    public void clear() {
+        screen.clear();
+    }
+
+    public void refresh() throws IOException {
+        screen.refresh();
+        screen.doResizeIfNecessary();
+    }
+
+    public void close() throws IOException {
+        screen.close();
     }
 
 }

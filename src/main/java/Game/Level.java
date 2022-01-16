@@ -45,16 +45,14 @@ public class Level {
     }
 
     public void movePlayer(boolean moveToRight){
-        if(moveToRight){
-            this.player.moveRight(this.width);
-        }
-        else{
-            this.player.moveLeft();
-        }
+        if(moveToRight)
+            player.moveRight(this.width);
+        else player.moveLeft();
     }
 
     public void doAttackPlayer(){
-
+        Attack.AttackThread attackThread = new Attack.AttackThread();
+        attackThread.start();
         attack.addBullet(player);
         attack.draw(screen);
     }
