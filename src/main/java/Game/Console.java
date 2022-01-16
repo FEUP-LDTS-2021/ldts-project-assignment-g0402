@@ -1,18 +1,15 @@
 package Game;
 
-import Actions.Attack;
 import Objects.MonsterWave;
 import Objects.Monster;
 import Objects.Player;
 import Objects.Attributes.Position;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
-import com.googlecode.lanterna.terminal.swing.TerminalEmulatorAutoCloseTrigger;
 
 import java.awt.*;
 import java.io.File;
@@ -58,10 +55,10 @@ public class Console implements KeyBoardListener{
 
     protected TerminalScreen screen;
     protected Level level;
-    private int width = 64;
-    private int height = 36;
+    private final int width = 64;
+    private final int height = 36;
     private boolean exitThread = false;
-    private int sizeFont = 20;
+    private final int sizeFont = 20;
 
     /**
      * This method is the constructor for the class Game.Console.
@@ -97,6 +94,7 @@ public class Console implements KeyBoardListener{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         Player player = new Player("Player1", new Position(screen.newTextGraphics()),
                             3, 1, 1, "def", 1000);
 
@@ -107,15 +105,17 @@ public class Console implements KeyBoardListener{
         this.level = new Level(screen.newTextGraphics(), player, wave);
     }
 
+
     /**
      * This method clears and refresh the screen, and commands
-     * Game.Level to draw the game.
+     * Level to draw the game.
      */
     private void draw() throws IOException {
         clear();
         this.level.draw();
         refresh();
     }
+
 
     /**
      * This method commands each Object in the Game to move by its own speed.
@@ -130,6 +130,7 @@ public class Console implements KeyBoardListener{
         waveThread.start();
     }
 
+
     /**
      * This class creates an independent thread to move the player
      */
@@ -141,19 +142,10 @@ public class Console implements KeyBoardListener{
             try {
                 while (!exitThread) {
                     draw();
-                    update();
                 }
-            } catch (IOException | URISyntaxException | FontFormatException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-
-        /**
-         * This method is used for updating the location of the player
-         * after the user presses keys on the keyboard
-         */
-        protected void update() throws URISyntaxException, FontFormatException {
-            addKeyBoardListener(Game.getInstance().getKeyBoardObserver());
         }
     }
 
