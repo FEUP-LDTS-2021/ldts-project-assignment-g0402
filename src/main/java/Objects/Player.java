@@ -1,12 +1,7 @@
 package Objects;
 
-import Game.Game;
 import Objects.Attributes.Position;
 import com.googlecode.lanterna.TextColor;
-
-import java.awt.*;
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class Player extends GameObject {
 

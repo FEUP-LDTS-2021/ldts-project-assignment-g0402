@@ -1,6 +1,5 @@
 package Objects;
 
-import Actions.Attack;
 import Objects.Attributes.Life;
 import Objects.Attributes.Position;
 import com.googlecode.lanterna.TextColor;
@@ -20,6 +19,8 @@ public class GameObject{
     private final int fireRate = 8;
     protected boolean isMonster;
     protected TextColor.RGB color;
+
+
 
 
     /**This constructor defines a new GameObject*/
@@ -59,15 +60,6 @@ public class GameObject{
                 }
             }
         }
-    }
-
-    public Bullet doAttack() {
-        try {
-            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return Attack.AttackThread.doAttack(this.position.getxPos(), this.position.getyPos(), isMonster);
     }
 
     public void moveRight(int width){
@@ -114,6 +106,9 @@ public class GameObject{
 
     public int getWidth() {
         return width;
+    }
+    public boolean isMonster() {
+        return isMonster;
     }
 
 }

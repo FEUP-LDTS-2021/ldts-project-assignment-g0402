@@ -110,14 +110,13 @@ public class Console implements KeyBoardListener{
      * This method clears and refresh the screen, and commands
      * Level to draw the game.
      */
-    private void draw() throws IOException {
-
-        clear();
-        this.level.draw();
-        refresh();
+    private void draw(){
         try {
+            clear();
+            this.level.draw();
+            refresh();
             TimeUnit.MILLISECONDS.sleep(50);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -128,79 +127,54 @@ public class Console implements KeyBoardListener{
      * When an Object moves, it refreshes the console.
      */
     public void run() {
-        MovePlayerThread movePlayerThread = new MovePlayerThread();
-        WaveThread waveThread = new WaveThread();
-        BulletsThread bulletsThread = new BulletsThread();
-        movePlayerThread.start();
+        Thread PlayerThread = new Thread(){
+            @Override
+            public void run() {
+                while(!exitThread) {
+                    draw();
+                }
+            }
+        };
+        Thread waveThread = new Thread(){
+            @Override
+            public void run() {
+                while(!exitThread) {
+                    draw();
+                    updateWave();
+                }
+            }
+        };
+        Thread bulletsThread = new Thread(){
+            @Override
+            public void run() {
+                while(!exitThread){
+                    draw();
+                    updateBullets();
+                }
+            }
+        };
+        PlayerThread.start();
         bulletsThread.start();
         waveThread.start();
     }
 
 
-    /**
-     * This class creates an independent thread to move the player
-     */
-    class MovePlayerThread extends Thread {
 
-        @Override
+    /**This method is used for updating the location of the wave automatically*/
+    protected void updateWave() {
 
-        public void run() {
-            try {
-                while (!exitThread) {
-                    draw();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        boolean looseGame = level.wave.moveWave(width);
+        if(looseGame) {
+            exitThread = true;
         }
     }
 
-    /**This class creates an independent thread to move the wave*/
-    class WaveThread extends Thread{
 
-        /**This method is used by the super class Thread in a cycle to draw objects and update positions*/
-        @Override
-        public void run(){
-            try {
-                while(!exitThread) {
-                    draw();
-                    update();
-                }
-                screen.close();
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-        }
-
-        /**This method is used for updating the location of the wave automatically*/
-        protected void update() {
-            //level.MonsterAttacks(level.player, level.wave);   //this for some reason is not working HELP :(
-            boolean looseGame = level.wave.moveWave(width);
-            if(looseGame) {
-                exitThread = true;
-            }
-        }
+    /**This method is used for updating the location of the bullets automatically*/
+    protected void updateBullets() {
+        level.updateBullets();
     }
 
-    /**This class creates an independent thread to move all the bullets*/
-    class BulletsThread extends Thread{
-        /**This method is used by the super class Thread in a cycle to draw objects and update positions*/
-        @Override
-        public void run(){
-
-            try {
-                draw();
-                update();
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-        }
-
-        /**This method is used for updating the location of the bullets automatically*/
-        protected void update() {
-            level.updateBullets();
-        }
-    }
 
     public void addKeyBoardListener(KeyBoardObserver obs) {
         ((AWTTerminalFrame) screen.getTerminal()).getComponent(0).addKeyListener(obs);

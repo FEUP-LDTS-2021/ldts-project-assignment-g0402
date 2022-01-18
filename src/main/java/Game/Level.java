@@ -6,12 +6,6 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 
 public class Level {
 
@@ -28,7 +22,6 @@ public class Level {
         this.width = screen.getSize().getColumns();
         this.player = player;
         this.wave = monsterWave;
-
     }
 
     public void draw() {
@@ -51,9 +44,7 @@ public class Level {
     }
 
     public void doAttackPlayer(){
-        Attack.AttackThread attackThread = new Attack.AttackThread();
-        attackThread.start();
-        attack.addBullet(player);
+        attack.doAttack(this.player.position.getxPos(), this.player.position.getyPos(), this.player.isMonster());
         attack.draw(screen);
     }
 
@@ -63,10 +54,4 @@ public class Level {
         }
     }
 
-    public void MonsterAttacks(Player player, MonsterWave monsters) {
-        Monster monster = monsters.getMonsterX(player.position.getxPos());
-
-        if ((monster != null) && (!player.life.isAlive()))
-            monster.doAttack();
-    }
 }

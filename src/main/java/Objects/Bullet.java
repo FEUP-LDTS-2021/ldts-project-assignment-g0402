@@ -3,16 +3,21 @@ package Objects;
 
 import Objects.Attributes.Position;
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Bullet extends GameObject {
+public class Bullet{
+    public Position position;
+    private String sprite;
+    private int speed;
+    private boolean isMonsterBullet;
+    TextColor.RGB color;
+    public Bullet(Position position, String sprite, int speed, boolean isMonsterBullet) {
 
-    public Bullet(String myName, Position position,
-                  int height, int width, int life,
-                  int level, String sprite, int speed, boolean isMonsterBullet) {
-
-        super(myName, position, height, width, life, sprite, speed);
-        this.isMonster = isMonsterBullet;
-        if (this.isMonster){
+        this.position = position;
+        this.sprite = sprite;
+        this.speed = speed;
+        this.isMonsterBullet = isMonsterBullet;
+        if (this.isMonsterBullet){
             this.color =  new TextColor.RGB(0,200,50);
         }
         else{
@@ -20,17 +25,21 @@ public class Bullet extends GameObject {
         }
     }
 
+    public void draw(TextGraphics screen) {
+        screen.putString(position.getxPos(), position.getyPos(), Character.toString(this.sprite.charAt(0)));
+    }
+
     public void moveBullet(){
-        if(isMonster){
-            this.moveDown();
+        if(isMonsterBullet){
+            this.position.setyPos(this.position.getyPos() + 1);
         }
         else {
-            this.moveUp();
+            this.position.setyPos(this.position.getyPos() - 1);
         }
     }
 
 
     public boolean isBulletFromMonster (){
-        return isMonster;
+        return isMonsterBullet;
     }
 }
