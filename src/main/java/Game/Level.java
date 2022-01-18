@@ -34,7 +34,7 @@ public class Level {
     }
 
     private void drawInfo(){
-        int livesInit = 3, lives = player.life.getLives(), pos = 7;
+        int livesInit = player.life.getLives(), lives = player.life.getCurrentLives(), pos = 7;
 
         this.screen.setForegroundColor(new TextColor.RGB(255,255,255));
         this.screen.putString(1, height-2, "LIVES:");
@@ -45,7 +45,7 @@ public class Level {
                 lives = lives - 1;
             }
             else this.screen.drawLine(pos, height - 2, pos, height - 2, '#');
-            pos = pos +2;
+            pos = pos + 2;
         }
 
     }

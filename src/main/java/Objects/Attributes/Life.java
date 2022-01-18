@@ -8,20 +8,22 @@ package Objects.Attributes;
  * */
 public class Life {
     private boolean isAlive;
-    private int lives;
+    private final int lives;
+    private int current;
 
     /** This constructor sets how many lives the Game Object
      * has at the point of creation.*/
     public Life(int lives){
         this.lives = lives;
+        this.current = lives;
         updateStatus();
     }
 
     /** This method TRIES to kill the GameObject, but it only
      * succeeds if the GameObject select only has 1 life left.*/
     public void kill(){
-        if(this.lives > 0){
-            this.lives = this.lives - 1;
+        if(this.current > 0){
+            this.current = this.current - 1;
             updateStatus();
         }
     }
@@ -29,14 +31,20 @@ public class Life {
     /**This method updates the living status of the GameObject
      * depending on how many lives it has at the moment the method is called.*/
     private void updateStatus(){
-        if(lives >= 1)
+        if(current >= 1)
             isAlive = true;
-        else if (lives == 0)
+        else if (current == 0)
             isAlive = false;
     }
 
+    /**This method returns the INITIAL amount of lives this object had.*/
     public int getLives(){
         return lives;
+    }
+
+    /**This method returns the CURRENT amount of lives this object has.*/
+    public int getCurrentLives(){
+        return current;
     }
 
     public boolean isAlive(){
