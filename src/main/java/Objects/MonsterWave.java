@@ -187,5 +187,15 @@ public class MonsterWave{
             }
         }
     }
+
+    public boolean isWaveAlive(){
+        for(int i = 0; i < waveLength; ++i){
+            for (int j = 0; j < lineSize; ++j) {
+                if (wave[i][j].life.isAlive())
+                    return true;
+            }
+        }
+        return false;
+    }
 }
 

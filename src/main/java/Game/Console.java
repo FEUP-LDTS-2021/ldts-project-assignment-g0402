@@ -8,7 +8,6 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -133,52 +132,44 @@ public class Console implements KeyBoardListener{
      * When an Object moves, it refreshes the console.
      */
     public void run() {
+
         Thread PlayerThread = new Thread(() -> {
             while(!exitThread) {
                 draw();
-                if(!level.player.life.isAlive()){
-                    exitThread = true;
-                    gameover();
-                }
+                checkGameStatus();
             }
         });
+
         Thread waveThread = new Thread(() -> {
             while(!exitThread) {
                 updateWave();
                 draw();
-                if(!level.player.life.isAlive()){
-                    exitThread = true;
-                    gameover();
-                }
-
+                checkGameStatus();
             }
         });
+
         Thread bulletsThread = new Thread(() -> {
             while(!exitThread){
                 updateBullets();
                 draw();
-                if(!level.player.life.isAlive()){
-                    exitThread = true;
-                    gameover();
-                }
+                checkGameStatus();
             }
         });
+
         PlayerThread.start();
         bulletsThread.start();
         waveThread.start();
-        new Thread(){
-            @Override
-            public void run(){
-                try {
-                    while (!exitThread){
-                        sleep(200);
-                    }
-                    sleep(1000);
-                }catch (InterruptedException e){}
 
-                gameover();
-            }
-        }.start();
+        new Thread(() -> {
+            try {
+                while (!exitThread){
+                    Thread.sleep(200);
+                }
+                Thread.sleep(1000);
+            }catch (InterruptedException e){}
+
+            checkGameStatus();
+        }).start();
     }
 
 
@@ -198,7 +189,7 @@ public class Console implements KeyBoardListener{
         level.updateBullets();
     }
 
-    private void gameover(){
+    private void gameOver(){
 
         try{
             TextGraphics graphics = screen.newTextGraphics();
@@ -213,7 +204,31 @@ public class Console implements KeyBoardListener{
         catch (IOException e){}
     }
 
+    private void gameWon(){
 
+        try{
+            TextGraphics graphics = screen.newTextGraphics();
+            clear();
+
+            graphics.setBackgroundColor(new TextColor.RGB(15,20,45));
+            graphics.setForegroundColor(new TextColor.RGB(255,255,255));
+            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
+            graphics.putString(width/2-5,height/2, "YOU WON!");
+            screen.refresh();
+        }
+        catch (IOException e){}
+    }
+
+    private void checkGameStatus(){
+        if(!level.player.life.isAlive()) {
+            exitThread = true;
+            gameOver();
+        }
+        else if(!level.wave.isWaveAlive()){
+            exitThread = true;
+            gameWon();
+        }
+    }
 
     public void addKeyBoardListener(KeyBoardObserver obs) {
         ((AWTTerminalFrame) screen.getTerminal()).getComponent(0).addKeyListener(obs);
