@@ -166,6 +166,19 @@ public class Console implements KeyBoardListener{
         PlayerThread.start();
         bulletsThread.start();
         waveThread.start();
+        new Thread(){
+            @Override
+            public void run(){
+                try {
+                    while (!exitThread){
+                        sleep(200);
+                    }
+                    sleep(1000);
+                }catch (InterruptedException e){}
+
+                gameover();
+            }
+        }.start();
     }
 
 
