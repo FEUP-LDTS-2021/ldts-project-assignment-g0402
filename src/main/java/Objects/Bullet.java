@@ -12,7 +12,7 @@ public class Bullet{
     private int speed;
     private boolean isMonsterBullet;
     private boolean valid;
-    TextColor.RGB color;
+    public TextColor.RGB color;
 
 
 

@@ -33,6 +33,9 @@ public class Level {
         attack.draw(screen);
     }
 
+    /** This method draws the info of the game (like how many lives the player
+     * has at the moment) on the screen of game.
+     * */
     private void drawInfo(){
         int livesInit = player.life.getLives(), lives = player.life.getCurrentLives(), pos = 7;
 

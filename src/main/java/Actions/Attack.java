@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Attack {
     public CopyOnWriteArrayList<Bullet> bullets = new CopyOnWriteArrayList<>();
-    private TextColor.RGB color = new TextColor.RGB(255,255,255);
 
     public void move() {
         for (Bullet bullet : this.bullets) {
@@ -29,7 +28,7 @@ public class Attack {
 
     public void draw(TextGraphics screen) {
         for (Bullet bullet : bullets) {
-            screen.setForegroundColor(this.color);
+            screen.setForegroundColor(bullet.color);
             bullet.draw(screen);
 
         }
