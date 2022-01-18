@@ -4,7 +4,7 @@ import Objects.Attributes.Life;
 import Objects.Attributes.Position;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-
+import Actions.Attack;
 import java.util.concurrent.TimeUnit;
 
 public class GameObject{
@@ -44,6 +44,10 @@ public class GameObject{
         if(!this.life.isAlive() && isMonster){
             this.sprite = "@";
         }
+    }
+
+    public void checkCollision(Attack attack){
+        attack.checkCollision(this);
     }
 
 

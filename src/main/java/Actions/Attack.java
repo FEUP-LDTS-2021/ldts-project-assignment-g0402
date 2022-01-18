@@ -5,6 +5,8 @@ import Objects.GameObject;
 import Objects.Attributes.Position;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -26,7 +28,24 @@ public class Attack {
 
         }
     }
-
+    public void checkCollision(GameObject object) {
+        ArrayList<Integer> bulletsToDestroy = new ArrayList<Integer>();
+        int i = 0;
+        for (Bullet bullet: bullets) {
+            if (bullet.position.getxPos() >= object.position.getxPos() &&
+                    bullet.position.getxPos() <= object.position.getxPos()+object.getWidth()-1 &&
+                    bullet.position.getyPos() >= object.position.getyPos() &&
+                    bullet.position.getyPos() <= object.position.getyPos()+object.getHeight()-1
+                    && object.life.isAlive()){
+                object.kill();
+                bulletsToDestroy.add(i);
+            }
+            i++;
+        }
+        for (int j = bulletsToDestroy.size()-1; j >= 0; j--) {
+            bullets.remove(j);
+        }
+    }
     /**
      * This class creates an independent thread to move the player
      */

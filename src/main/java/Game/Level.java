@@ -49,9 +49,10 @@ public class Level {
     }
 
     public void updateBullets(){
-        if(this.attack != null){
-            attack.move();
-        }
+        attack.move();
+        player.checkCollision(attack);
+        wave.checkCollision(attack);
+
     }
 
 }

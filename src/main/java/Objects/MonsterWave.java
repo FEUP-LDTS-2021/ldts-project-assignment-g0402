@@ -1,7 +1,7 @@
 package Objects;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-
+import Actions.Attack;
 import java.util.concurrent.TimeUnit;
 
 public class MonsterWave{
@@ -167,6 +167,14 @@ public class MonsterWave{
             }
         }
         return monster;
+    }
+
+    public void checkCollision(Attack attack){
+        for(int i = 0; i < waveLength; ++i){
+            for (int j = 0; j < lineSize; ++j) {
+                wave[i][j].checkCollision(attack);
+            }
+        }
     }
 }
 
