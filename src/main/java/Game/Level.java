@@ -27,10 +27,27 @@ public class Level {
     public void draw() {
         this.screen.setBackgroundColor(new TextColor.RGB(15,20,45));
         this.screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
-
+        drawInfo();
         player.draw(screen);
         wave.draw(screen);
         attack.draw(screen);
+    }
+
+    private void drawInfo(){
+        int livesInit = 3, lives = player.life.getLives(), pos = 7;
+
+        this.screen.setForegroundColor(new TextColor.RGB(255,255,255));
+        this.screen.putString(1, height-2, "LIVES:");
+
+        for(int i =0; i < livesInit; i++){
+            if(lives > 0) {
+                this.screen.drawLine(pos, height - 2, pos, height - 2, '*');
+                lives = lives - 1;
+            }
+            else this.screen.drawLine(pos, height - 2, pos, height - 2, '#');
+            pos = pos +2;
+        }
+
     }
 
     public void movePlayer(boolean moveToRight){

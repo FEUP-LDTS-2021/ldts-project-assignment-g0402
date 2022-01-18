@@ -102,7 +102,7 @@ public class Console implements KeyBoardListener{
         }
 
         Player player = new Player("Player1", new Position(screen.newTextGraphics()),
-                            3, 1, 1, "def", 1000);
+                            3, 1, 3, "def", 1000);
 
         Monster monster = new Monster("Gabriel Coelho", 1, "pq", 4);
 
@@ -133,45 +133,36 @@ public class Console implements KeyBoardListener{
      * When an Object moves, it refreshes the console.
      */
     public void run() {
-        Thread PlayerThread = new Thread(){
-            @Override
-            public void run() {
-                while(!exitThread) {
-                    draw();
-                    if(!level.player.life.isAlive()){
-                        exitThread = true;
-                        gameover();
-                    }
+        Thread PlayerThread = new Thread(() -> {
+            while(!exitThread) {
+                draw();
+                if(!level.player.life.isAlive()){
+                    exitThread = true;
+                    gameover();
                 }
             }
-        };
-        Thread waveThread = new Thread(){
-            @Override
-            public void run() {
-                while(!exitThread) {
-                    updateWave();
-                    draw();
-                    if(!level.player.life.isAlive()){
-                        exitThread = true;
-                        gameover();
-                    }
+        });
+        Thread waveThread = new Thread(() -> {
+            while(!exitThread) {
+                updateWave();
+                draw();
+                if(!level.player.life.isAlive()){
+                    exitThread = true;
+                    gameover();
+                }
 
+            }
+        });
+        Thread bulletsThread = new Thread(() -> {
+            while(!exitThread){
+                updateBullets();
+                draw();
+                if(!level.player.life.isAlive()){
+                    exitThread = true;
+                    gameover();
                 }
             }
-        };
-        Thread bulletsThread = new Thread(){
-            @Override
-            public void run() {
-                while(!exitThread){
-                    updateBullets();
-                    draw();
-                    if(!level.player.life.isAlive()){
-                        exitThread = true;
-                        gameover();
-                    }
-                }
-            }
-        };
+        });
         PlayerThread.start();
         bulletsThread.start();
         waveThread.start();
