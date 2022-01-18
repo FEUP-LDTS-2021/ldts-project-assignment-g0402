@@ -6,6 +6,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import Actions.Attack;
 import java.util.concurrent.TimeUnit;
+import Game.Game;
 
 public class GameObject{
     public Position position;
@@ -15,8 +16,8 @@ public class GameObject{
     protected String myName;
     String sprite;
     protected int speed;
-    protected final int refreshTime = 1000;
-    private final int fireRate = 8;
+    private final int fireRate = 10000;
+    private int actualFireRate = 10000;
     protected boolean isMonster;
     protected TextColor.RGB color;
 
@@ -70,7 +71,7 @@ public class GameObject{
         if((this.position.getxPos() + this.width) < width)
         this.position.setxPos(this.position.getxPos() + 1);
         try {
-            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
+            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -80,7 +81,7 @@ public class GameObject{
         if(this.position.getxPos() > 0)
         this.position.setxPos(this.position.getxPos() - 1);
         try {
-            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
+            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -89,7 +90,7 @@ public class GameObject{
     public void moveDown(){
         this.position.setyPos(this.position.getyPos() + 1);
         try {
-            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
+            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -98,7 +99,7 @@ public class GameObject{
     public void moveUp(){
         this.position.setyPos(this.position.getyPos() - 1);
         try {
-            TimeUnit.MILLISECONDS.sleep(refreshTime/speed);
+            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -113,6 +114,19 @@ public class GameObject{
     }
     public boolean isMonster() {
         return isMonster;
+    }
+
+    public void doAttack(Attack attack){
+        if(fireRate == actualFireRate) {
+            attack.doAttack(this.position.getxPos(), this.position.getyPos(), this.isMonster());
+        }
+        else if(actualFireRate == 0){
+            actualFireRate = fireRate;
+        }
+        else{
+            actualFireRate--;
+        }
+
     }
 
 }

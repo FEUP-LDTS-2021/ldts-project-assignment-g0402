@@ -3,7 +3,7 @@ package Objects;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import Actions.Attack;
 import java.util.concurrent.TimeUnit;
-
+import java.util.Random;
 public class MonsterWave{
     protected Monster[][] wave;
     protected int lineSize;       //number of aliens per line
@@ -15,6 +15,7 @@ public class MonsterWave{
     protected int xOffset;
     private int refreshTime = 1000;
     private boolean isMovingToRight = true;
+    Random random = new Random();
 
 
     public MonsterWave(int xPos, int yPos, int lineSize, int waveLength, int xOffset, int yOffset, Monster monster){
@@ -173,6 +174,16 @@ public class MonsterWave{
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {
                 wave[i][j].checkCollision(attack);
+            }
+        }
+    }
+
+    public void doAttack(Attack attack){
+        for(int i = 0; i < waveLength; ++i){
+            for (int j = 0; j < lineSize; ++j) {
+                if(random.nextInt(100)<2){
+                    wave[i][j].doAttack(attack);
+                }
             }
         }
     }

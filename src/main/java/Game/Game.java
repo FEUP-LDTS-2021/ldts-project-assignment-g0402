@@ -11,7 +11,7 @@ public class Game{
     private final Console console;
     private static Game singleton = null;
     protected boolean exit;
-
+    public static final int refreshTime = 1000;
     private Game() throws URISyntaxException, FontFormatException {
         this.console = new Console();
         this.keyBoardObserver = new KeyBoardObserver();

@@ -4,7 +4,11 @@ import Objects.MonsterWave;
 import Objects.Monster;
 import Objects.Player;
 import Objects.Attributes.Position;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -40,10 +44,12 @@ public class Console implements KeyBoardListener{
                 default:
                     break;
             }
+            TimeUnit.MILLISECONDS.sleep(50);
         }
-        catch (IOException | URISyntaxException | FontFormatException e){
+        catch ( IOException | URISyntaxException | FontFormatException | InterruptedException e){
             e.printStackTrace();
         }
+
     }
 
     enum Action{
@@ -115,7 +121,7 @@ public class Console implements KeyBoardListener{
             clear();
             this.level.draw();
             refresh();
-            TimeUnit.MILLISECONDS.sleep(50);
+            TimeUnit.MILLISECONDS.sleep(20);
         } catch (InterruptedException | IOException e) {
             e.printStackTrace();
         }
@@ -132,6 +138,10 @@ public class Console implements KeyBoardListener{
             public void run() {
                 while(!exitThread) {
                     draw();
+                    if(!level.player.life.isAlive()){
+                        exitThread = true;
+                        gameover();
+                    }
                 }
             }
         };
@@ -139,8 +149,13 @@ public class Console implements KeyBoardListener{
             @Override
             public void run() {
                 while(!exitThread) {
-                    draw();
                     updateWave();
+                    draw();
+                    if(!level.player.life.isAlive()){
+                        exitThread = true;
+                        gameover();
+                    }
+
                 }
             }
         };
@@ -148,8 +163,12 @@ public class Console implements KeyBoardListener{
             @Override
             public void run() {
                 while(!exitThread){
-                    draw();
                     updateBullets();
+                    draw();
+                    if(!level.player.life.isAlive()){
+                        exitThread = true;
+                        gameover();
+                    }
                 }
             }
         };
@@ -162,7 +181,7 @@ public class Console implements KeyBoardListener{
 
     /**This method is used for updating the location of the wave automatically*/
     protected void updateWave() {
-
+        level.waveAttack();
         boolean looseGame = level.wave.moveWave(width);
         if(looseGame) {
             exitThread = true;
@@ -174,6 +193,22 @@ public class Console implements KeyBoardListener{
     protected void updateBullets() {
         level.updateBullets();
     }
+
+    private void gameover(){
+
+        try{
+            TextGraphics graphics = screen.newTextGraphics();
+            clear();
+
+            graphics.setBackgroundColor(new TextColor.RGB(15,20,45));
+            graphics.setForegroundColor(new TextColor.RGB(255,255,255));
+            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
+            graphics.putString(width/2-5,height/2, "GAME OVER");
+            screen.refresh();
+        }
+        catch (IOException e){}
+    }
+
 
 
     public void addKeyBoardListener(KeyBoardObserver obs) {

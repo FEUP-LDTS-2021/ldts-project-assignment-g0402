@@ -13,7 +13,7 @@ public class Level {
     private int width;
     protected Player player;
     protected MonsterWave wave;
-    private Actions.Attack attack = new Attack();
+    protected Actions.Attack attack = new Attack();
     private TextGraphics screen;
 
     public Level(TextGraphics screen, Player player, MonsterWave monsterWave){
@@ -30,11 +30,7 @@ public class Level {
 
         player.draw(screen);
         wave.draw(screen);
-
-        if(this.attack != null){
-            attack.draw(screen);
-        }
-
+        attack.draw(screen);
     }
 
     public void movePlayer(boolean moveToRight){
@@ -44,8 +40,11 @@ public class Level {
     }
 
     public void doAttackPlayer(){
-        attack.doAttack(this.player.position.getxPos(), this.player.position.getyPos(), this.player.isMonster());
-        attack.draw(screen);
+        this.player.doAttack(attack);
+    }
+    public void waveAttack(){
+        this.wave.doAttack(attack);
+
     }
 
     public void updateBullets(){

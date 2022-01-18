@@ -1,5 +1,6 @@
 package Actions;
 
+import Game.Game;
 import Objects.Bullet;
 import Objects.GameObject;
 import Objects.Attributes.Position;
@@ -7,17 +8,22 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
-import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 public class Attack {
-    CopyOnWriteArrayList<Bullet> bullets = new CopyOnWriteArrayList<>();
+    public CopyOnWriteArrayList<Bullet> bullets = new CopyOnWriteArrayList<>();
     private TextColor.RGB color = new TextColor.RGB(255,255,255);
 
     public void move() {
         for (Bullet bullet : this.bullets) {
             bullet.moveBullet();
+        }
+        try {
+            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -29,21 +35,19 @@ public class Attack {
         }
     }
     public void checkCollision(GameObject object) {
-        ArrayList<Integer> bulletsToDestroy = new ArrayList<Integer>();
+        ArrayList<Integer> bulletsToDestroy = new ArrayList<>();
         int i = 0;
         for (Bullet bullet: bullets) {
             if (bullet.position.getxPos() >= object.position.getxPos() &&
                     bullet.position.getxPos() <= object.position.getxPos()+object.getWidth()-1 &&
                     bullet.position.getyPos() >= object.position.getyPos() &&
                     bullet.position.getyPos() <= object.position.getyPos()+object.getHeight()-1
-                    && object.life.isAlive()){
+                    && object.life.isAlive() && object.isMonster() != bullet.isMonster() && bullet.isValid()){
                 object.kill();
                 bulletsToDestroy.add(i);
+                bullet.used();
             }
             i++;
-        }
-        for (int j = bulletsToDestroy.size()-1; j >= 0; j--) {
-            bullets.remove(j);
         }
     }
     /**
