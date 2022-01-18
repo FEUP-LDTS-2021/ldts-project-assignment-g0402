@@ -140,7 +140,6 @@ public class Console implements KeyBoardListener{
                     draw();
                     if(!level.player.life.isAlive()){
                         exitThread = true;
-                        gameover();
                     }
                 }
             }
@@ -151,10 +150,6 @@ public class Console implements KeyBoardListener{
                 while(!exitThread) {
                     updateWave();
                     draw();
-                    if(!level.player.life.isAlive()){
-                        exitThread = true;
-                        gameover();
-                    }
 
                 }
             }
@@ -165,16 +160,25 @@ public class Console implements KeyBoardListener{
                 while(!exitThread){
                     updateBullets();
                     draw();
-                    if(!level.player.life.isAlive()){
-                        exitThread = true;
-                        gameover();
-                    }
                 }
             }
         };
         PlayerThread.start();
         bulletsThread.start();
         waveThread.start();
+        new Thread(){
+            @Override
+            public void run(){
+                try {
+                    while (!exitThread){
+                        sleep(200);
+                    }
+                    sleep(1000);
+                }catch (InterruptedException e){}
+
+                gameover();
+            }
+        }.start();
     }
 
 

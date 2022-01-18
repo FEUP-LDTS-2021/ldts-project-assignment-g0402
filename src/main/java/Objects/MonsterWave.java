@@ -181,8 +181,8 @@ public class MonsterWave{
     public void doAttack(Attack attack){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {
-                if(random.nextInt(100)<2){
-                    wave[i][j].doAttack(attack);
+                if(random.nextInt(1000)<5){
+                    if(wave[i][j].life.isAlive()) wave[i][j].doAttack(attack);
                 }
             }
         }
