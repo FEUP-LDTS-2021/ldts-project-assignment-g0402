@@ -16,12 +16,9 @@ public class GameObject{
     protected String myName;
     String sprite;
     protected int speed;
-    private final int fireRate = 10000;
     private int actualFireRate = 10000;
-    protected boolean isMonster;
-    protected TextColor.RGB color;
-
-
+    private TextColor color;
+    private boolean isMonster;
 
 
     /**This constructor defines a new GameObject*/
@@ -54,6 +51,13 @@ public class GameObject{
 
     /**This method draws the object only if its alive*/
     public void draw(TextGraphics screen) {
+        if (this.isMonster){
+            this.color =  Game.colorMonster;
+        }
+        else{
+            this.color = Game.colorPlayer;
+        }
+
         if (this.life.isAlive()){
             screen.setForegroundColor(this.color);
             int offset;
@@ -112,11 +116,17 @@ public class GameObject{
     public int getWidth() {
         return width;
     }
+
     public boolean isMonster() {
         return isMonster;
     }
 
+    public void setIsMonster(boolean value){
+        this.isMonster = value;
+    }
+
     public void doAttack(Attack attack){
+        int fireRate = 10000;
         if(fireRate == actualFireRate) {
             attack.doAttack(this.position.getxPos(), this.position.getyPos(), this.isMonster());
         }

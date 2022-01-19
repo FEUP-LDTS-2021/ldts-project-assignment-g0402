@@ -4,7 +4,6 @@ import Actions.Attack;
 import Objects.*;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Level {
@@ -25,7 +24,7 @@ public class Level {
     }
 
     public void draw() {
-        this.screen.setBackgroundColor(new TextColor.RGB(15,20,45));
+        this.screen.setBackgroundColor(Game.colorScenario);
         this.screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
         drawInfo();
         player.draw(screen);
@@ -39,7 +38,7 @@ public class Level {
     private void drawInfo(){
         int livesInit = player.life.getLives(), lives = player.life.getCurrentLives(), pos = 7;
 
-        this.screen.setForegroundColor(new TextColor.RGB(255,255,255));
+        this.screen.setForegroundColor(Game.colorPlayer);
         this.screen.putString(1, height-2, "LIVES:");
 
         for(int i =0; i < livesInit; i++){

@@ -1,6 +1,7 @@
 package Objects;
 
 
+import Game.Game;
 import Objects.Attributes.Position;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -12,7 +13,7 @@ public class Bullet{
     private int speed;
     private boolean isMonsterBullet;
     private boolean valid;
-    public TextColor.RGB color;
+    public TextColor color;
 
 
 
@@ -25,10 +26,10 @@ public class Bullet{
         this.speed = speed;
         this.isMonsterBullet = isMonsterBullet;
         if (this.isMonsterBullet){
-            this.color =  new TextColor.RGB(0,200,50);
+            this.color = Game.colorMonster;
         }
         else{
-            this.color = new TextColor.RGB(255,255,255);
+            this.color = Game.colorPlayer;
         }
     }
 
