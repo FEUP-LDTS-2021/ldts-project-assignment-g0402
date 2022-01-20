@@ -23,43 +23,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Console implements KeyBoardListener{
 
-    // some time passes
-
-
-    @Override
-    public void keyPressed(Action action) {
-        try {
-            switch (action) {
-                case QUIT:
-                    exitThread = true;
-                    close();
-                    Game.getInstance().exit=true;
-                    break;
-                case LEFT:
-                    level.movePlayer(false);
-                    break;
-                case RIGHT:
-                    level.movePlayer(true);
-                    break;
-                case SHOOT:
-                    long start = System.currentTimeMillis();
-                    if(end < start){
-                        level.doAttackPlayer();
-                        start = System.currentTimeMillis();
-                        end = start + firerate;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            TimeUnit.MILLISECONDS.sleep(50);
-        }
-        catch ( IOException | URISyntaxException | FontFormatException | InterruptedException e){
-            e.printStackTrace();
-        }
-
-    }
-
     enum Action{
         QUIT,
         LEFT,
@@ -73,9 +36,7 @@ public class Console implements KeyBoardListener{
     private final int height = 36;
     private boolean exitThread = false;
     private final int sizeFont = 20;
-    long start;
-    long firerate = 200;
-    long end = firerate;
+    private final int fireRate = 500;
 
     /**
      * This method is the constructor for the class Game.Console.
@@ -123,6 +84,36 @@ public class Console implements KeyBoardListener{
         this.level = new Level(screen.newTextGraphics(), player, wave);
     }
 
+    @Override
+    public void keyPressed(Action action) {
+        try {
+            switch (action) {
+                case QUIT:
+                    exitThread = true;
+                    close();
+                    Game.getInstance().exit=true;
+                    break;
+                case LEFT:
+                    level.movePlayer(false);
+                    break;
+                case RIGHT:
+                    level.movePlayer(true);
+                    break;
+                case SHOOT:
+                    if(System.currentTimeMillis() >= Game.fireDelay){
+                        level.doAttackPlayer();
+                        Game.fireDelay = System.currentTimeMillis() + fireRate;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch ( IOException | URISyntaxException | FontFormatException e){
+            e.printStackTrace();
+        }
+
+    }
 
     /**
      * This method clears and refresh the screen, and commands
