@@ -82,7 +82,7 @@ public class MonsterWave{
     }
 
     public int getPosLeft(){
-        int x = wave[0][0].position.getxPos();
+        int x = wave[0][lineSize-1].position.getxPos();
         for (int j = 0; j < lineSize; j++) {
             for(int i = 0; i < waveLength; ++i){
                 if(wave[i][j].life.isAlive() && x> wave[i][j].position.getxPos()){

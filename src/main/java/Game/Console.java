@@ -23,9 +23,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Console implements KeyBoardListener{
 
-    // some time passes
-
-
     @Override
     public void keyPressed(Action action) {
         try {
