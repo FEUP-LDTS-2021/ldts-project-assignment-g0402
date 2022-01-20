@@ -10,7 +10,6 @@ class MenuTest {
     public void menuCreation () throws IOException {
         Menu menu = new Menu();
         menu.run();
-        
     }
 
 }
