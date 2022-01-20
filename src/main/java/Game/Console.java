@@ -136,8 +136,7 @@ public class Console implements KeyBoardListener{
      * When an Object moves, it refreshes the console.
      */
     public void run() {
-        long start = System.nanoTime();
-        Thread PlayerThread = new Thread(() -> {
+        Thread DrawnThread = new Thread(() -> {
             while(!exitThread) {
                 draw();
             }
@@ -155,7 +154,7 @@ public class Console implements KeyBoardListener{
             }
         });
 
-        PlayerThread.start();
+        DrawnThread.start();
         bulletsThread.start();
         waveThread.start();
 
