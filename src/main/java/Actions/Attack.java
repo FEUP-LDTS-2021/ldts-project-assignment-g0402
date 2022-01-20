@@ -20,7 +20,7 @@ public class Attack {
             bullet.moveBullet();
         }
         try {
-            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/50);
+            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/20);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -22,6 +22,10 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class Console implements KeyBoardListener{
+
+    // some time passes
+
+
     @Override
     public void keyPressed(Action action) {
         try {
@@ -38,9 +42,11 @@ public class Console implements KeyBoardListener{
                     level.movePlayer(true);
                     break;
                 case SHOOT:
-                    if(System.currentTimeMillis() >= Game.fireDelay) {
+                    long start = System.currentTimeMillis();
+                    if(end < start){
                         level.doAttackPlayer();
-                        Game.fireDelay = System.currentTimeMillis() + 500;
+                        start = System.currentTimeMillis();
+                        end = start + firerate;
                     }
                     break;
                 default:
@@ -67,6 +73,9 @@ public class Console implements KeyBoardListener{
     private final int height = 36;
     private boolean exitThread = false;
     private final int sizeFont = 20;
+    long start;
+    long firerate = 200;
+    long end = firerate;
 
     /**
      * This method is the constructor for the class Game.Console.
@@ -76,6 +85,7 @@ public class Console implements KeyBoardListener{
      * array with the different levels (and their characteristics)
      */
     public Console() throws FontFormatException, URISyntaxException {
+
         try {
             /*Import font for the game*/
             URL resource = getClass().getClassLoader().getResource("invaderv2.ttf");
@@ -123,7 +133,7 @@ public class Console implements KeyBoardListener{
             clear();
             this.level.draw();
             refresh();
-            TimeUnit.MILLISECONDS.sleep(20);
+            TimeUnit.MILLISECONDS.sleep(60);
         } catch (InterruptedException | IOException e) {
             e.printStackTrace();
         }
@@ -135,27 +145,22 @@ public class Console implements KeyBoardListener{
      * When an Object moves, it refreshes the console.
      */
     public void run() {
-
+        long start = System.nanoTime();
         Thread PlayerThread = new Thread(() -> {
             while(!exitThread) {
                 draw();
-                checkGameStatus();
             }
         });
 
         Thread waveThread = new Thread(() -> {
             while(!exitThread) {
                 updateWave();
-                draw();
-                checkGameStatus();
             }
         });
 
         Thread bulletsThread = new Thread(() -> {
             while(!exitThread){
                 updateBullets();
-                draw();
-                checkGameStatus();
             }
         });
 
@@ -166,12 +171,13 @@ public class Console implements KeyBoardListener{
         new Thread(() -> {
             try {
                 while (!exitThread){
+                    checkGameStatus();
                     Thread.sleep(200);
                 }
                 Thread.sleep(1000);
             }catch (InterruptedException e){}
 
-            checkGameStatus();
+
         }).start();
     }
 
@@ -216,7 +222,7 @@ public class Console implements KeyBoardListener{
             graphics.setBackgroundColor(new TextColor.RGB(15,20,45));
             graphics.setForegroundColor(new TextColor.RGB(255,255,255));
             graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
-            graphics.putString(width/2-5,height/2, "YOU WON!");
+            graphics.putString(width/2-5,height/2, "YOU WIN!");
             screen.refresh();
         }
         catch (IOException e){}
