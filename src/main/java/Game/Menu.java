@@ -15,20 +15,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Menu extends State {
     TextGraphics graphics;
-    Collection<SGR> title = new ArrayList<>();
-    Collection<SGR> text = new ArrayList<>();
-    Collection<SGR> selected = new ArrayList<>();
-    int n = 1;
+    int pointer = 1;
     int column = (width/2)-3, row = height/4;
 
     public Menu() {
         createTerminal();
         graphics = screen.newTextGraphics();
-
-        title.add(SGR.CIRCLED);
-        title.add(SGR.BOLD);
-        text.add(SGR.BORDERED);
-        selected.add(SGR.BLINK);
     }
 
     public void run() throws IOException {
@@ -51,7 +43,8 @@ public class Menu extends State {
         }
     }
 
-    private void drawMenu(){
+    @Override
+    protected void drawText(){
         graphics.setBackgroundColor(Game.colorScenario);
         graphics.setForegroundColor(Game.colorPlayer);
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
@@ -62,19 +55,8 @@ public class Menu extends State {
         update();
     }
 
-    private void draw(){
-        try {
-            clear();
-            drawMenu();
-            refresh();
-            TimeUnit.MILLISECONDS.sleep(20);
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void update(){
-        switch (this.n) {
+        switch (this.pointer) {
             case 1 -> {     //PLAY
                 graphics.putString(column, row + 4, "PLAY", selected);
                 graphics.putString(column - 4, row + 6, "INSTRUCTIONS", text);
@@ -94,15 +76,20 @@ public class Menu extends State {
     }
 
     private void moveUp(){
-        if(this.n > 1) this.n = n - 1;
+        if(this.pointer > 1) this.pointer = pointer - 1;
     }
 
     private void moveDown(){
-        if(this.n < 3) this.n = n + 1;
+        if(this.pointer < 3) this.pointer = pointer + 1;
     }
 
     private void select() throws IOException {
-        switch(this.n){
+        switch(this.pointer){
+            case 2:
+                screen.close();
+                screen.getTerminal().close();
+                Instructions instructions = new Instructions();
+                instructions.run();
             case 3:
                 screen.stopScreen();
         }
