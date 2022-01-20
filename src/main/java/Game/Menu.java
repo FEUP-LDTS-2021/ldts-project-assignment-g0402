@@ -7,6 +7,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,6 +45,7 @@ public class Menu extends State {
                 switch (key.getKeyType()) {
                     case ArrowDown -> moveDown();
                     case ArrowUp -> moveUp();
+                    case Enter -> select();
                 }
             }
         }
@@ -97,5 +99,12 @@ public class Menu extends State {
 
     private void moveDown(){
         if(this.n < 3) this.n = n + 1;
+    }
+
+    private void select() throws IOException {
+        switch(this.n){
+            case 3:
+                screen.stopScreen();
+        }
     }
 }
