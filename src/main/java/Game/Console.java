@@ -165,8 +165,9 @@ public class Console implements KeyBoardListener{
                     Thread.sleep(200);
                 }
                 Thread.sleep(1000);
-            }catch (InterruptedException e){}
-
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
 
         }).start();
     }
@@ -200,7 +201,9 @@ public class Console implements KeyBoardListener{
             graphics.putString(width/2-5,height/2, "GAME OVER");
             screen.refresh();
         }
-        catch (IOException e){}
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     private void gameWon(){
@@ -215,7 +218,9 @@ public class Console implements KeyBoardListener{
             graphics.putString(width/2-5,height/2, "YOU WIN!");
             screen.refresh();
         }
-        catch (IOException e){}
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void checkGameStatus(){

@@ -13,7 +13,7 @@ public class Level {
     protected Player player;
     protected MonsterWave wave;
     protected Actions.Attack attack = new Attack();
-    private TextGraphics screen;
+    public static TextGraphics screen;
 
     public Level(TextGraphics screen, Player player, MonsterWave monsterWave){
         this.screen = screen;
@@ -61,6 +61,7 @@ public class Level {
     public void doAttackPlayer(){
         this.player.doAttack(attack);
     }
+
     public void waveAttack(){
         this.wave.doAttack(attack);
 

@@ -7,6 +7,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import Actions.Attack;
 import java.util.concurrent.TimeUnit;
 import Game.Game;
+import Game.Level;
 
 public class GameObject{
     public Position position;
@@ -40,7 +41,8 @@ public class GameObject{
     public void kill(){
         this.life.kill();
         if(!this.life.isAlive() && isMonster){
-            this.sprite = "@";
+            Level.screen.setForegroundColor(Game.colorMonster);
+            Level.screen.setCharacter(this.position.getxPos(), this.position.getyPos(), '@');
         }
     }
 
@@ -93,15 +95,6 @@ public class GameObject{
 
     public void moveDown(){
         this.position.setyPos(this.position.getyPos() + 1);
-        try {
-            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void moveUp(){
-        this.position.setyPos(this.position.getyPos() - 1);
         try {
             TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
         } catch (InterruptedException e) {

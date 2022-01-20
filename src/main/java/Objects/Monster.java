@@ -37,11 +37,5 @@ public class Monster extends GameObject {
         this.position.setyPos(this.position.getyPos() + 1);
     }
 
-    @Override
-    public void moveUp(){
-        this.position.setyPos(this.position.getyPos() - 1);
-    }
-
-
 
 }
