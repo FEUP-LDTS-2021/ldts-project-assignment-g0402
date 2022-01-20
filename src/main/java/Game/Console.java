@@ -38,7 +38,10 @@ public class Console implements KeyBoardListener{
                     level.movePlayer(true);
                     break;
                 case SHOOT:
-                    level.doAttackPlayer();
+                    if(System.currentTimeMillis() >= Game.fireDelay) {
+                        level.doAttackPlayer();
+                        Game.fireDelay = System.currentTimeMillis() + 500;
+                    }
                     break;
                 default:
                     break;

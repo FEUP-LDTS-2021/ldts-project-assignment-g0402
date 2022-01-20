@@ -16,6 +16,7 @@ public class Game{
 
     /*Constants*/
     public static final int refreshTime = 1000;
+    public static long fireDelay = System.currentTimeMillis();
 
     /*Colors of the Game*/
     public static final TextColor colorMonster =  new TextColor.RGB(0,200,50);
