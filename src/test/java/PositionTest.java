@@ -1,7 +1,7 @@
 import Objects.Attributes.Position;
 import net.jqwik.api.*;
 
-public class testPosition {
+public class PositionTest {
 
     @Property
     public void testPositionBasic(@ForAll int x, @ForAll int y){
