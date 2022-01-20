@@ -74,7 +74,7 @@ public class Console implements KeyBoardListener{
     private boolean exitThread = false;
     private final int sizeFont = 20;
     long start;
-    long firerate = 200;
+    long firerate = 250;
     long end = firerate;
 
     /**
@@ -146,7 +146,7 @@ public class Console implements KeyBoardListener{
      */
     public void run() {
         long start = System.nanoTime();
-        Thread PlayerThread = new Thread(() -> {
+        Thread DrawnThread = new Thread(() -> {
             while(!exitThread) {
                 draw();
             }
@@ -164,7 +164,7 @@ public class Console implements KeyBoardListener{
             }
         });
 
-        PlayerThread.start();
+        DrawnThread.start();
         bulletsThread.start();
         waveThread.start();
 
