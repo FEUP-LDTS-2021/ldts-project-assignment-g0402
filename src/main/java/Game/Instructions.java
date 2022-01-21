@@ -40,7 +40,7 @@ public class Instructions extends State{
         graphics.setForegroundColor(Game.colorPlayer);
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
-        /*Actual Menu*/
+        /*Actual Instructions*/
 
         graphics.putString(column, row, "INSTRUCTIONS:", SGR.BOLD);
 

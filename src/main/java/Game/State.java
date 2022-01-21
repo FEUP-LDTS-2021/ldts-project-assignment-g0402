@@ -45,7 +45,7 @@ abstract public class State {
             terminalFactory.setForceAWTOverSwing(true);
 
             Terminal terminal = terminalFactory.createTerminal();
-
+            
             screen = new TerminalScreen(terminal);
             screen.setCursorPosition(null);
             screen.startScreen();
