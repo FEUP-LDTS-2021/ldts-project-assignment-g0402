@@ -36,15 +36,9 @@ public class Game{
         keyBoardObserver.setListener(play.console);
         while(!exit) {
             switch (state) {
-                case 1:
-                    menu.run();
-                    break;
-                case 2:
-                    play.run();
-                    break;
-                case 3:
-                    instructions.run();
-                    break;
+                case 1 -> menu.run();
+                case 2 -> play.run();
+                case 3 -> instructions.run();
             }
         }
     }

@@ -60,19 +60,25 @@ public class Menu extends State {
     private void update(){
         switch (this.pointer) {
             case 1 -> {     //PLAY
+                graphics.setForegroundColor(Game.colorMonster);
                 graphics.putString(column - 2, row + 4, "> PLAY");
+                graphics.setForegroundColor(Game.colorPlayer);
                 graphics.putString(column - 4, row + 6, "INSTRUCTIONS");
                 graphics.putString(column, row + 8, "EXIT");
             }
             case 2 -> {     //INSTRUCTIONS
                 graphics.putString(column, row + 4, "PLAY");
+                graphics.setForegroundColor(Game.colorMonster);
                 graphics.putString(column - 6, row + 6, "> INSTRUCTIONS");
+                graphics.setForegroundColor(Game.colorPlayer);
                 graphics.putString(column, row + 8, "EXIT");
             }
             case 3 -> {     //QUIT
                 graphics.putString(column, row + 4, "PLAY");
                 graphics.putString(column - 4, row + 6, "INSTRUCTIONS");
+                graphics.setForegroundColor(Game.colorMonster);
                 graphics.putString(column - 2, row + 8, "> EXIT");
+                graphics.setForegroundColor(Game.colorPlayer);
             }
         }
     }

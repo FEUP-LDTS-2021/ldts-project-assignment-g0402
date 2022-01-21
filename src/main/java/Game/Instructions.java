@@ -49,6 +49,7 @@ public class Instructions extends State{
         graphics.putString(3, row+7, "1. PRESS = TO SHOOT");
         graphics.putString(3, row+9, "2. PRESS < AND > TO MOVE");
 
+        graphics.setForegroundColor(Game.colorMonster);
         graphics.putString(width - 19, height-2, "PRESS M TO GO BACK");
     }
 }
