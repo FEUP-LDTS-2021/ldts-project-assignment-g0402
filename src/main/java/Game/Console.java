@@ -205,7 +205,7 @@ public class Console implements KeyBoardListener{
         }
     }
 
-    private void gameWon(){
+    private void gameWin(){
 
         try{
             TextGraphics graphics = screen.newTextGraphics();
@@ -230,7 +230,7 @@ public class Console implements KeyBoardListener{
         }
         else if(!this.level.wave.isWaveAlive()){
             exitThread = true;
-            gameOver();
+            gameWin();
         }
         else if(waveFinishWalk){
             exitThread = true;
