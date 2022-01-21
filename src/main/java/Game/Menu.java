@@ -24,20 +24,22 @@ public class Menu extends State {
     }
 
     public void run() throws IOException {
-        boolean exit = false;
-        while(!exit){
+
+        while(Game.state == 1){
             draw();
             KeyStroke key = screen.readInput();
             if(key.getKeyType() == KeyType.Character) {
                 switch (key.getCharacter()) {
-                    case 'q', 'Q' -> exit = true;
+                    case 'q', 'Q' -> {
+                        Game.exit = true;
+                    }
                 }
             }
             else{
                 switch (key.getKeyType()) {
+                    case Enter -> select();
                     case ArrowDown -> moveDown();
                     case ArrowUp -> moveUp();
-                    case Enter -> select();
                 }
             }
         }
@@ -51,26 +53,26 @@ public class Menu extends State {
 
         /*Actual Menu*/
 
-        graphics.putString(column, row, "MENU", title);
+        graphics.putString(column, row, "MENU", SGR.BOLD);
         update();
     }
 
     private void update(){
         switch (this.pointer) {
             case 1 -> {     //PLAY
-                graphics.putString(column, row + 4, "PLAY", selected);
-                graphics.putString(column - 4, row + 6, "INSTRUCTIONS", text);
-                graphics.putString(column, row + 8, "EXIT", text);
+                graphics.putString(column - 2, row + 4, "> PLAY");
+                graphics.putString(column - 4, row + 6, "INSTRUCTIONS");
+                graphics.putString(column, row + 8, "EXIT");
             }
             case 2 -> {     //INSTRUCTIONS
-                graphics.putString(column, row + 4, "PLAY", text);
-                graphics.putString(column - 4, row + 6, "INSTRUCTIONS", selected);
-                graphics.putString(column, row + 8, "EXIT", text);
+                graphics.putString(column, row + 4, "PLAY");
+                graphics.putString(column - 6, row + 6, "> INSTRUCTIONS");
+                graphics.putString(column, row + 8, "EXIT");
             }
             case 3 -> {     //QUIT
-                graphics.putString(column, row + 4, "PLAY", text);
-                graphics.putString(column - 4, row + 6, "INSTRUCTIONS", text);
-                graphics.putString(column, row + 8, "EXIT", selected);
+                graphics.putString(column, row + 4, "PLAY");
+                graphics.putString(column - 4, row + 6, "INSTRUCTIONS");
+                graphics.putString(column - 2, row + 8, "> EXIT");
             }
         }
     }
@@ -84,14 +86,13 @@ public class Menu extends State {
     }
 
     private void select() throws IOException {
-        switch(this.pointer){
-            case 2:
-                screen.close();
-                screen.getTerminal().close();
-                Instructions instructions = new Instructions();
-                instructions.run();
-            case 3:
-                screen.stopScreen();
+        switch (this.pointer) {
+            case 1 -> {
+                Game.state = 2;
+                Game.exit = true;
+            }
+            case 2 -> Game.state = 3;
+            case 3 -> Game.exit = true;
         }
     }
 }

@@ -10,9 +10,9 @@ import java.net.URISyntaxException;
 
 public class Game{
     private final KeyBoardObserver keyBoardObserver;
-    private final Console console;
+    private final Play play; private final Menu menu; private final Instructions instructions;
     private static Game singleton = null;
-    protected boolean exit;
+    protected static boolean exit; protected static int state = 1;
 
     /*Constants*/
     public static final int refreshTime = 1000;
@@ -25,16 +25,28 @@ public class Game{
 
 
     private Game() throws URISyntaxException, FontFormatException {
-        this.console = new Console();
+        this.menu = new Menu();
+        this.play = new Play();
+        this.instructions = new Instructions();
         this.keyBoardObserver = new KeyBoardObserver();
     }
 
-    public void start()  {
-
-        console.addKeyBoardListener(keyBoardObserver);
-        keyBoardObserver.setListener(console);
-        console.run();
-
+    public void start() throws IOException {
+        play.console.addKeyBoardListener(keyBoardObserver);
+        keyBoardObserver.setListener(play.console);
+        while(!exit) {
+            switch (state) {
+                case 1:
+                    menu.run();
+                    break;
+                case 2:
+                    play.run();
+                    break;
+                case 3:
+                    instructions.run();
+                    break;
+            }
+        }
     }
 
     public static Game getInstance() throws URISyntaxException, FontFormatException {
