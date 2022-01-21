@@ -45,31 +45,33 @@ public class MonsterWave{
 
 
     public boolean moveWave(int width){
-        int yMin = getPosLeft();
-        int yMax = getPosRight();
+        int xMin = getPosLeft();
+        int xMax = getPosRight();
         int down = getPosDown();
-
-        if(yMin < 2 && !isMovingToRight){
-            isMovingToRight = true;
-            moveDown();
+        if(xMin < 2 && !isMovingToRight){
+            this.isMovingToRight = true;
+            if(down < width-35)
+                moveDown();
+            else{
+                return true; //not moving anymore
+            }
         }
-        else if(yMax > width-4 && this.isMovingToRight) {
+        else if(xMax > width-4 && this.isMovingToRight) {
             this.isMovingToRight = false;
             if(down < width-35)
                 moveDown();
             else{
-                return true;
+                return true; //not moving anymore
             }
         }
-
         else if(isMovingToRight){
             moveRight();
         }
 
-        else {
+        else{
             moveLeft();
         }
-        return false;
+        return false;   //wave moved
     }
 
 

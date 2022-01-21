@@ -37,6 +37,7 @@ public class Console implements KeyBoardListener{
     private boolean exitThread = false;
     private final int sizeFont = 20;
     private final int fireRate = 500;
+    private boolean waveFinishWalk;
 
     /**
      * This method is the constructor for the class Game.Console.
@@ -82,6 +83,8 @@ public class Console implements KeyBoardListener{
         MonsterWave wave = new MonsterWave(3, 3, 10, 5, 5, 3, monster);
 
         this.level = new Level(screen.newTextGraphics(), player, wave);
+
+        this.waveFinishWalk = false;
     }
 
     @Override
@@ -162,9 +165,8 @@ public class Console implements KeyBoardListener{
             try {
                 while (!exitThread){
                     checkGameStatus();
-                    Thread.sleep(200);
+                    Thread.sleep(800);
                 }
-                Thread.sleep(1000);
             }catch (InterruptedException e){
                 e.printStackTrace();
             }
@@ -177,10 +179,7 @@ public class Console implements KeyBoardListener{
     /**This method is used for updating the location of the wave automatically*/
     protected void updateWave() {
         level.waveAttack();
-        boolean looseGame = level.wave.moveWave(width);
-        if(looseGame) {
-            exitThread = true;
-        }
+        waveFinishWalk = level.wave.moveWave(width);
     }
 
 
@@ -224,13 +223,18 @@ public class Console implements KeyBoardListener{
     }
 
     private void checkGameStatus(){
-        if(!level.player.life.isAlive()) {
+        System.out.println(waveFinishWalk);
+        if(!this.level.player.life.isAlive()){
             exitThread = true;
             gameOver();
         }
-        else if(!level.wave.isWaveAlive()){
+        else if(!this.level.wave.isWaveAlive()){
             exitThread = true;
-            gameWon();
+            gameOver();
+        }
+        else if(waveFinishWalk){
+            exitThread = true;
+            gameOver();
         }
     }
 
