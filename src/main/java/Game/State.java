@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 abstract public class State {
-    protected TerminalScreen screen;
+    protected static TerminalScreen screen;
     protected final int width = 32;
     protected final int height = 18;
     private final int sizeFont = 40;
@@ -46,10 +46,10 @@ abstract public class State {
 
             Terminal terminal = terminalFactory.createTerminal();
 
-            this.screen = new TerminalScreen(terminal);
-            this.screen.setCursorPosition(null);
-            this.screen.startScreen();
-            this.screen.doResizeIfNecessary();
+            screen = new TerminalScreen(terminal);
+            screen.setCursorPosition(null);
+            screen.startScreen();
+            screen.doResizeIfNecessary();
 
             title.add(SGR.CIRCLED);
             title.add(SGR.BOLD);

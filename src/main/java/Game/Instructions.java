@@ -16,44 +16,39 @@ public class Instructions extends State{
     int column = (width/2)-7, row = (height/4)-1;
 
     public Instructions() {
-        createTerminal();
         graphics = screen.newTextGraphics();
     }
 
 
     public void run() throws IOException {
-        boolean exit = false;
-        while(!exit){
+        while(Game.state == 3){
             draw();
             KeyStroke key = screen.readInput();
             if(key.getKeyType() == KeyType.Character) {
                 switch (key.getCharacter()) {
-                    case 'q', 'Q', 'm', 'M' -> exit = true;
+                    case 'q', 'Q'-> Game.exit = true;
+                    case 'm', 'M'-> Game.state = 1;
                 }
             }
         }
-        screen.close();
-        screen.getTerminal().close();
-        Menu menu = new Menu();
-        menu.run();
     }
 
 
     @Override
-    protected void drawText() {
+    protected void drawText(){
         graphics.setBackgroundColor(Game.colorScenario);
         graphics.setForegroundColor(Game.colorPlayer);
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
         /*Actual Menu*/
 
-        graphics.putString(column, row, "INSTRUCTIONS", title);
+        graphics.putString(column, row, "INSTRUCTIONS:", SGR.BOLD);
 
-        graphics.putString(2, row+3, "KILL ALL THE ENEMIES TO WIN", text);
-        graphics.putString(1, row+4, "CAREFUL: YOU ONLY HAVE 3 LIVES", text);
-        graphics.putString(3, row+7, "1. PRESS = TO SHOOT", text);
-        graphics.putString(3, row+9, "2. PRESS < AND > TO MOVE", text);
+        graphics.putString(2, row+3, "KILL ALL THE ENEMIES TO WIN");
+        graphics.putString(1, row+4, "CAREFUL: YOU ONLY HAVE 3 LIVES");
+        graphics.putString(3, row+7, "1. PRESS = TO SHOOT");
+        graphics.putString(3, row+9, "2. PRESS < AND > TO MOVE");
 
-        graphics.putString(width - 19, height-2, "PRESS M TO GO BACK", text);
+        graphics.putString(width - 19, height-2, "PRESS M TO GO BACK");
     }
 }
