@@ -93,10 +93,7 @@ public class Menu extends State {
 
     private void select() throws IOException {
         switch (this.pointer) {
-            case 1 -> {
-                Game.state = 2;
-                Game.exit = true;
-            }
+            case 1 -> Game.state = 2;
             case 2 -> Game.state = 3;
             case 3 -> Game.exit = true;
         }
