@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 
-
+//Object Pool
 public class Attack {
-    public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+    public ArrayList<Bullet> bullets = new ArrayList<>();
     private Position outside = new Position(-1,-1);
 
     public Attack(){
@@ -22,9 +22,15 @@ public class Attack {
         }
     }
 
-    public void move() {
+    public void move(int width) {
         for (Bullet bullet : this.bullets) {
             bullet.moveBullet();
+            if(bullet.position.getyPos()<0){
+                bullet.notUsed();
+            }
+            else if(bullet.position.getyPos()>width){
+                bullet.notUsed();
+            }
         }
         try {
             TimeUnit.MILLISECONDS.sleep(Game.refreshTime / 20);

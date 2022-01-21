@@ -8,8 +8,7 @@ public class Player extends GameObject {
                   int width, int height, int life,
                   String sprite, int speed) {
 
-        super(myName, position, width, height, life, sprite, speed);
-        setIsMonster(false);
+        super(myName, position, width, height, life, sprite, speed, false);
     }
 
 }

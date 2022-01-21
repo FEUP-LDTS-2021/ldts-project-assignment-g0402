@@ -25,7 +25,7 @@ public class GameObject{
     /**This constructor defines a new GameObject*/
     public GameObject(String myName, Position position,
                       int width, int height, int lives,
-                      String sprite, int speed) {
+                      String sprite, int speed, boolean isMonster) {
 
         this.myName = myName;
         this.position = position;
@@ -33,17 +33,20 @@ public class GameObject{
         this.width = width;
         this.sprite = sprite;
         this.speed = speed;
-
         this.life = new Life(lives);
+        this.isMonster = isMonster;
+        if (this.isMonster){
+            this.color =  Game.colorMonster;
+        }
+        else{
+            this.color = Game.colorPlayer;
+        }
     }
 
     /**This method unlives (kills) the object*/
     public void kill(){
         this.life.kill();
-        if(!this.life.isAlive() && isMonster){
-            Level.screen.setForegroundColor(Game.colorMonster);
-            Level.screen.setCharacter(this.position.getxPos(), this.position.getyPos(), '@');
-        }
+
     }
 
     public void checkCollision(Attack attack){
@@ -53,28 +56,26 @@ public class GameObject{
 
     /**This method draws the object only if its alive*/
     public void draw(TextGraphics screen) {
-        if (this.isMonster){
-            this.color =  Game.colorMonster;
-        }
-        else{
-            this.color = Game.colorPlayer;
-        }
-
         if (this.life.isAlive()){
-            screen.setForegroundColor(this.color);
             int offset;
             for (int i = 0; i < this.width; i++) {
                 offset = i * this.height;
                 for (int j = 0; j < this.height; j++) {
+                    screen.setForegroundColor(this.color);
                     screen.putString(position.getxPos() + i, position.getyPos() + j,
                                     Character.toString(this.sprite.charAt(offset+j)));
                 }
             }
         }
+        if(this.life.isDeadRecently()){
+            screen.setForegroundColor(this.color);
+            screen.putString(position.getxPos(), position.getyPos(), "@");
+        }
+
     }
 
     public void moveRight(int width){
-        if((this.position.getxPos() + this.width) < width)
+        if((this.position.getxPos() + this.width) < width && life.isAlive())
         this.position.setxPos(this.position.getxPos() + 1);
         try {
             TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
@@ -84,7 +85,7 @@ public class GameObject{
     }
 
     public void moveLeft(){
-        if(this.position.getxPos() > 0)
+        if(this.position.getxPos() > 0 && this.life.isAlive())
         this.position.setxPos(this.position.getxPos() - 1);
         try {
             TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
@@ -94,6 +95,7 @@ public class GameObject{
     }
 
     public void moveDown(){
+        if(this.life.isAlive())
         this.position.setyPos(this.position.getyPos() + 1);
         try {
             TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
@@ -112,10 +114,6 @@ public class GameObject{
 
     public boolean isMonster() {
         return isMonster;
-    }
-
-    public void setIsMonster(boolean value){
-        this.isMonster = value;
     }
 
     public void doAttack(Attack attack){

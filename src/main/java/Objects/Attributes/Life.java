@@ -10,6 +10,7 @@ public class Life {
     private boolean isAlive;
     private final int lives;
     private int current;
+    private int deadRecently = -1;
 
     /** This constructor sets how many lives the Game Object
      * has at the point of creation.*/
@@ -25,6 +26,9 @@ public class Life {
         if(this.current > 0){
             this.current = this.current - 1;
             updateStatus();
+        }
+        if(this.current==0){
+            deadRecently = 0;
         }
     }
 
@@ -49,5 +53,13 @@ public class Life {
 
     public boolean isAlive(){
         return isAlive;
+    }
+
+    public boolean isDeadRecently(){
+        if(deadRecently > -1 && deadRecently < 3) {
+            deadRecently++;
+            return true;
+        }
+        return false;
     }
 }

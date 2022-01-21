@@ -185,7 +185,7 @@ public class Console implements KeyBoardListener{
 
     /**This method is used for updating the location of the bullets automatically*/
     protected void updateBullets() {
-        level.updateBullets();
+        level.updateBullets(width);
     }
 
     private void gameOver(){
@@ -223,7 +223,6 @@ public class Console implements KeyBoardListener{
     }
 
     private void checkGameStatus(){
-        System.out.println(waveFinishWalk);
         if(!this.level.player.life.isAlive()){
             exitThread = true;
             gameOver();

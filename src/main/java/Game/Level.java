@@ -27,9 +27,9 @@ public class Level {
         this.screen.setBackgroundColor(Game.colorScenario);
         this.screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
         drawInfo();
+        attack.draw(screen);
         player.draw(screen);
         wave.draw(screen);
-        attack.draw(screen);
     }
 
     /** This method draws the info of the game (like how many lives the player
@@ -67,8 +67,8 @@ public class Level {
 
     }
 
-    public void updateBullets(){
-        attack.move();
+    public void updateBullets(int width){
+        attack.move(width);
         player.checkCollision(attack);
         wave.checkCollision(attack);
 
