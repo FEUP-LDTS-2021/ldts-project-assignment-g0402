@@ -27,9 +27,15 @@ public class Menu extends State {
         graphics = screen.newTextGraphics();
     }
 
-    public void restart(){
-        createTerminal(sizeFont, terminalSize);
-        graphics = screen.newTextGraphics();
+    public void restart() {
+        try {
+            close();
+            createTerminal(sizeFont, terminalSize);
+            graphics = screen.newTextGraphics();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void run() throws IOException {

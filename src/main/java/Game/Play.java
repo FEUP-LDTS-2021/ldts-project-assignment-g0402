@@ -24,16 +24,20 @@ public class Play extends State{
     }
 
     public void run() throws IOException {
-        if(!alreadyExecuted) {
-            State.close();
-            createTerminal(sizeFont, terminalSize);
-            graphics = screen.newTextGraphics();
-            console = new Console(graphics);
-            console.addKeyBoardListener(Game.keyBoardObserver);
-            Game.keyBoardObserver.setListener(console);
-            alreadyExecuted = true;
-        }
 
-        console.run();
+        State.close();
+        createTerminal(sizeFont, terminalSize);
+        graphics = screen.newTextGraphics();
+        console = new Console(graphics);
+        console.addKeyBoardListener(Game.keyBoardObserver);
+        Game.keyBoardObserver.setListener(console);
+
+
+        while(Game.state == 2){
+            if(!alreadyExecuted){
+                console.run();
+                alreadyExecuted = true;
+            }
+        }
     }
 }
