@@ -20,10 +20,6 @@ import java.util.concurrent.TimeUnit;
 abstract public class State {
     protected static TerminalScreen screen;
 
-    Collection<SGR> title = new ArrayList<>();
-    Collection<SGR> text = new ArrayList<>();
-    Collection<SGR> selected = new ArrayList<>();
-
     protected void createTerminal(int sizeFont, TerminalSize terminalSize){
         try {
             /*Import font for the game*/
@@ -47,10 +43,6 @@ abstract public class State {
             screen.startScreen();
             screen.doResizeIfNecessary();
 
-            title.add(SGR.CIRCLED);
-            title.add(SGR.BOLD);
-            text.add(SGR.BORDERED);
-            selected.add(SGR.BLINK);
 
         } catch (IOException | FontFormatException | URISyntaxException e) {
             e.printStackTrace();
@@ -66,7 +58,7 @@ abstract public class State {
         screen.doResizeIfNecessary();
     }
 
-    public void close() throws IOException {
+    public static void close() throws IOException {
         screen.close();
     }
 

@@ -95,14 +95,11 @@ public class Menu extends State {
         if(this.pointer < 3) this.pointer = pointer + 1;
     }
 
-    private void select() throws IOException {
+    private void select() {
         switch (this.pointer) {
             case 1 -> Game.state = 2;
             case 2 -> Game.state = 3;
-            case 3 -> {
-                Game.exit = true;
-                screen.close();
-            }
+            case 3 -> Game.state = 4;
         }
     }
 }

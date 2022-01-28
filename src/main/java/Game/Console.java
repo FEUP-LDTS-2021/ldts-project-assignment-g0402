@@ -44,36 +44,7 @@ public class Console implements KeyBoardListener {
      * array with the different levels (and their characteristics)
      */
 
-    public Console() throws FontFormatException, URISyntaxException {
-
-        /*try {
-            /*Import font for the game*/    /*
-            URL resource = getClass().getClassLoader().getResource("invaderv2.ttf");
-            File fontFile = new File(resource.toURI());
-            Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-
-            TerminalSize terminalSize = new TerminalSize(width, height);
-            DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-
-            terminalFactory.setTerminalEmulatorTitle("Lonely Earth Invader");
-
-            Font loadedFont = font.deriveFont(Font.PLAIN, sizeFont);
-            AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
-            terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
-            terminalFactory.setForceAWTOverSwing(true);
-
-            Terminal terminal = terminalFactory.createTerminal();
-
-            this.screen = new TerminalScreen(terminal);
-            this.screen.setCursorPosition(null);
-            this.screen.startScreen();
-            this.screen.doResizeIfNecessary();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
-
+    public Console() {
 
         Player player = new Player("Player1", new Position(screen.newTextGraphics()),
                             3, 1, 3, "def", 1000);
@@ -260,7 +231,7 @@ public class Console implements KeyBoardListener {
     }
 
     public void close() throws IOException {
-        screen.close();
+        Play.close();
     }
 
 }

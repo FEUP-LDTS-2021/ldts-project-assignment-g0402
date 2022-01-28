@@ -35,13 +35,15 @@ public class Game{
     public void start() throws IOException {
         play.console.addKeyBoardListener(keyBoardObserver);
         keyBoardObserver.setListener(play.console);
-        while(!exit) {
+        do {
             switch (state) {
                 case 1 -> menu.run();
                 case 2 -> play.run();
                 case 3 -> instructions.run();
+                case 4 -> exit = true;
             }
-        }
+        } while (!exit);
+        State.close();
     }
 
     public static Game getInstance() throws URISyntaxException, FontFormatException {
