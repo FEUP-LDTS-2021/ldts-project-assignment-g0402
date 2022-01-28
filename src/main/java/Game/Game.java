@@ -10,7 +10,7 @@ import java.net.URL;
 
 
 public class Game{
-    private final KeyBoardObserver keyBoardObserver;
+    protected static KeyBoardObserver keyBoardObserver;
     private final Play play; public static Menu menu; private final Instructions instructions;
     private static Game singleton = null;
     protected static boolean exit;
@@ -36,12 +36,11 @@ public class Game{
         this.menu = new Menu();
         this.play = new Play();
         this.instructions = new Instructions();
-        this.keyBoardObserver = new KeyBoardObserver();
+        keyBoardObserver = new KeyBoardObserver();
     }
 
     public void start() throws IOException {
-        play.console.addKeyBoardListener(keyBoardObserver);
-        keyBoardObserver.setListener(play.console);
+
         do {
             switch (state) {
                 case 1 -> menu.run();

@@ -30,7 +30,6 @@ public class Console implements KeyBoardListener {
         SHOOT
     }
 
-    protected TerminalScreen screen = Play.screen;
     protected Level level;
     private boolean exitThread = false;
     private final int fireRate = 500;
@@ -44,8 +43,7 @@ public class Console implements KeyBoardListener {
      * array with the different levels (and their characteristics)
      */
 
-    public Console() {
-        TextGraphics graphics = screen.newTextGraphics();
+    public Console(TextGraphics graphics) {
 
         Player player = new Player("Player1", new Position(graphics),
                             3, 1, 3, "def", 1000);
@@ -160,7 +158,7 @@ public class Console implements KeyBoardListener {
     private void gameOver(){
 
         try{
-            TextGraphics graphics = screen.newTextGraphics();
+            TextGraphics graphics = Play.screen.newTextGraphics();
             clear();
 
             graphics.setBackgroundColor(Game.colorScenario);
@@ -168,7 +166,7 @@ public class Console implements KeyBoardListener {
             graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(Play.width, Play.height), ' ');
             graphics.putString(Play.width/2-5,Play.height/2, "GAME OVER");
 
-            screen.refresh();
+            Play.screen.refresh();
         }
         catch (IOException e){
             e.printStackTrace();
@@ -178,7 +176,7 @@ public class Console implements KeyBoardListener {
     private void gameWin(){
 
         try{
-            TextGraphics graphics = screen.newTextGraphics();
+            TextGraphics graphics = Play.screen.newTextGraphics();
             clear();
 
             graphics.setBackgroundColor(Game.colorScenario);
@@ -186,7 +184,7 @@ public class Console implements KeyBoardListener {
             graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(Play.width, Play.height), ' ');
             graphics.putString(Play.width/2-5,Play.height/2, "YOU WIN!");
 
-            screen.refresh();
+            Play.screen.refresh();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -209,16 +207,16 @@ public class Console implements KeyBoardListener {
     }
 
     public void addKeyBoardListener(KeyBoardObserver obs) {
-        ((AWTTerminalFrame) screen.getTerminal()).getComponent(0).addKeyListener(obs);
+        ((AWTTerminalFrame) Play.screen.getTerminal()).getComponent(0).addKeyListener(obs);
     }
 
     public void clear() {
-        screen.clear();
+        Play.screen.clear();
     }
 
     public void refresh() throws IOException {
-        screen.refresh();
-        screen.doResizeIfNecessary();
+        Play.screen.refresh();
+        Play.screen.doResizeIfNecessary();
     }
 
     public void close() throws IOException {
