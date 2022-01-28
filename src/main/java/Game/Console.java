@@ -147,12 +147,7 @@ public class Console implements KeyBoardListener {
     protected void updateWave() {
         level.waveAttack();
 
-        waveFinishWalk = !level.wave.moveWave(Play.width);
-
-        boolean looseGame = !level.wave.moveWave(Play.width);
-        if(looseGame) {
-            exitThread = true;
-        }
+        waveFinishWalk = level.wave.moveWave(Play.width);
 
     }
 
