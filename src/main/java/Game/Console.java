@@ -194,8 +194,8 @@ public class Console implements KeyBoardListener{
             TextGraphics graphics = screen.newTextGraphics();
             clear();
 
-            graphics.setBackgroundColor(new TextColor.RGB(15,20,45));
-            graphics.setForegroundColor(new TextColor.RGB(255,255,255));
+            graphics.setBackgroundColor(Game.colorScenario);
+            graphics.setForegroundColor(Game.colorPlayer);
             graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
             graphics.putString(width/2-5,height/2, "GAME OVER");
             screen.refresh();
@@ -211,8 +211,8 @@ public class Console implements KeyBoardListener{
             TextGraphics graphics = screen.newTextGraphics();
             clear();
 
-            graphics.setBackgroundColor(new TextColor.RGB(15,20,45));
-            graphics.setForegroundColor(new TextColor.RGB(255,255,255));
+            graphics.setBackgroundColor(Game.colorScenario);
+            graphics.setForegroundColor(Game.colorPlayer);
             graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
             graphics.putString(width/2-5,height/2, "YOU WIN!");
             screen.refresh();
