@@ -16,10 +16,14 @@ import java.util.concurrent.TimeUnit;
 public class Menu extends State {
     TextGraphics graphics;
     int pointer = 1;
+    protected final int width = 32;
+    protected final int height = 18;
+    TerminalSize terminalSize = new TerminalSize(width, height);
     int column = (width/2)-3, row = height/4;
+    private final int sizeFont = 40;
 
     public Menu() {
-        createTerminal();
+        createTerminal(sizeFont, terminalSize);
         graphics = screen.newTextGraphics();
     }
 
@@ -95,7 +99,10 @@ public class Menu extends State {
         switch (this.pointer) {
             case 1 -> Game.state = 2;
             case 2 -> Game.state = 3;
-            case 3 -> Game.exit = true;
+            case 3 -> {
+                Game.exit = true;
+                screen.close();
+            }
         }
     }
 }

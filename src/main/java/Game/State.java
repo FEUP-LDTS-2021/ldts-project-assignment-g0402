@@ -19,22 +19,18 @@ import java.util.concurrent.TimeUnit;
 
 abstract public class State {
     protected static TerminalScreen screen;
-    protected final int width = 32;
-    protected final int height = 18;
-    private final int sizeFont = 40;
 
     Collection<SGR> title = new ArrayList<>();
     Collection<SGR> text = new ArrayList<>();
     Collection<SGR> selected = new ArrayList<>();
 
-    protected void createTerminal(){
+    protected void createTerminal(int sizeFont, TerminalSize terminalSize){
         try {
             /*Import font for the game*/
             URL resource = getClass().getClassLoader().getResource("invaderv2.ttf");
             File fontFile = new File(resource.toURI());
             Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
-            TerminalSize terminalSize = new TerminalSize(width, height);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
 
             terminalFactory.setTerminalEmulatorTitle("Lonely Earth Invader");
