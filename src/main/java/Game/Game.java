@@ -12,7 +12,8 @@ public class Game{
     private final KeyBoardObserver keyBoardObserver;
     private final Play play; private final Menu menu; private final Instructions instructions;
     private static Game singleton = null;
-    protected static boolean exit; protected static int state = 1;
+    protected static boolean exit;
+    protected static int state = 1;
 
     /*Constants*/
     public static final int refreshTime = 1000;
