@@ -32,10 +32,7 @@ public class Console implements KeyBoardListener {
 
     protected TerminalScreen screen = Play.screen;
     protected Level level;
-    private final int width = 64;
-    private final int height = 36;
     private boolean exitThread = false;
-    private final int sizeFont = 20;
     private final int fireRate = 500;
     private boolean waveFinishWalk;
 
@@ -46,6 +43,7 @@ public class Console implements KeyBoardListener {
      * In the future, we intend to be able to have more than one level, using an
      * array with the different levels (and their characteristics)
      */
+
     public Console() throws FontFormatException, URISyntaxException {
 
         /*try {
@@ -75,6 +73,8 @@ public class Console implements KeyBoardListener {
             e.printStackTrace();
         }*/
 
+
+
         Player player = new Player("Player1", new Position(screen.newTextGraphics()),
                             3, 1, 3, "def", 1000);
 
@@ -94,7 +94,7 @@ public class Console implements KeyBoardListener {
                 case QUIT:
                     exitThread = true;
                     close();
-                    Game.getInstance().exit=true;
+                    Game.state = 1;
                     break;
                 case LEFT:
                     level.movePlayer(false);
@@ -112,7 +112,7 @@ public class Console implements KeyBoardListener {
                     break;
             }
         }
-        catch ( IOException | URISyntaxException | FontFormatException e){
+        catch ( IOException e){
             e.printStackTrace();
         }
 
@@ -179,13 +179,20 @@ public class Console implements KeyBoardListener {
     /**This method is used for updating the location of the wave automatically*/
     protected void updateWave() {
         level.waveAttack();
-        waveFinishWalk = level.wave.moveWave(width);
+
+        waveFinishWalk = level.wave.moveWave(Play.width);
+
+        boolean looseGame = level.wave.moveWave(Play.width);
+        if(looseGame) {
+            exitThread = true;
+        }
+
     }
 
 
     /**This method is used for updating the location of the bullets automatically*/
     protected void updateBullets() {
-        level.updateBullets(width);
+        level.updateBullets(Play.width);
     }
 
     private void gameOver(){
@@ -196,8 +203,9 @@ public class Console implements KeyBoardListener {
 
             graphics.setBackgroundColor(Game.colorScenario);
             graphics.setForegroundColor(Game.colorPlayer);
-            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
-            graphics.putString(width/2-5,height/2, "GAME OVER");
+            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(Play.width, Play.height), ' ');
+            graphics.putString(Play.width/2-5,Play.height/2, "GAME OVER");
+
             screen.refresh();
         }
         catch (IOException e){
@@ -213,8 +221,9 @@ public class Console implements KeyBoardListener {
 
             graphics.setBackgroundColor(Game.colorScenario);
             graphics.setForegroundColor(Game.colorPlayer);
-            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
-            graphics.putString(width/2-5,height/2, "YOU WIN!");
+            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(Play.width, Play.height), ' ');
+            graphics.putString(Play.width/2-5,Play.height/2, "YOU WIN!");
+
             screen.refresh();
         }
         catch (IOException e) {
