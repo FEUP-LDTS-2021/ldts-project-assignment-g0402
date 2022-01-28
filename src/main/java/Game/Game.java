@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 
 public class Game{
     private final KeyBoardObserver keyBoardObserver;
-    private final Play play; private final Menu menu; private final Instructions instructions;
+    private final Play play; public static Menu menu; private final Instructions instructions;
     private static Game singleton = null;
     protected static boolean exit;
     protected static int state = 1;

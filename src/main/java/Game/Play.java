@@ -13,19 +13,22 @@ public class Play extends State{
     TerminalSize terminalSize = new TerminalSize(width, height);
     public Console console;
     private final int sizeFont = 20;
+    private boolean alreadyExecuted = false;
 
-    public Play() throws URISyntaxException, FontFormatException {
+    public Play() {
         console = new Console();
     }
 
-    public void start() {
+    public void start() throws IOException {
+        State.close();
         createTerminal(sizeFont, terminalSize);
     }
 
-    public void run() {
-        start();
-        while(Game.state == 2) {
-            console.run();
+    public void run() throws IOException {
+        if(!alreadyExecuted) {
+            start();
+            alreadyExecuted = true;
         }
+        console.run();
     }
 }

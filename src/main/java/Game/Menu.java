@@ -27,6 +27,11 @@ public class Menu extends State {
         graphics = screen.newTextGraphics();
     }
 
+    public void restart(){
+        createTerminal(sizeFont, terminalSize);
+        graphics = screen.newTextGraphics();
+    }
+
     public void run() throws IOException {
 
         while(Game.state == 1){

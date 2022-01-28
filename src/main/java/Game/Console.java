@@ -45,46 +45,42 @@ public class Console implements KeyBoardListener {
      */
 
     public Console() {
+        TextGraphics graphics = screen.newTextGraphics();
 
-        Player player = new Player("Player1", new Position(screen.newTextGraphics()),
+        Player player = new Player("Player1", new Position(graphics),
                             3, 1, 3, "def", 1000);
 
         Monster monster = new Monster("Gabriel Coelho", 1, "pq", 4);
 
         MonsterWave wave = new MonsterWave(3, 3, 10, 5, 5, 3, monster);
 
-        this.level = new Level(screen.newTextGraphics(), player, wave);
+        this.level = new Level(graphics, player, wave);
 
         this.waveFinishWalk = false;
     }
 
     @Override
     public void keyPressed(Action action) {
-        try {
-            switch (action) {
-                case QUIT:
-                    exitThread = true;
-                    close();
-                    Game.state = 1;
-                    break;
-                case LEFT:
-                    level.movePlayer(false);
-                    break;
-                case RIGHT:
-                    level.movePlayer(true);
-                    break;
-                case SHOOT:
-                    if(System.currentTimeMillis() >= Game.fireDelay){
-                        level.doAttackPlayer();
-                        Game.fireDelay = System.currentTimeMillis() + fireRate;
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-        catch ( IOException e){
-            e.printStackTrace();
+        switch (action) {
+            case QUIT:
+                exitThread = true;
+                Game.menu.restart();
+                Game.state = 1;
+                break;
+            case LEFT:
+                level.movePlayer(false);
+                break;
+            case RIGHT:
+                level.movePlayer(true);
+                break;
+            case SHOOT:
+                if(System.currentTimeMillis() >= Game.fireDelay){
+                    level.doAttackPlayer();
+                    Game.fireDelay = System.currentTimeMillis() + fireRate;
+                }
+                break;
+            default:
+                break;
         }
 
     }
@@ -151,9 +147,9 @@ public class Console implements KeyBoardListener {
     protected void updateWave() {
         level.waveAttack();
 
-        waveFinishWalk = level.wave.moveWave(Play.width);
+        waveFinishWalk = !level.wave.moveWave(Play.width);
 
-        boolean looseGame = level.wave.moveWave(Play.width);
+        boolean looseGame = !level.wave.moveWave(Play.width);
         if(looseGame) {
             exitThread = true;
         }
