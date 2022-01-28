@@ -1,3 +1,4 @@
+import Actions.Attack;
 import Objects.*;
 
 import Objects.Attributes.Position;
@@ -6,6 +7,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.awt.*;
 import java.io.IOException;
@@ -54,6 +56,18 @@ public class PlayerTest {
 
         assert(expectedPos.getxPos() == p1.position.getxPos());
         assert(expectedPos.getyPos() == p1.position.getyPos());
+    }
+
+    @Test
+    public void testPlayerCanShoot(){
+        Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, 1, "abc", 5);
+        Attack attack = new Attack();
+
+        p1.doAttack(attack);
+
+        for(Bullet bullet : attack.bullets){
+            Assertions.assertFalse(bullet.isMonster());
+        }
     }
 
 }

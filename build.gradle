@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'info.solidsoft.pitest' version '1.6.0'
 }
 
 group 'org.example'
@@ -25,4 +26,9 @@ test {
     useJUnitPlatform {
         includeEngines ('junit-jupiter', 'jqwik')
     }
+}
+
+pitest{
+	testPlugin = "junit5"
+	junit5PluginVersion = '0.12'
 }

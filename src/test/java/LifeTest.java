@@ -3,6 +3,7 @@ import Objects.Attributes.Position;
 import Objects.Player;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
+import net.jqwik.api.constraints.IntRange;
 import net.jqwik.api.constraints.Positive;
 import net.jqwik.api.lifecycle.BeforeProperty;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class LifeTest {
     Player player;
@@ -22,12 +25,12 @@ public class LifeTest {
     }
 
     @Property
-    public void testPlayerLives(@ForAll @Positive int lives){
+    public void testPlayerLives(@ForAll @IntRange(min = 1, max = 10) int lives){
         this.player.life = new Life(lives);
 
-        int expectedLives;
+        /*int expectedLives;
 
-        for (int i=0; i<tries; i++){
+        for (int i=0; i<=tries; i++){
             player.kill();
         }
 
@@ -36,7 +39,12 @@ public class LifeTest {
         }
         else expectedLives = lives-tries;
 
-        assertEquals(expectedLives, player.life.getLives());
+        assertEquals(expectedLives, player.life.getLives());*/
+
+        for(int i = 0; i < this.player.life.getLives(); ++i)
+            this.player.life.kill();
+
+        assertFalse(this.player.life.isAlive());
     }
 
     @Test
