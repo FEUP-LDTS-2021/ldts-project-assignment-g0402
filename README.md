@@ -2,17 +2,19 @@
   
 ## GAME DESCRIPTION
 
-The **Lonely Earth Invader** is a shooting text based game inspired by the game *Space Invaders* where you have to kill different waves of residents from that planet to pass to the next level.
-As you pass to the next levels, you will encounter a different range of enemies with increased difficulty.
+The **Lonely Earth Invader** is a shooting text based game inspired by the game *Space Invaders* where you have to kill a wave of residents from that planet to win.
 
 This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coelho (up201902223@edu.fc.up.pt) and Matias Vaz (up201900194@edu.fc.up.pt) for LDTS 2021-22.
 
 ## GAME FEATURES
 ### IMPLEMENTED FEATURES
 
-- **Player Moving** - The game character will move to the left when the *Arrow Left* key is pressed and to the right when the *Arrow Right* key is pressed.
-- **Player Shooting** - The game character will shoot a bullet when the *Arrow Up* key or the *Space Bar* key is pressed.
-- **Monsters Moving** - The enemies of the game move on its own, with a defined pattern.
+- **Player Moves** - The game character will move to the left when the *Arrow Left* key is pressed and to the right when the *Arrow Right* key is pressed.
+- **Player Shoots** - The game character will shoot a bullet when the *Arrow Up* key or the *Space Bar* key is pressed.
+- **Monsters Move** - The enemies of the game move on its own, with a defined pattern.
+- **Monsters Attack** - The enemies attack on their own, causing damage on the Player.
+- **Player Attacks** - Following the previous feature, *Player Shooting*, the bullets that the character shoots now kill the enemies, once one of the bullets reaches one of the Monters.
+- **Player's Lives Display** - The Player has 3 lives at the beginning of the game, losing one if the Player gets shot by a Monster. Also, the number of lives remaining are displayed on the bottom left corner of the screen.
 
 
 <p align="center">
@@ -24,8 +26,6 @@ This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coel
 
 ### PLANNED FEATURES
 
-- **Monsters Attacks** - The enemies will atack on its own, doing damage on the Player.
-- **Player Attacks** - The previous feature *Player Shooting* should be improved to make damage.
 - **Different Levels** - For now, the game only has one level. In the future, we plan to introduce more.
 - **Different Monsters** - For now, the game only has one type of enemy. In the future, we plan to introduce more.
 - **Menu** - A menu iniciates the app, to be able to choose to play from there. 
@@ -43,11 +43,15 @@ This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coel
 ### VARIOUS OBJECTS WITHIN THE GAME SHARE THE SAME METHODS OR CHARACTERISTICS
 - **Motivation:** The game has a player, monsters and bullets. All of theese have similiar characteristics, for example, they all need an instance of the class `Position`, they all are defined by their `width`, `height`, `life`, etc. So, what we want is to define a super class that defines a generic object with those characterics, so that the classes can extend that super class to specify what makes them different.
 - **The Pattern:** To resolve this, we implemented the **Factory Method** pattern, which 
+- **Implementation:**
+- **Consequences:**
+### NEXT
 
 ## KNOWN CODE SMELLS AND REFACTORING SUGESTIONS
 
 ### LONG CLASS
 The `Level` Class is a **Long Class**
+> I have to change this but I need sugestions!
 
 ## TESTING
 > **INSERT** Screenshot of coverage report **AND** Link to mutation testing report.
