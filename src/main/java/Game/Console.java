@@ -21,7 +21,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class Console implements KeyBoardListener{
+public class Console implements KeyBoardListener {
 
     enum Action{
         QUIT,
@@ -30,12 +30,8 @@ public class Console implements KeyBoardListener{
         SHOOT
     }
 
-    protected TerminalScreen screen;
     protected Level level;
-    private final int width = 64;
-    private final int height = 36;
-    private boolean exitThread = false;
-    private final int sizeFont = 20;
+    protected boolean exitThread = false;
     private final int fireRate = 500;
     private boolean waveFinishWalk;
 
@@ -46,74 +42,40 @@ public class Console implements KeyBoardListener{
      * In the future, we intend to be able to have more than one level, using an
      * array with the different levels (and their characteristics)
      */
-    public Console() throws FontFormatException, URISyntaxException {
 
-        try {
-            /*Import font for the game*/
-            URL resource = getClass().getClassLoader().getResource("invaderv2.ttf");
-            File fontFile = new File(resource.toURI());
-            Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+    public Console(TextGraphics graphics) {
 
-            TerminalSize terminalSize = new TerminalSize(width, height);
-            DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-
-            terminalFactory.setTerminalEmulatorTitle("Lonely Earth Invader");
-
-            Font loadedFont = font.deriveFont(Font.PLAIN, sizeFont);
-            AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
-            terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
-            terminalFactory.setForceAWTOverSwing(true);
-
-            Terminal terminal = terminalFactory.createTerminal();
-
-            this.screen = new TerminalScreen(terminal);
-            this.screen.setCursorPosition(null);
-            this.screen.startScreen();
-            this.screen.doResizeIfNecessary();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Player player = new Player("Player1", new Position(screen.newTextGraphics()),
+        Player player = new Player("Player1", new Position(graphics),
                             3, 1, 3, "def", 1000);
 
         Monster monster = new Monster("Gabriel Coelho", 1, "pq", 4);
 
         MonsterWave wave = new MonsterWave(3, 3, 10, 5, 5, 3, monster);
 
-        this.level = new Level(screen.newTextGraphics(), player, wave);
+        this.level = new Level(graphics, player, wave);
 
         this.waveFinishWalk = false;
     }
 
     @Override
     public void keyPressed(Action action) {
-        try {
-            switch (action) {
-                case QUIT:
-                    exitThread = true;
-                    close();
-                    Game.getInstance().exit=true;
-                    break;
-                case LEFT:
-                    level.movePlayer(false);
-                    break;
-                case RIGHT:
-                    level.movePlayer(true);
-                    break;
-                case SHOOT:
-                    if(System.currentTimeMillis() >= Game.fireDelay){
-                        level.doAttackPlayer();
-                        Game.fireDelay = System.currentTimeMillis() + fireRate;
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-        catch ( IOException | URISyntaxException | FontFormatException e){
-            e.printStackTrace();
+        switch (action) {
+            case QUIT:
+                Game.state = 1;
+                exitThread = true;
+                break;
+            case LEFT:
+                level.movePlayer(false);
+                break;
+            case RIGHT:
+                level.movePlayer(true);
+                break;
+            case SHOOT:
+                if(System.currentTimeMillis() >= Game.fireDelay){
+                    level.doAttackPlayer();
+                    Game.fireDelay = System.currentTimeMillis() + fireRate;
+                }
+                break;
         }
 
     }
@@ -167,7 +129,7 @@ public class Console implements KeyBoardListener{
                     checkGameStatus();
                     Thread.sleep(800);
                 }
-            }catch (InterruptedException e){
+            }catch (InterruptedException | IOException e){
                 e.printStackTrace();
             }
 
@@ -179,26 +141,29 @@ public class Console implements KeyBoardListener{
     /**This method is used for updating the location of the wave automatically*/
     protected void updateWave() {
         level.waveAttack();
-        waveFinishWalk = level.wave.moveWave(width);
+
+        waveFinishWalk = level.wave.moveWave(Play.width);
+
     }
 
 
     /**This method is used for updating the location of the bullets automatically*/
     protected void updateBullets() {
-        level.updateBullets(width);
+        level.updateBullets(Play.width);
     }
 
     private void gameOver(){
 
         try{
-            TextGraphics graphics = screen.newTextGraphics();
+            TextGraphics graphics = Play.screen.newTextGraphics();
             clear();
 
             graphics.setBackgroundColor(Game.colorScenario);
             graphics.setForegroundColor(Game.colorPlayer);
-            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
-            graphics.putString(width/2-5,height/2, "GAME OVER");
-            screen.refresh();
+            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(Play.width, Play.height), ' ');
+            graphics.putString(Play.width/2-5,Play.height/2, "GAME OVER");
+
+            Play.screen.refresh();
         }
         catch (IOException e){
             e.printStackTrace();
@@ -208,21 +173,22 @@ public class Console implements KeyBoardListener{
     private void gameWin(){
 
         try{
-            TextGraphics graphics = screen.newTextGraphics();
+            TextGraphics graphics = Play.screen.newTextGraphics();
             clear();
 
             graphics.setBackgroundColor(Game.colorScenario);
             graphics.setForegroundColor(Game.colorPlayer);
-            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
-            graphics.putString(width/2-5,height/2, "YOU WIN!");
-            screen.refresh();
+            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(Play.width, Play.height), ' ');
+            graphics.putString(Play.width/2-5,Play.height/2, "YOU WIN!");
+
+            Play.screen.refresh();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void checkGameStatus(){
+    private void checkGameStatus() throws IOException {
         if(!this.level.player.life.isAlive()){
             exitThread = true;
             gameOver();
@@ -235,23 +201,24 @@ public class Console implements KeyBoardListener{
             exitThread = true;
             gameOver();
         }
+
     }
 
     public void addKeyBoardListener(KeyBoardObserver obs) {
-        ((AWTTerminalFrame) screen.getTerminal()).getComponent(0).addKeyListener(obs);
+        ((AWTTerminalFrame) Play.screen.getTerminal()).getComponent(0).addKeyListener(obs);
     }
 
     public void clear() {
-        screen.clear();
+        Play.screen.clear();
     }
 
     public void refresh() throws IOException {
-        screen.refresh();
-        screen.doResizeIfNecessary();
+        Play.screen.refresh();
+        Play.screen.doResizeIfNecessary();
     }
 
     public void close() throws IOException {
-        screen.close();
+        Play.close();
     }
 
 }
