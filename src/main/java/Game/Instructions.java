@@ -15,15 +15,13 @@ public class Instructions extends State{
     TextGraphics graphics;
     protected final int width = 32;
     protected final int height = 18;
-    TerminalSize terminalSize = new TerminalSize(width, height);
     int column = (width/2)-7, row = (height/4)-1;
-
-    public Instructions() {
-        graphics = screen.newTextGraphics();
-    }
 
 
     public void run() throws IOException {
+
+        graphics = screen.newTextGraphics();
+
         while(Game.state == 3){
             draw();
             KeyStroke key = screen.readInput();

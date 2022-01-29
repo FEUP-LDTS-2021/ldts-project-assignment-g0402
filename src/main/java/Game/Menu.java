@@ -22,20 +22,10 @@ public class Menu extends State {
     int column = (width/2)-3, row = height/4;
     private final int sizeFont = 40;
 
-    public Menu() {
+
+    public void start() {
         createTerminal(sizeFont, terminalSize);
         graphics = screen.newTextGraphics();
-    }
-
-    public void restart() {
-        try {
-            close();
-            createTerminal(sizeFont, terminalSize);
-            graphics = screen.newTextGraphics();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void run() throws IOException {

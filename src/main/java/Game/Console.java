@@ -31,7 +31,7 @@ public class Console implements KeyBoardListener {
     }
 
     protected Level level;
-    private boolean exitThread = false;
+    protected boolean exitThread = false;
     private final int fireRate = 500;
     private boolean waveFinishWalk;
 

@@ -7,6 +7,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import static Game.Console.Action.QUIT;
+
 public class Play extends State{
 
     TextGraphics graphics;
@@ -17,28 +19,21 @@ public class Play extends State{
     private final int sizeFont = 20;
     private boolean alreadyExecuted = false;
 
-    public Play() {
-
-    }
 
     public void run() throws IOException, URISyntaxException, FontFormatException {
 
-        State.close();
+        close();
         createTerminal(sizeFont, terminalSize);
         graphics = screen.newTextGraphics();
         console = new Console(graphics);
         console.addKeyBoardListener(Game.getInstance().getKeyBoardObserver());
-        Game.getInstance().getKeyBoardObserver().setListener(console);
-
+        console.run();
 
         while(Game.state == 2){
-            if(!alreadyExecuted){
-                console.run();
-                alreadyExecuted = true;
-            }
-            //System.out.println(Game.state);
+            Game.getInstance().getKeyBoardObserver().setListener(console);
         }
-        System.out.println("Left the PLAY State");
-        Game.menu.restart();
+
+        close();
+        Game.menu.start();
     }
 }

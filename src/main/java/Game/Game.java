@@ -40,7 +40,7 @@ public class Game{
     }
 
     public void start() throws IOException, URISyntaxException, FontFormatException {
-
+        menu.start();
         do {
             switch (state) {
                 case 1 -> menu.run();
