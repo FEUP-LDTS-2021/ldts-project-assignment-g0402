@@ -7,8 +7,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static Game.Console.Action.QUIT;
-
 public class Play extends State{
 
     TextGraphics graphics;
@@ -17,7 +15,6 @@ public class Play extends State{
     TerminalSize terminalSize = new TerminalSize(width, height);
     public Console console;
     private final int sizeFont = 20;
-    private boolean alreadyExecuted = false;
 
 
     public void run() throws IOException, URISyntaxException, FontFormatException {

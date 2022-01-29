@@ -8,8 +8,6 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
 
 public class Instructions extends State{
     TextGraphics graphics;
@@ -26,9 +24,9 @@ public class Instructions extends State{
             draw();
             KeyStroke key = screen.readInput();
             if(key.getKeyType() == KeyType.Character) {
-                switch (key.getCharacter()) {
-                    case 'q', 'Q'-> Game.exit = true;
-                    case 'm', 'M'-> Game.state = 1;
+                Character c = key.getCharacter();
+                if (c == 'm' || c == 'M' || c == 'q' || c == 'Q') {
+                    Game.state = 1;
                 }
             }
         }
