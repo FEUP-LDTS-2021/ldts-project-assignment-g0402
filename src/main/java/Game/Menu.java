@@ -43,19 +43,11 @@ public class Menu extends State {
         while(Game.state == 1){
             draw();
             KeyStroke key = screen.readInput();
-            if(key.getKeyType() == KeyType.Character) {
-                switch (key.getCharacter()) {
-                    case 'q', 'Q' -> {
-                        Game.exit = true;
-                    }
-                }
-            }
-            else{
-                switch (key.getKeyType()) {
-                    case Enter -> select();
-                    case ArrowDown -> moveDown();
-                    case ArrowUp -> moveUp();
-                }
+
+            switch (key.getKeyType()) {
+                case Enter -> select();
+                case ArrowDown -> moveDown();
+                case ArrowUp -> moveUp();
             }
         }
     }

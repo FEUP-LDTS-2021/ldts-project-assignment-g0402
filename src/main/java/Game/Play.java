@@ -1,7 +1,5 @@
 package Game;
 
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
@@ -38,10 +36,9 @@ public class Play extends State{
                 console.run();
                 alreadyExecuted = true;
             }
-            if(Game.state == 1) break;
+            //System.out.println(Game.state);
         }
         System.out.println("Left the PLAY State");
-        System.out.println(Game.state);
         Game.menu.restart();
     }
 }

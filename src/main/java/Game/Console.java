@@ -61,8 +61,8 @@ public class Console implements KeyBoardListener {
     public void keyPressed(Action action) {
         switch (action) {
             case QUIT:
-                exitThread = true;
                 Game.state = 1;
+                exitThread = true;
                 break;
             case LEFT:
                 level.movePlayer(false);
@@ -75,8 +75,6 @@ public class Console implements KeyBoardListener {
                     level.doAttackPlayer();
                     Game.fireDelay = System.currentTimeMillis() + fireRate;
                 }
-                break;
-            default:
                 break;
         }
 
