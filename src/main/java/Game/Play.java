@@ -23,14 +23,14 @@ public class Play extends State{
 
     }
 
-    public void run() throws IOException {
+    public void run() throws IOException, URISyntaxException, FontFormatException {
 
         State.close();
         createTerminal(sizeFont, terminalSize);
         graphics = screen.newTextGraphics();
         console = new Console(graphics);
-        console.addKeyBoardListener(Game.keyBoardObserver);
-        Game.keyBoardObserver.setListener(console);
+        console.addKeyBoardListener(Game.getInstance().getKeyBoardObserver());
+        Game.getInstance().getKeyBoardObserver().setListener(console);
 
 
         while(Game.state == 2){
@@ -38,6 +38,10 @@ public class Play extends State{
                 console.run();
                 alreadyExecuted = true;
             }
+            if(Game.state == 1) break;
         }
+        System.out.println("Left the PLAY State");
+        System.out.println(Game.state);
+        Game.menu.restart();
     }
 }

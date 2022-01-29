@@ -10,7 +10,7 @@ import java.net.URL;
 
 
 public class Game{
-    protected static KeyBoardObserver keyBoardObserver;
+    private static KeyBoardObserver keyBoardObserver;
     private final Play play; public static Menu menu; private final Instructions instructions;
     private static Game singleton = null;
     protected static boolean exit;
@@ -39,7 +39,7 @@ public class Game{
         keyBoardObserver = new KeyBoardObserver();
     }
 
-    public void start() throws IOException {
+    public void start() throws IOException, URISyntaxException, FontFormatException {
 
         do {
             switch (state) {

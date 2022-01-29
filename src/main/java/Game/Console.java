@@ -62,7 +62,6 @@ public class Console implements KeyBoardListener {
         switch (action) {
             case QUIT:
                 exitThread = true;
-                Game.menu.restart();
                 Game.state = 1;
                 break;
             case LEFT:
@@ -132,7 +131,7 @@ public class Console implements KeyBoardListener {
                     checkGameStatus();
                     Thread.sleep(800);
                 }
-            }catch (InterruptedException e){
+            }catch (InterruptedException | IOException e){
                 e.printStackTrace();
             }
 
@@ -191,7 +190,7 @@ public class Console implements KeyBoardListener {
         }
     }
 
-    private void checkGameStatus(){
+    private void checkGameStatus() throws IOException {
         if(!this.level.player.life.isAlive()){
             exitThread = true;
             gameOver();
@@ -204,6 +203,7 @@ public class Console implements KeyBoardListener {
             exitThread = true;
             gameOver();
         }
+
     }
 
     public void addKeyBoardListener(KeyBoardObserver obs) {
