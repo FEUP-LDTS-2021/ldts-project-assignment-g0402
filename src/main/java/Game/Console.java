@@ -163,6 +163,9 @@ public class Console implements KeyBoardListener {
             graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(Play.width, Play.height), ' ');
             graphics.putString(Play.width/2-5,Play.height/2, "GAME OVER");
 
+            //Reminder of how to quit the game
+            graphics.putString(Play.width-9, Play.height-2, "Q: QUIT");
+
             Play.screen.refresh();
         }
         catch (IOException e){
@@ -180,6 +183,9 @@ public class Console implements KeyBoardListener {
             graphics.setForegroundColor(Game.colorPlayer);
             graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(Play.width, Play.height), ' ');
             graphics.putString(Play.width/2-5,Play.height/2, "YOU WIN!");
+
+            //Reminder of how to quit the game
+            graphics.putString(Play.width-9, Play.height-2, "Q: QUIT");
 
             Play.screen.refresh();
         }
@@ -215,10 +221,6 @@ public class Console implements KeyBoardListener {
     public void refresh() throws IOException {
         Play.screen.refresh();
         Play.screen.doResizeIfNecessary();
-    }
-
-    public void close() throws IOException {
-        Play.close();
     }
 
 }

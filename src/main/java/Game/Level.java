@@ -8,8 +8,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Level {
 
-    private int height;
-    private int width;
+    private final int height;
+    private final int width;
     protected Player player;
     protected MonsterWave wave;
     protected Actions.Attack attack = new Attack();
@@ -24,8 +24,8 @@ public class Level {
     }
 
     public void draw() {
-        this.screen.setBackgroundColor(Game.colorScenario);
-        this.screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
+        screen.setBackgroundColor(Game.colorScenario);
+        screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
         drawInfo();
         attack.draw(screen);
         player.draw(screen);
@@ -37,19 +37,23 @@ public class Level {
      * */
     private void drawInfo(){
         int livesInit = player.life.getLives(), lives = player.life.getCurrentLives(), pos = 7;
+        screen.setForegroundColor(Game.colorPlayer);
 
-        this.screen.setForegroundColor(Game.colorPlayer);
-        this.screen.putString(1, height-2, "LIVES:");
+        //Display of how many lives the Player has
+
+        screen.putString(1, height-2, "LIVES:");
 
         for(int i =0; i < livesInit; i++){
             if(lives > 0) {
-                this.screen.drawLine(pos, height - 2, pos, height - 2, '*');
+                screen.drawLine(pos, height - 2, pos, height - 2, '*');
                 lives = lives - 1;
             }
-            else this.screen.drawLine(pos, height - 2, pos, height - 2, '#');
+            else screen.drawLine(pos, height - 2, pos, height - 2, '#');
             pos = pos + 2;
         }
 
+        //Reminder of how to quit the game
+        screen.putString(width-9, height-2, "Q: QUIT");
     }
 
     public void movePlayer(boolean moveToRight){
