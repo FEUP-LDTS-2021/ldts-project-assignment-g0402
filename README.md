@@ -15,6 +15,7 @@ This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coel
 - **Monsters Attack** - The enemies attack on their own, causing damage on the Player.
 - **Player Attacks** - Following the previous feature, *Player Shooting*, the bullets that the character shoots now kill the enemies, once one of the bullets reaches one of the Monters.
 - **Player's Lives Display** - The Player has 3 lives at the beginning of the game, losing one if the Player gets shot by a Monster. Also, the number of lives remaining are displayed on the bottom left corner of the screen.
+- **Menu** - A menu iniciates the application where the user can choose to play from there, or to read the instructions, and lastly to exit the application.
 
 
 <p align="center">
@@ -27,8 +28,7 @@ This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coel
 ### PLANNED FEATURES
 
 - **Different Levels** - For now, the game only has one level. In the future, we plan to introduce more.
-- **Different Monsters** - For now, the game only has one type of enemy. In the future, we plan to introduce more.
-- **Menu** - A menu iniciates the app, to be able to choose to play from there. 
+- **Different Monsters** - For now, the game only has one type of enemy. In the future, we plan to introduce more. 
 
 ## DESIGN
 
