@@ -4,6 +4,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import ldts.actions.Attack;
 import java.util.concurrent.TimeUnit;
 import java.util.Random;
+
+
 public class MonsterWave{
     protected Monster[][] wave;
     protected int lineSize;       //number of aliens per line
@@ -30,6 +32,8 @@ public class MonsterWave{
         this.speed = monster.speed;
     }
 
+    /** This method populates the Wave of Monsters, creating multiple Monsters
+     *  based of the given Monster.  */
     public void populateWave(Monster monster) {
         int xPosTmp;
         int yPosTmp = this.yPos;
@@ -43,7 +47,8 @@ public class MonsterWave{
         }
     }
 
-
+    /** This method controls the movements of the Wave, deciding when to
+     *  move to the left/right or down, according to the screen width provided. */
     public boolean moveWave(int width){
         int xMin = getPosLeft();
         int xMax = getPosRight();
@@ -74,7 +79,7 @@ public class MonsterWave{
         return false;   //wave moved
     }
 
-
+    /** This method draws each Monster on the Wave.  */
     public void draw(TextGraphics screen){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {
@@ -83,6 +88,7 @@ public class MonsterWave{
         }
     }
 
+    /** This method gets the x coordinate of the far most Monster on the left.  */
     public int getPosLeft(){
         int x = wave[0][lineSize-1].position.getxPos();
         for (int j = 0; j < lineSize; j++) {
@@ -95,6 +101,7 @@ public class MonsterWave{
         return x;
     }
 
+    /** This method gets the x coordinate of the far most Monster on the right.  */
     public int getPosRight(){
         int x = wave[0][0].position.getxPos();
         for (int j = 0; j < lineSize; j++) {
@@ -107,6 +114,7 @@ public class MonsterWave{
         return x;
     }
 
+    /** This method gets the y coordinate of the far most Monster on the bottom.  */
     public int getPosDown(){
         int y = yPos;
         for (int j = 0; j < lineSize; j++) {
@@ -119,7 +127,7 @@ public class MonsterWave{
         return y;
     }
 
-
+    /** This method moves each Monster on the Wave to the left, as a whole.  */
     public void moveLeft(){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {
@@ -133,6 +141,7 @@ public class MonsterWave{
         }
     }
 
+    /** This method moves each Monster on the Wave to the right, as a whole.  */
     public void moveRight(){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {
@@ -146,6 +155,7 @@ public class MonsterWave{
         }
     }
 
+    /** This method moves each Monster on the Wave down, as a whole.  */
     public void moveDown(){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {
@@ -159,6 +169,7 @@ public class MonsterWave{
         }
     }
 
+    /** This method checks if any of the bullets shot by the Player hit a Monster of the Wave.  */
     public void checkCollision(Attack attack){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {
@@ -167,6 +178,7 @@ public class MonsterWave{
         }
     }
 
+    /** This method does the Attack of the Monsters, randomizing which Monster is going to attack.  */
     public void doAttack(Attack attack){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {
@@ -177,6 +189,7 @@ public class MonsterWave{
         }
     }
 
+    /** This method return false only when all the Monsters on the Wave are dead.  */
     public boolean isWaveAlive(){
         for(int i = 0; i < waveLength; ++i){
             for (int j = 0; j < lineSize; ++j) {

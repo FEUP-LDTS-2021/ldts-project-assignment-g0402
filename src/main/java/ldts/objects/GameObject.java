@@ -53,7 +53,7 @@ public class GameObject{
     }
 
 
-    /**This method draws the object only if its alive*/
+    /**This method draws the object only if it's alive*/
     public void draw(TextGraphics screen) {
         if (this.life.isAlive()){
             int offset;
