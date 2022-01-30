@@ -2,28 +2,62 @@
   
 ## GAME DESCRIPTION
 
-The **Lonely Earth Invader** is a shooting text based game inspired by the game *Space Invaders* where you have to kill a wave of residents from that planet to win.
+The **Lonely Earth Invader** is a shooting text based game inspired by the game *Space Invaders* where you have to kill a wave of enemies to win.
+
+**Objective:**
+To win, you (the player), on your little spaceship, have to kill all the green enemies that appear on the screen. For that you can shoot bullets that effectively kill the monster that make contact with it (only if you have good aiming skills). But be careful! The monsters can also shoot bullets at you. Besides, you only have 3 lives, and if you run out of lives, you loose. You also loose if you let the enemies reach you, so be quick to kill them all.
 
 This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coelho (up201902223@edu.fc.up.pt) and Matias Vaz (up201900194@edu.fc.up.pt) for LDTS 2021-22.
 
 ## GAME FEATURES
 ### IMPLEMENTED FEATURES
 
+- **Menu** - A menu iniciates the application where the user can choose to play from there, or to read the instructions, and lastly to exit the application.
+<p align="center">
+  <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/menu1.jpg"
+       width=407
+       height=293
+       />
+  <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/menu2.jpg"
+       width=407
+       height=293
+       />
+  </p>
+
+- **Instructions** - From the menu of the game, the user is able to choose to see the instructions by pressing *Enter* when the **Instructions** are displayed green.
+<p align="center">
+  <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/instructions.jpg"
+       width=407
+       height=293
+       />
+  </p>
+  
 - **Player Moves** - The game character will move to the left when the *Arrow Left* key is pressed and to the right when the *Arrow Right* key is pressed.
 - **Player Shoots** - The game character will shoot a bullet when the *Arrow Up* key or the *Space Bar* key is pressed.
 - **Monsters Move** - The enemies of the game move on its own, with a defined pattern.
 - **Monsters Attack** - The enemies attack on their own, causing damage on the Player.
 - **Player Attacks** - Following the previous feature, *Player Shooting*, the bullets that the character shoots now kill the enemies, once one of the bullets reaches one of the Monters.
 - **Player's Lives Display** - The Player has 3 lives at the beginning of the game, losing one if the Player gets shot by a Monster. Also, the number of lives remaining are displayed on the bottom left corner of the screen.
-- **Menu** - A menu iniciates the application where the user can choose to play from there, or to read the instructions, and lastly to exit the application.
-
 
 <p align="center">
-  <img src= "https://user-images.githubusercontent.com/93398637/149397642-7b15a90d-8aac-48a9-8eb0-64ee81e54654.png"
-       width=570
-       height=410
+  <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/game.jpg"
+       width=407
+       height=293
        />
-</p>
+  </p>
+  
+- **Game Over/Won Display** - When the Player looses the game (by running out of lives or letting the monsters reach him) the game stops and a screen with the words `GAME OVER` will appear. On the other hand, if the Player wins, the screen that will be displayed will have the words `YOU WIN!`.
+<p align="center">
+  <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/gameover.jpg"
+       width=407
+       height=293
+       />
+  <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/youwin.jpg"
+       width=407
+       height=293
+       />
+  </p>
+
 
 ### PLANNED FEATURES
 
