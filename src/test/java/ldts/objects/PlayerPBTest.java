@@ -1,19 +1,17 @@
 package ldts.objects;
 
-import ldts.objects.*;
-
-import ldts.objects.attributes.Position;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import net.jqwik.api.*;
-import net.jqwik.api.constraints.*;
+import ldts.objects.attributes.Position;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
+import net.jqwik.api.constraints.IntRange;
+import net.jqwik.api.constraints.Positive;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class PlayerPBTest {
 
@@ -27,7 +25,7 @@ public class PlayerPBTest {
     }
 
     @Property
-    public void testMovementRight(@ForAll @Positive @IntRange(max = width/2 - offset) int a) throws URISyntaxException, FontFormatException {
+    public void testMovementRight(@ForAll @Positive @IntRange(max = width/2 - offset) int a) {
 
         Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, 1, "abc", 5);
 
@@ -44,7 +42,7 @@ public class PlayerPBTest {
     }
 
     @Property
-    public void testMovementLeft(@ForAll @Positive @IntRange(max = width/2 - offset) int a) throws URISyntaxException, FontFormatException {
+    public void testMovementLeft(@ForAll @Positive @IntRange(max = width/2 - offset) int a) {
 
         Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, 1, "abc", 5);
 

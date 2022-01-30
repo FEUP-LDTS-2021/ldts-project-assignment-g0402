@@ -1,7 +1,5 @@
 package ldts.objects.attributes;
 
-import ldts.objects.attributes.Life;
-import ldts.objects.attributes.Position;
 import ldts.objects.Player;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
@@ -10,12 +8,10 @@ import net.jqwik.api.lifecycle.BeforeProperty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class LifeTest {
     Player player;
-    private final int tries = 10;
 
     @BeforeEach
     @BeforeProperty

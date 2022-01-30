@@ -1,11 +1,6 @@
 package ldts.objects;
 
 import ldts.objects.attributes.Position;
-import ldts.objects.Monster;
-import ldts.objects.MonsterWave;
-import net.jqwik.api.Arbitraries;
-import net.jqwik.api.Arbitrary;
-import net.jqwik.api.Provide;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,11 +14,6 @@ public class MonsterWaveTest {
     @BeforeEach
     public void setupMonster() {
         this.monster = new Monster("monster", new Position(0, 0), 2, 1, 1, "pq", 4);
-    }
-
-    @Provide
-    Arbitrary<Integer> intRange(){
-        return Arbitraries.integers().filter(n -> (n <= 64 && n >= 0));
     }
 
     @Test

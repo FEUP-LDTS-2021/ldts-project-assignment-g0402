@@ -1,19 +1,16 @@
 package ldts.objects;
 
-import ldts.actions.Attack;
-import ldts.objects.*;
-
-import ldts.objects.attributes.Position;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import ldts.actions.Attack;
+import ldts.objects.attributes.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import java.awt.*;
+
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class PlayerTest {
 
@@ -27,7 +24,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testPlayerMovementRight() throws URISyntaxException, FontFormatException {
+    public void testPlayerMovementRight() {
 
         Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, 1, "abc", 5);
 
@@ -44,7 +41,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testPlayerMovementLeft() throws URISyntaxException, FontFormatException {
+    public void testPlayerMovementLeft() {
 
         Player p1 = new Player("Player 1", new Position(screen.newTextGraphics()), 1, 3, 1, "abc", 5);
 

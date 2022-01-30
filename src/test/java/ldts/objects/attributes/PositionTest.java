@@ -1,16 +1,16 @@
 package ldts.objects.attributes;
 
-import ldts.game.Level;
-import ldts.objects.attributes.Position;
-import ldts.objects.Monster;
-import ldts.objects.MonsterWave;
-import ldts.objects.Player;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import net.jqwik.api.*;
+import ldts.game.Level;
+import ldts.objects.Monster;
+import ldts.objects.MonsterWave;
+import ldts.objects.Player;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
 import net.jqwik.api.constraints.IntRange;
 import org.junit.jupiter.api.Assertions;
 
@@ -51,13 +51,4 @@ public class PositionTest {
         Assertions.assertTrue(p1.position.getyPos() >= 0);
     }
 
-    /*@Example
-    public void testPositionPlayer(@ForAll("examples")Player player) throws IOException {
-        TextGraphics screen = new TerminalScreen(new DefaultTerminalFactory().createTerminal()).newTextGraphics();
-        Position position = new Position(screen);
-        player.position.setPlayerPosDefault(player);
-
-        assert(position.getxPos() == player.position.getxPos());
-        assert(position.getyPos() == player.position.getyPos());
-    }*/
 }

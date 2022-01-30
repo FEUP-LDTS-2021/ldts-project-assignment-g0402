@@ -1,14 +1,13 @@
 package ldts.objects;
 
+import ldts.actions.Attack;
 import ldts.objects.attributes.Position;
-import ldts.objects.Monster;
-import net.jqwik.api.*;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Assertions;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MonsterTest {
     Monster monster;
@@ -24,21 +23,16 @@ public class MonsterTest {
         assert(monster.position.getxPos() != pos || monster.position.getyPos() != pos);
     }
 
-    @Provide
-    Arbitrary<Integer> intRange(){
-        return Arbitraries.integers().filter(n -> (n <= 30 && n >= 0));
-    }
-
     @Test
     public void testMonsterDeath(){
         this.monster = new Monster("monster", new Position(20, 20), 2, 1, 1, "pq", 4);
 
         this.monster.kill();
 
-        Assertions.assertFalse(this.monster.life.isAlive());
+        assertFalse(this.monster.life.isAlive());
     }
 
-    /*@Test
+    @Test
     public void testMonsterCanShoot(){
         Attack testAttack = new Attack();
         this.monster = new Monster("monster", new Position(20, 20), 2, 1, 1, "pq", 4);
@@ -49,6 +43,6 @@ public class MonsterTest {
         for(Bullet bullet: testAttack.bullets){
             assertTrue(bullet.isMonster());
         }
-    }*/
+    }
 }
 
