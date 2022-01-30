@@ -12,20 +12,20 @@ This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coel
 - **Menu** - A menu iniciates the application where the user can choose to play from there, or to read the instructions, and lastly to exit the application.
 <p align="center">
   <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/menu1.jpg"
-       width=438
-       height=315
+       width=407
+       height=293
        />
   <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/menu2.jpg"
-       width=438
-       height=315
+       width=407
+       height=293
        />
   </p>
 
 - **Instructions** - From the menu of the game, the user is able to choose to see the instructions by pressing *Enter* when the **Instructions** are displayed green.
 <p align="center">
   <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/instructions.jpg"
-       width=438
-       height=315
+       width=407
+       height=293
        />
   </p>
   
@@ -38,20 +38,20 @@ This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coel
 
 <p align="center">
   <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/game.jpg"
-       width=438
-       height=315
+       width=407
+       height=293
        />
   </p>
   
 - **Game Over/Won Display** - When the Player looses the game (by running out of lives or letting the monsters reach him) the game stops and a screen with the words `GAME OVER` will appear. On the other hand, if the Player wins, the screen that will be displayed will have the words `YOU WIN!`.
 <p align="center">
   <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/gameover.jpg"
-       width=438
-       height=315
+       width=407
+       height=293
        />
   <img src= "https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0402/blob/main/images/youwin.jpg"
-       width=438
-       height=315
+       width=407
+       height=293
        />
   </p>
 
