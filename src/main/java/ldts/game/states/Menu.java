@@ -1,10 +1,11 @@
-package ldts.game;
+package ldts.game.states;
 
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import ldts.game.Game;
 
 import java.io.IOException;
 

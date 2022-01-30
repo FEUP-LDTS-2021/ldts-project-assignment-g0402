@@ -8,6 +8,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+import ldts.game.states.Play;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -146,7 +147,7 @@ public class Console implements KeyBoardListener {
     private void gameOver(){
 
         try{
-            TextGraphics graphics = Play.screen.newTextGraphics();
+            TextGraphics graphics = Play.getScreen().newTextGraphics();
             clear();
 
             graphics.setBackgroundColor(Game.colorScenario);
@@ -157,7 +158,7 @@ public class Console implements KeyBoardListener {
             //Reminder of how to quit the game
             graphics.putString(Play.width-9, Play.height-2, "Q: QUIT");
 
-            Play.screen.refresh();
+            Play.getScreen().refresh();
         }
         catch (IOException e){
             e.printStackTrace();
@@ -167,7 +168,7 @@ public class Console implements KeyBoardListener {
     private void gameWin(){
 
         try{
-            TextGraphics graphics = Play.screen.newTextGraphics();
+            TextGraphics graphics = Play.getScreen().newTextGraphics();
             clear();
 
             graphics.setBackgroundColor(Game.colorScenario);
@@ -178,7 +179,7 @@ public class Console implements KeyBoardListener {
             //Reminder of how to quit the game
             graphics.putString(Play.width-9, Play.height-2, "Q: QUIT");
 
-            Play.screen.refresh();
+            Play.getScreen().refresh();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -202,16 +203,16 @@ public class Console implements KeyBoardListener {
     }
 
     public void addKeyBoardListener(KeyBoardObserver obs) {
-        ((AWTTerminalFrame) Play.screen.getTerminal()).getComponent(0).addKeyListener(obs);
+        ((AWTTerminalFrame) Play.getScreen().getTerminal()).getComponent(0).addKeyListener(obs);
     }
 
     public void clear() {
-        Play.screen.clear();
+        Play.getScreen().clear();
     }
 
     public void refresh() throws IOException {
-        Play.screen.refresh();
-        Play.screen.doResizeIfNecessary();
+        Play.getScreen().refresh();
+        Play.getScreen().doResizeIfNecessary();
     }
 
 }

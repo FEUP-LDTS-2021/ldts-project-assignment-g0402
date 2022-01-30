@@ -1,4 +1,4 @@
-package ldts.game;
+package ldts.game.states;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.screen.TerminalScreen;

@@ -1,6 +1,6 @@
 package ldts.game;
 
-import ldts.game.Instructions;
+import ldts.game.states.Instructions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

@@ -1,6 +1,10 @@
 package ldts.game;
 
 import com.googlecode.lanterna.TextColor;
+import ldts.game.states.Instructions;
+import ldts.game.states.Menu;
+import ldts.game.states.Play;
+import ldts.game.states.State;
 
 import java.awt.*;
 import java.io.File;
@@ -11,11 +15,11 @@ import java.net.URL;
 
 public class Game{
     private static KeyBoardObserver keyBoardObserver;
-    private final Play play; public static Menu menu; private final Instructions instructions;
+    private final Play play; public static ldts.game.states.Menu menu; private final Instructions instructions;
     private static Game singleton = null;
     protected static boolean exit;
-    protected static int state = 1;
-    protected static Font font;
+    public static int state = 1;
+    public static Font font;
 
     /*Constants*/
     public static final int refreshTime = 1000;
@@ -62,6 +66,7 @@ public class Game{
     public KeyBoardObserver getKeyBoardObserver() {
         return keyBoardObserver;
     }
+
 
     public static void main(String[] args) throws URISyntaxException, FontFormatException, IOException {
         singleton = getInstance();
