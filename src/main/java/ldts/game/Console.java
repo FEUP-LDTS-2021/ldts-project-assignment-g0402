@@ -147,8 +147,8 @@ public class Console implements KeyBoardListener {
     private void gameOver(){
 
         try{
-            TextGraphics graphics = Play.getScreen().newTextGraphics();
             clear();
+            TextGraphics graphics = Play.getScreen().newTextGraphics();
 
             graphics.setBackgroundColor(Game.colorScenario);
             graphics.setForegroundColor(Game.colorPlayer);
@@ -168,8 +168,8 @@ public class Console implements KeyBoardListener {
     private void gameWin(){
 
         try{
-            TextGraphics graphics = Play.getScreen().newTextGraphics();
             clear();
+            TextGraphics graphics = Play.getScreen().newTextGraphics();
 
             graphics.setBackgroundColor(Game.colorScenario);
             graphics.setForegroundColor(Game.colorPlayer);
