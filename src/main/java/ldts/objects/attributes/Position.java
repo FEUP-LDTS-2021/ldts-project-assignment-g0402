@@ -1,6 +1,5 @@
 package ldts.objects.attributes;
 
-import ldts.objects.Player;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 
@@ -10,8 +9,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public class Position {
     private int xPos;
     private int yPos;
-    private int xPlayerDefault;
-    private int yPlayerDefault;
 
 
     /**This constructor defines the Default Coordinates for an
@@ -20,16 +17,16 @@ public class Position {
     public Position(TextGraphics game){
         int distanceFromConsoleFloor = 4;
 
-        this.xPlayerDefault = (game.getSize().getColumns()/2);
-        this.yPlayerDefault = game.getSize().getRows() - distanceFromConsoleFloor;
+        int xPlayerDefault = (game.getSize().getColumns() / 2);
+        int yPlayerDefault = game.getSize().getRows() - distanceFromConsoleFloor;
 
-        this.xPos = this.xPlayerDefault;
-        this.yPos = this.yPlayerDefault;
+        this.xPos = xPlayerDefault;
+        this.yPos = yPlayerDefault;
     }
 
 
 
-    /**This constructor defines a Objects.Position with  X and Y Coordinates for an
+    /**This constructor defines a Position with  X and Y Coordinates for an
      * unspecified Object based on the values given in the parameters.*/
     public Position(int xPos, int yPos){
         this.xPos = xPos;
@@ -50,13 +47,6 @@ public class Position {
 
     public void setyPos(int yPos) {
         this.yPos = yPos;
-    }
-
-    /**This method sets the coordinates of the Object Objects.Player
-     * to its default coordinates according to the Object Objects.Player Size.*/
-    public void setPlayerPosDefault(Player player){
-        this.xPos = this.xPlayerDefault - player.getWidth();
-        this.yPos = this.yPlayerDefault - player.getHeight();
     }
 
 }

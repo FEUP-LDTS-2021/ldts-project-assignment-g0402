@@ -78,9 +78,9 @@ public class Attack {
         for (Bullet bullet : bullets) {
             if (!bullet.isValid()) {
                 if (isFromMonster) {
-                    bullet.used(new Position(xPos + 1, yPos + 1), "z", isFromMonster);
+                    bullet.used(new Position(xPos + 1, yPos + 1), "z", true);
                 } else {
-                    bullet.used(new Position(xPos + 1, yPos - 1), "z", isFromMonster);
+                    bullet.used(new Position(xPos + 1, yPos - 1), "z", false);
                 }
                 break;
             }

@@ -13,7 +13,7 @@ public class MonsterWave{
     protected int speed;
     protected int yOffset;
     protected int xOffset;
-    private int refreshTime = 1000;
+    private final int refreshTime = 1000;
     private boolean isMovingToRight = true;
     Random random = new Random();
 
@@ -89,7 +89,7 @@ public class MonsterWave{
             for(int i = 0; i < waveLength; ++i){
                 if(wave[i][j].life.isAlive() && x> wave[i][j].position.getxPos()){
                     x = wave[i][j].position.getxPos();
-                };
+                }
             }
         }
         return x;
@@ -157,19 +157,6 @@ public class MonsterWave{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public Monster getMonsterX (int positionX){
-        Monster monster = null;
-
-        for(int i=waveLength-1; i>=0; i--){
-            for (int j=0; j<lineSize; j++){
-                if(wave[i][j].position.getxPos() == positionX){
-                    monster = wave[i][j];
-                }
-            }
-        }
-        return monster;
     }
 
     public void checkCollision(Attack attack){

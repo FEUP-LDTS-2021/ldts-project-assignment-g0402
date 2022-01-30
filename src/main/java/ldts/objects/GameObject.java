@@ -17,8 +17,8 @@ public class GameObject{
     String sprite;
     protected int speed;
     private int actualFireRate = 10000;
-    private TextColor color;
-    private boolean isMonster;
+    private final TextColor color;
+    private final boolean isMonster;
 
 
     /**This constructor defines a new GameObject*/
