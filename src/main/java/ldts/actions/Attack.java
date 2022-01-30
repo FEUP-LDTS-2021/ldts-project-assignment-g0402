@@ -21,7 +21,7 @@ public class Attack {
     public Attack(){
         for (int i = 0; i < 100; i++) {
             Position outside = new Position(-1, -1);
-            bullets.add(new Bullet(outside, "z",1,false));
+            bullets.add(new Bullet(outside, "z", false));
         }
     }
 
@@ -78,9 +78,9 @@ public class Attack {
         for (Bullet bullet : bullets) {
             if (!bullet.isValid()) {
                 if (isFromMonster) {
-                    bullet.used(new Position(xPos + 1, yPos + 1), "z", 1, isFromMonster);
+                    bullet.used(new Position(xPos + 1, yPos + 1), "z", isFromMonster);
                 } else {
-                    bullet.used(new Position(xPos + 1, yPos - 1), "z", 1, isFromMonster);
+                    bullet.used(new Position(xPos + 1, yPos - 1), "z", isFromMonster);
                 }
                 break;
             }

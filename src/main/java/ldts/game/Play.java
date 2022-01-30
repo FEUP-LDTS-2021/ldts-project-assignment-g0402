@@ -14,12 +14,13 @@ public class Play extends State{
     protected static final int height = 36;
     TerminalSize terminalSize = new TerminalSize(width, height);
     public Console console;
-    private final int sizeFont = 20;
 
 
     public void run() throws IOException, URISyntaxException, FontFormatException {
+        int sizeFont = 20;
 
         close();
+
         createTerminal(sizeFont, terminalSize);
         graphics = screen.newTextGraphics();
         console = new Console(graphics);

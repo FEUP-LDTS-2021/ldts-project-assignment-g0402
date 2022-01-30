@@ -16,7 +16,7 @@ public class Level {
     public static TextGraphics screen;
 
     public Level(TextGraphics screen, Player player, MonsterWave monsterWave){
-        this.screen = screen;
+        Level.screen = screen;
         this.height = screen.getSize().getRows();
         this.width = screen.getSize().getColumns();
         this.player = player;

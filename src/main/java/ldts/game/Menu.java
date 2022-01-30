@@ -15,10 +15,10 @@ public class Menu extends State {
     protected final int height = 18;
     TerminalSize terminalSize = new TerminalSize(width, height);
     int column = (width/2)-3, row = height/4;
-    private final int sizeFont = 40;
 
 
     public void start() {
+        int sizeFont = 40;
         createTerminal(sizeFont, terminalSize);
         graphics = screen.newTextGraphics();
     }

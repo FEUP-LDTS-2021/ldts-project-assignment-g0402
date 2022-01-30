@@ -13,12 +13,12 @@ public class Bullet{
     private boolean isMonsterBullet;
     private boolean valid;
     public TextColor color;
-    private Position outside = new Position(-1,-1);
+    private final Position outside = new Position(-1,-1);
 
 
 
 
-    public Bullet(Position position, String sprite, int speed, boolean isMonsterBullet) {
+    public Bullet(Position position, String sprite, boolean isMonsterBullet) {
         this.valid = false;
 
         this.position = position;
@@ -48,7 +48,7 @@ public class Bullet{
     public boolean isValid() {
         return valid;
     }
-    public void used(Position position, String sprite, int speed, boolean isFromMonster) {
+    public void used(Position position, String sprite, boolean isFromMonster) {
         this.position = position;
         this.sprite = sprite;
         this.isMonsterBullet = isFromMonster;
