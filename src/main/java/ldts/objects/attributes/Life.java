@@ -55,6 +55,9 @@ public class Life {
         return isAlive;
     }
 
+    /** This method returns true if the Object was just killed.
+     *  This is useful to draw the effects when an Object dies.
+     */
     public boolean isDeadRecently(){
         if(deadRecently > -1 && deadRecently < 3) {
             deadRecently++;

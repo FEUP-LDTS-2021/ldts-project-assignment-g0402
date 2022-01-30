@@ -26,7 +26,7 @@ public class Attack {
     }
 
     /**
-     * This method ...
+     * This method updates the position of the bullet on the screen, so it seems that the bullet is moving.
      **/
     public void move(int width) {
         for (Bullet bullet : this.bullets) {
@@ -46,7 +46,7 @@ public class Attack {
     }
 
     /**
-     * This method ...
+     * This method draws the bullets on the screen.
      **/
     public void draw(TextGraphics screen) {
         for (Bullet bullet : bullets) {
@@ -56,7 +56,7 @@ public class Attack {
     }
 
     /**
-     * This method ...
+     * This method checks if a bullet reached the position of the given GameObject.
      **/
     public void checkCollision(GameObject object) {
         for (Bullet bullet : bullets) {
@@ -72,7 +72,8 @@ public class Attack {
     }
 
     /**
-     * This method ...
+     * This method gets the first bullet that's not valid and uses it for the game.
+     * This allows the bullets that were already shot and are out of the game, to be reused.
      **/
     public void doAttack(int xPos, int yPos, boolean isFromMonster){
         for (Bullet bullet : bullets) {
