@@ -2,7 +2,10 @@
   
 ## GAME DESCRIPTION
 
-The **Lonely Earth Invader** is a shooting text based game inspired by the game *Space Invaders* where you have to kill a wave of residents from that planet to win.
+The **Lonely Earth Invader** is a shooting text based game inspired by the game *Space Invaders* where you have to kill a wave of enemies to win.
+
+**Objective:**
+To win, you (the player), on your little spaceship, have to kill all the green enemies that appear on the screen. For that you can shoot bullets that effectively kill the monster that make contact with it (only if you have good aiming skills). But be careful! The monsters can also shoot bullets at you. Besides, you only have 3 lives, and if you run out of lives, you loose. You also loose if you let the enemies reach you, so be quick to kill them all.
 
 This project was developed by Ana Ramos (up201904969@edu.fe.up.pt), Gabriel Coelho (up201902223@edu.fc.up.pt) and Matias Vaz (up201900194@edu.fc.up.pt) for LDTS 2021-22.
 
