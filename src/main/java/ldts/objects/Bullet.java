@@ -10,7 +10,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public class Bullet{
     public Position position;
     private String sprite;
-    private int speed;
     private boolean isMonsterBullet;
     private boolean valid;
     public TextColor color;
@@ -24,7 +23,6 @@ public class Bullet{
 
         this.position = position;
         this.sprite = sprite;
-        this.speed = speed;
         this.isMonsterBullet = isMonsterBullet;
         if (this.isMonsterBullet){
             this.color = Game.colorMonster;
@@ -53,7 +51,6 @@ public class Bullet{
     public void used(Position position, String sprite, int speed, boolean isFromMonster) {
         this.position = position;
         this.sprite = sprite;
-        this.speed = speed;
         this.isMonsterBullet = isFromMonster;
         this.valid = true;
         if (this.isMonsterBullet){
