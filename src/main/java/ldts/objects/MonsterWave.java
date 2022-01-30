@@ -48,14 +48,17 @@ public class MonsterWave{
     }
 
     /** This method controls the movements of the Wave, deciding when to
-     *  move to the left/right or down, according to the screen width provided. */
-    public boolean moveWave(int width){
+     *  move to the left/right or down, according to the screen width provided.
+     *  If it returns FALSE it means the Wave is still moving. Otherwise,
+     *  if it returns TRUE, the Wave stop the movement.*/
+    public boolean moveWave(int width, int height){
         int xMin = getPosLeft();
         int xMax = getPosRight();
         int down = getPosDown();
+
         if(xMin < 2 && !isMovingToRight){
             this.isMovingToRight = true;
-            if(down < width-35)
+            if(down < height - 6)
                 moveDown();
             else{
                 return true; //not moving anymore
@@ -63,7 +66,7 @@ public class MonsterWave{
         }
         else if(xMax > width-4 && this.isMovingToRight) {
             this.isMovingToRight = false;
-            if(down < width-35)
+            if(down < height - 6)
                 moveDown();
             else{
                 return true; //not moving anymore

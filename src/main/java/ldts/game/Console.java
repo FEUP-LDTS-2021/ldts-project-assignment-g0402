@@ -134,7 +134,7 @@ public class Console implements KeyBoardListener {
     protected void updateWave() {
         level.waveAttack();
 
-        waveFinishWalk = level.wave.moveWave(Play.width);
+        waveFinishWalk = level.wave.moveWave(Play.width, Play.height);
 
     }
 

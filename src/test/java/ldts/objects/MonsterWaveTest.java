@@ -47,7 +47,7 @@ public class MonsterWaveTest {
         this.monsterWave = new MonsterWave(3, 3, 5, 5, 5, 3, monster);
         this.monsterWave.populateWave(monster);
 
-        this.monsterWave.moveWave(width);
+        this.monsterWave.moveWave(width, height);
 
         Assertions.assertTrue(this.monsterWave.getPosRight() <= width);
         Assertions.assertTrue(this.monsterWave.getPosDown() <= height);
