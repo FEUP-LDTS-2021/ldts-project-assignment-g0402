@@ -3,7 +3,7 @@ plugins {
     id 'info.solidsoft.pitest' version '1.6.0'
 }
 
-group 'org.example'
+group 'main.java.ldts'
 version '1.0-SNAPSHOT'
 
 repositories {
